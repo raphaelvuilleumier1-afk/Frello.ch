@@ -1,8 +1,10 @@
-# Businessplan Frello – Version 0.1
+# Businessplan Frello – Version 0.2
 
-**Stand:** 28. August 2026 · **Status:** Erstentwurf zur Gründerprüfung (nicht freigegeben) · **Startmarkt:** Schweiz · **Mögliche spätere Expansion:** Deutschland
+**Stand:** 28. August 2026 · **Status:** Konsolidierte Gründerentscheide (28.08.2026) eingearbeitet; Arbeitsdokument zur Gründerprüfung (nicht investorenfinal) · **Startmarkt:** Deutschschweiz · **Mögliche spätere Expansion:** Deutschland (an Trigger gebunden)
 
-**Zugehörige Dokumente:** [Business-README](./README.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md)
+**Zugehörige Dokumente:** [Business-README](./README.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [ADR-Verzeichnis](./decisions/README.md) · [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md)
+
+> **Versionshinweis:** V0.2 arbeitet den konsolidierten Gründerentscheid vom 28.08.2026 ein (siehe [Entscheidungsregister](./02_OPEN_FOUNDER_DECISIONS.md) und [ADRs](./decisions/README.md)). Decision-Status wie **AKZEPTIERT / AKZEPTIERT MIT VALIDIERUNG / TEILWEISE AKZEPTIERT / ZURÜCKGESTELLT / EXTERN ZU PRÜFEN** sind im [README](./README.md) erläutert; im Fliesstext erscheinen beschlossene Punkte als **[BESCHLOSSEN]** (ggf. mit Validierungs-/Prüfhinweis).
 
 ---
 
@@ -27,7 +29,7 @@ Jede wesentliche Aussage ist einer Governance-Kategorie zugeordnet und im Text s
 - Fehlende Zahlen erscheinen nur als explizite Szenarioannahmen und stehen im [Annahmenregister](./03_ASSUMPTION_REGISTER.md).
 - Wettbewerber-Reichweiten sind Selbstauskünfte, sofern nicht unabhängig bestätigt.
 
-**Aktueller Beschluss-Stand (Kurzüberblick):** Verbindlich beschlossen ist im Wesentlichen nur der **Arbeits- und Produktname «Frello»** sowie die grundsätzliche Produktidee und die strategischen Leitplanken (kein Dating, reale Teilhabe statt Bildschirmzeit, respektvolle Positionierung). Nahezu alle konkreten Parameter (Alterspositionierung, Pilotregion, Preise, Betreiberfirma, Termine) sind **[OFFEN]** oder **[HYPOTHESE]**.
+**Aktueller Beschluss-Stand (Kurzüberblick, Stand V0.2):** Verbindlich beschlossen sind neben Name und Leitplanken (kein Dating, reale Teilhabe statt Bildschirmzeit, respektvolle Positionierung) nun u. a.: Alterspositionierung **65+, offen für alle** (D-07); Pilot in der **Deutschschweiz**, parallel in **Zürich, Basel, Bern, Luzern** mit Dichteschwelle **5 Anbieter / 10 Termine je Stadt** (D-09/10/29); **Kreativ Solutions GmbH** als geplante Betreiberin, Frello als deren Produkt, **vorbehaltlich externer rechtlicher/steuerlicher Prüfung** (D-14; eine separate Frello-Gesellschaft ist für den MVP nicht anwendbar, D-04); Frello als **Vermittler** (D-16); **8 % Standard- / 15 % betreute** Provision als **Pilotgrundlage mit Validierung** (D-11); nur **geprüfte gewerbliche/institutionelle/gemeinnützige Anbieter**, keine Privaten (D-08); Buchungs-, Storno-, Warteliste-, Profil-, Chat-, Verifikations- und Bewertungsregeln (D-15–D-27); **Web/PWA zuerst** (D-28). **Weiterhin offen bzw. zu validieren:** Pilotdauer, exakte Provisionssätze, Supportzeiten, Lead-/B2B-Modell, Termine sowie diverse **[EXTERN ZU PRÜFEN]**-Punkte (Zahlungsfluss, Vermittlerrolle, revDSG, Storno-Detail). Die Domainregistrierung `frello.ch` ist **beschlossen, aber noch nicht nachgewiesen**.
 
 ---
 
@@ -39,9 +41,11 @@ Das gesellschaftliche Umfeld ist tragfähig: In der Schweiz leben rund **1,8 Mio
 
 Der Markt ist **nicht konkurrenzlos**: Freizeit-Communities (Freizeit60Plus/GemeinsamErleben), Kontaktbörsen (Sozialkontakt.ch), institutionelle Anbieter (Pro Senectute) sowie Event-/Ticketplattformen (Eventfrog, Eventbrite) decken jeweils Teile ab **[MARKTERKENNTNIS]**. Wird Frello nur als «Profile + Chat + Events für 60+» verstanden, ist die funktionale Konkurrenz mittel bis hoch. Der **Differenzierungsraum** liegt in einer klaren Kombination **[HYPOTHESE]**: vertrauenswürdige, seniorengerechte **Kleingruppen-Erlebnisse** mit verifizierten Anbietern, verbindlicher Buchung, Mindest-/Höchstteilnehmerzahl, Warteliste mit Nachrücken, ereignisbezogenem Gruppenchat, Zugänglichkeits- und Mobilitätsangaben, Angehörigen- und Telefonunterstützung sowie Fokus auf **reale, wiederkehrende Teilnahme statt Bildschirmzeit**.
 
-**Geschäftsmodell (Präferenz/Hypothese):** Teilnehmende nutzen Frello kostenlos; Erlöse entstehen primär über erfolgreich vermittelte, bezahlte Buchungen sowie optionale B2B-Leistungen. Ein gestuftes Anbietermodell (kostenloses Inserat → externe Buchung → Standard-Marktplatzbuchung → Managed Event → B2B Plus) wird geprüft. Provisionskorridore (**~6–10 %** Standard, **~12–20 %** Managed Event) sind **[HYPOTHESE]** und per Pilot zu validieren.
+**Betrieb & Rolle:** Geplante Betreiberin ist die bestehende **Kreativ Solutions GmbH** (Frello als deren Produkt), **[BESCHLOSSEN MIT VORBEHALT]** / **[EXTERN ZU PRÜFEN]** (D-14); eine separate Frello-Gesellschaft ist für den MVP nicht anwendbar (D-04). Frello ist **Vermittler**; der Anbieter bleibt Veranstalter und Vertragspartner **[BESCHLOSSEN]** / **[EXTERN ZU PRÜFEN]** (D-16).
 
-**Vorgehen:** Ein regionaler **Concierge-Pilot** (kompakte Region, ~12 Wochen, teils manuelle Prozesse) vor umfassender technischer Umsetzung; **Web zuerst**, native Apps erst nach nachgewiesener wiederkehrender Nutzung **[HYPOTHESE]**.
+**Geschäftsmodell:** Teilnehmende nutzen Frello kostenlos; Erlöse primär über vermittelte, bezahlte Buchungen sowie optionale B2B-Leistungen. Als **Pilotgrundlage** gelten **8 % Standardprovision** und **15 % für aktiv konzipierte/betreute Formate** **[BESCHLOSSEN – im Pilot zu validieren]** (D-11). Im MVP nur **geprüfte gewerbliche/institutionelle/gemeinnützige Anbieter**, keine Privaten **[BESCHLOSSEN]** (D-08).
+
+**Vorgehen:** Regionaler **Concierge-Pilot** in der **Deutschschweiz**, parallel in **Zürich, Basel, Bern und Luzern**; öffentlicher Start je Stadt erst ab **≥5 geprüften Anbietern und ≥10 kommenden Terminen** **[BESCHLOSSEN]** (D-09/10/29, Pilotdauer offen). **Web/PWA zuerst**, native Apps erst nach belegter wiederkehrender Nutzung **[BESCHLOSSEN]** (D-28).
 
 **North-Star-Metric (Prüfvorschlag):** Anteil der Teilnehmenden, die innerhalb von 60 Tagen erneut ein reales Erlebnis buchen **und tatsächlich besuchen** **[HYPOTHESE]**.
 
@@ -53,9 +57,9 @@ Der Markt ist **nicht konkurrenzlos**: Freizeit-Communities (Freizeit60Plus/Geme
 
 - Der Gründer hat den Produkt- und Arbeitsnamen **Frello** gewählt **[BESCHLOSSEN]**.
 - Es existiert eine Deep-Research-Markt- und Produktanalyse (Stand 28.08.2026), die als Research-Grundlage dient (Source-of-Truth-Rang 6).
-- Es liegen keine weiteren verbindlichen Business-, ADR- oder Verfassungsdokumente im Repository vor; es gibt keine vorbestehenden Dokumentkonventionen. Diese Version 0.1 begründet die Struktur unter `docs/business/`.
-- Der Markenstatus ist früh: Domain, Marke, Handelsregister-, App-Store- und Social-Handle-Verfügbarkeit sind **nicht geprüft** (siehe Kapitel 8).
-- Betreiberfirma, Team und Eigentümerstruktur sind **[OFFEN]**; `Kreativ Solutions GmbH` erscheint in der Research nur als Adressat, nicht als verbindlicher Betreiberentscheid (siehe Kapitel 31).
+- Am **28.08.2026** wurde ein konsolidierter Gründerentscheid eingearbeitet; er ist im [Entscheidungsregister](./02_OPEN_FOUNDER_DECISIONS.md) und in sieben thematischen [ADRs](./decisions/README.md) dokumentiert. Diese Version begründet die Struktur unter `docs/business/` inkl. `docs/business/decisions/`.
+- Der Markenstatus ist früh: Die **Registrierung von `frello.ch` ist beschlossen** (D-01), aber ohne Registrar-Nachweis; eine **zweistufige Schweizer Markenprüfung** ist beschlossen (D-02); Deutschland/EU- und App-Store-Namensprüfung sind **zurückgestellt** (D-03/D-05). Nichts davon ist als erledigt nachgewiesen (siehe Kapitel 8).
+- Geplante Betreiberin ist die **Kreativ Solutions GmbH** (Frello als deren Produkt), **vorbehaltlich externer rechtlicher/steuerlicher Prüfung** (D-14); eine separate Frello-Gesellschaft ist für den MVP nicht anwendbar (D-04, siehe Kapitel 31).
 
 ---
 
@@ -98,7 +102,7 @@ Teilnehmende können **[BESCHLOSSEN]** (Grundidee, Detailumfang je Ausbaustufe o
 - gemeinsam mit anderen teilnehmen und über reale Erlebnisse neue Bekanntschaften aufbauen;
 - wiederkehrende Gruppen und Veranstaltungen entdecken.
 
-Anbieter veröffentlichen passende Angebote. Potenzielle Anbieter sind u. a. Restaurants, Cafés, Hotels, Ausflugsgastronomie, Reise-/Bus-/Schifffahrtsanbieter, Museen, Theater, Kinos, Kulturhäuser, Kurs-/Tanz-/Kochschulen, Kreativateliers, qualifizierte Sport-/Bewegungsanbieter, Gemeinden, Vereine, Kirchen, Bibliotheken und gemeinnützige Organisationen **[BESCHLOSSEN]** (als Angebotsspektrum). Ob **Privatpersonen** eigene Veranstaltungen anbieten dürfen, ist **[OFFEN]** (D-08).
+Anbieter veröffentlichen passende Angebote. Potenzielle Anbieter sind u. a. Restaurants, Cafés, Hotels, Ausflugsgastronomie, Reise-/Bus-/Schifffahrtsanbieter, Museen, Theater, Kinos, Kulturhäuser, Kurs-/Tanz-/Kochschulen, Kreativateliers, qualifizierte Sport-/Bewegungsanbieter, Gemeinden, Vereine, Kirchen, Bibliotheken und gemeinnützige Organisationen **[BESCHLOSSEN]** (als Angebotsspektrum). Im MVP sind **nur geprüfte gewerbliche, institutionelle oder gemeinnützige Anbieter** zugelassen; **private Veranstalter sind nicht zugelassen** **[BESCHLOSSEN]** (D-08).
 
 **Primäre Zielsetzung:** reale, wiederholte Teilnahme, angenehme Gruppenerlebnisse, neue Bekanntschaften, lokale Zugehörigkeit sowie einfache, sichere Buchung. Die Plattform wird **nicht** auf maximale Bildschirmzeit optimiert **[BESCHLOSSEN]**.
 
@@ -110,21 +114,17 @@ Anbieter veröffentlichen passende Angebote. Potenzielle Anbieter sind u. a. Res
 
 - **Frello** ist der vom Gründer gewählte **Arbeits- und Produktname** **[BESCHLOSSEN]**.
 
-**Nicht** beschlossen oder **nicht** verifiziert **[OFFEN]/[EXTERN ZU PRÜFEN]**:
+**Beschlossene Schutz-/Prüfschritte (Umsetzung/Ergebnis noch nicht nachgewiesen), siehe [ADR-001](./decisions/ADR-001-marke-domain-schutz.md):**
 
-- Die Domain `frello.ch` ist **nicht** registriert und **nicht** gesichert.
-- Rechtliche Verfügbarkeit des Namens Frello **nicht** geprüft.
-- Schweizer Markenrecherche **nicht** abgeschlossen.
-- Verfügbarkeit in Deutschland/EU **nicht** geprüft.
-- Handelsregisterkonflikte **nicht** geprüft.
-- App-Store-Namen, Social-Media-Handles, internationale Domains **nicht** geprüft.
-- Logo, visuelle Identität und definitiver Claim **nicht** entwickelt/beschlossen.
+- Die **Registrierung von `frello.ch`** ist beschlossen **[BESCHLOSSEN – AUSSTEHENDE UMSETZUNG]** (D-01); solange kein Registrar-Nachweis vorliegt, gilt die Domain **nicht als registriert oder gesichert**.
+- Eine **zweistufige Schweizer Markenprüfung** ist beschlossen **[BESCHLOSSEN]** (D-02): Stufe 1 Basisrecherche (Swissreg, Zefix, Domains) jetzt; Stufe 2 professionelle Ähnlichkeitsrecherche **[EXTERN ZU PRÜFEN]** vor Logo-Investition/öffentlichem Markenaufbau/Anmeldung.
+- **Relevante Social Handles** werden nach Basisrecherche defensiv gesichert **[BESCHLOSSEN – AUSSTEHENDE UMSETZUNG]** (D-06).
+- **Deutschland/EU-Namensprüfung** und **App-Store-Namensprüfung** sind **zurückgestellt** (D-03/D-05) und an spätere Trigger gebunden.
+- Frello wird als **Produkt der Kreativ Solutions GmbH** geplant (D-14, **[EXTERN ZU PRÜFEN]**); ein **neuer Handelsregistereintrag «Frello» ist nicht beschlossen** und für den MVP nicht anwendbar (D-04). Die Zefix-Basisprüfung des Produktnamens ist Teil von D-02.
 
-**Zulässige Formulierung:** «Frello ist der vom Gründer gewählte Arbeits- und Produktname.»
+**Noch nicht vorhanden/verifiziert:** Registrar-Nachweis der Domain; Ergebnisse der Marken-/Handle-Recherchen; Logo, visuelle Identität und definitiver Claim **[OFFEN]/[EXTERN ZU PRÜFEN]**.
 
-**Unzulässig** (und in diesem Plan nicht behauptet): Frello sei eine eingetragene Marke; `frello.ch` gehöre dem Unternehmen oder sei gesichert; Frello sei markenrechtlich konfliktfrei; Frello sei gegründet oder lanciert.
-
-Die zugehörigen Prüf- und Registrierungspunkte sind priorisiert im [Entscheidungsregister](./02_OPEN_FOUNDER_DECISIONS.md) erfasst (D-01 bis D-06): Domainregistrierung, Markenrecherche Schweiz, Prüfung Deutschland/EU, Handelsregisterprüfung, App-Store-Prüfung, Social-Handle-Prüfung. Die tatsächliche Registrierung/Reservierung ist **nicht** Teil dieses Auftrags.
+**Unzulässig** (und in diesem Plan nicht behauptet): Frello sei eine eingetragene Marke; `frello.ch` gehöre dem Unternehmen oder sei gesichert; Frello sei markenrechtlich konfliktfrei; Frello sei gegründet oder lanciert. Die tatsächliche Registrierung/Reservierung ist **nicht** Teil dieses Dokumentationsauftrags.
 
 ---
 
@@ -132,18 +132,20 @@ Die zugehörigen Prüf- und Registrierungspunkte sind priorisiert im [Entscheidu
 
 ### 9.1 Primäre Teilnehmende
 
-- **Aktive Pensionierte (~65–79):** selbstständig, zunehmend digital erreichbar, an gemeinsamen Aktivitäten interessiert; wollen **nicht** als «einsam» etikettiert werden. Die konkrete Alterspositionierung ist **[OFFEN]** (D-07).
+**Alterspositionierung [BESCHLOSSEN] (D-07):** Frello richtet sich **primär an Menschen ab 65 Jahren**, bleibt aber **für alle Erwachsenen offen**. Eventbezogene Altersfokusse sind möglich und werden **transparent ausgewiesen** (ihre diskriminierungsrechtliche Zulässigkeit ist **[EXTERN ZU PRÜFEN]**).
+
+- **Aktive Pensionierte (ab 65):** selbstständig, zunehmend digital erreichbar, an gemeinsamen Aktivitäten interessiert; wollen **nicht** als «einsam» etikettiert werden.
 - **Menschen in Übergangssituationen:** Pensionierung, Verwitwung, Trennung, Umzug, Verlust bisheriger Kontakte, Auszug erwachsener Kinder, Aufgabe von Verein/Arbeitsplatz, gesundheitlich bedingte Alltagsveränderung. Der Bedarf ist **ereignis-**, nicht rein altersgetrieben **[HYPOTHESE]**.
-- **Ältere Menschen mit Unterstützungsbedarf:** benötigen verständliche Bedienung, gut lesbare Darstellung, Telefon-/Rückrufhilfe, Buchung durch Angehörige, klare Mobilitäts- und Barrierefreiheitsangaben, Kommunikation per E-Mail/SMS, verständliche Zahlungs-/Stornoregeln.
-- **Jüngere Erwachsene:** grundsätzlich zugänglich; ob einzelne Events einen Altersfokus (z. B. 60+/65+) erhalten, ist veranstaltungsabhängig und **[OFFEN]**.
+- **Ältere Menschen mit Unterstützungsbedarf:** benötigen verständliche Bedienung, gut lesbare Darstellung, Telefon-/Rückrufhilfe (D-27), Buchung durch Angehörige (D-15), klare Mobilitäts- und Barrierefreiheitsangaben, Kommunikation per E-Mail/SMS, verständliche Zahlungs-/Stornoregeln.
+- **Jüngere Erwachsene:** grundsätzlich zugänglich; eventbezogene Altersfokusse (z. B. 60+/70+/80+) werden transparent ausgewiesen (D-07/D-22).
 
 ### 9.2 Angehörige
 
-Angehörige können eine wichtige indirekte Nutzergruppe sein (Empfehlen, gemeinsam suchen, Buchung unterstützen, mit Zustimmung für eine andere Person buchen, Erinnerungen unterstützen). Die rechtliche und datenschutzbezogene Ausgestaltung einer Angehörigenbuchung ist **[OFFEN]/[EXTERN ZU PRÜFEN]** (D-15).
+Angehörige sind eine wichtige indirekte Nutzergruppe. **Angehörigenbuchung ist erlaubt [BESCHLOSSEN] (D-15):** die buchende Person benötigt ein Konto; buchende und teilnehmende Person werden getrennt geführt; Zustimmung und Teilnehmeridentität müssen nachvollziehbar sein. Die datenschutzrechtliche Ausgestaltung ist **[EXTERN ZU PRÜFEN]**.
 
 ### 9.3 Anbieter (Segmente)
 
-Zu unterscheiden sind kommerzielle Anbieter, öffentliche Institutionen, gemeinnützige Organisationen, Vereine sowie – falls später zugelassen – private Gastgeber. Für jedes Segment gilt ein eigenes Nutzenversprechen (siehe Kapitel 11).
+Im MVP zugelassen sind **geprüfte kommerzielle Anbieter, öffentliche Institutionen, gemeinnützige Organisationen und Vereine**; **private Gastgeber sind im MVP nicht zugelassen** **[BESCHLOSSEN]** (D-08). Für jedes Segment gilt ein eigenes Nutzenversprechen (siehe Kapitel 11).
 
 ---
 
@@ -166,7 +168,7 @@ Zu unterscheiden sind kommerzielle Anbieter, öffentliche Institutionen, gemeinn
 | **Kommerzielle Anbieter** (Restaurants, Kultur, Kurse, Reisen) | Neue, passende Gäste; höhere Auslastung durch gefüllte Gruppen; Warteliste/Nachrücken; Zahlungs- und Buchungsabwicklung; Nachfrageanalysen. |
 | **Öffentliche Institutionen** (Gemeinden, Bibliotheken) | Bessere Auffindbarkeit sozialer Angebote; einfache Veröffentlichung; Reichweite in der Zielgruppe. |
 | **Gemeinnützige Organisationen / Vereine / Kirchen** | Kostenlose oder vergünstigte Veröffentlichung; verlässliche Anmeldungen; Entlastung bei Organisation. |
-| **Private Gastgeber** (falls später zugelassen, D-08) | Zugang zu Nachfrage – nur mit strengeren Vertrauens- und Sicherheitsregeln. |
+| **Private Gastgeber** | **Im MVP nicht zugelassen (D-08).** Frühestens später und nur mit strengeren Vertrauens- und Sicherheitsregeln. |
 
 Der Mehrwert gegenüber reinem Ticketing (z. B. Eventfrog) muss **spürbar** sein – insbesondere neue zahlende Gäste, Gruppenbildung, Support, Moderation und Vertrauensinfrastruktur (siehe Kapitel 23/24).
 
@@ -220,7 +222,12 @@ Ein **sicherer Steckbrief** statt eines umfangreichen öffentlichen Social Netwo
 
 **Nicht öffentlich:** vollständiges Geburtsdatum, vollständige Adresse, Telefonnummer, E-Mail, Zahlungsdaten, Notfallkontakt, Gesundheitsdiagnosen, interne Sicherheits-/Moderationsinformationen.
 
-**Offene Profilentscheidungen (D-20, D-21, u. a.):** Profilpflicht für Buchungen, Gast-/kontofreie Buchung, öffentliches Foto, Sichtbarkeit anderer Teilnehmender/besuchter Events/Interessen, exaktes Altersband, Pseudonym vs. echter Vorname, Verifikationsstufen, Angehörigenzugriff. → **[OFFEN]**
+**Beschlossene Profil-/Konto-Regeln [BESCHLOSSEN]:**
+
+- **Keine Gastbuchung; jede Buchung erfordert ein Frello-Konto** (D-20). Bei Angehörigenbuchung benötigt die teilnehmende Person nicht zwingend ein eigenes Konto (D-15).
+- **Sichtbarkeit (D-21):** Nicht angemeldete Personen sehen nur die **Teilnehmerzahl**. Bestätigte Teilnehmende sehen **Vornamen und freiwillige Profilbilder** ihrer Eventgruppe; Profilbilder bleiben freiwillig.
+- **Altersanzeige (D-22):** freiwillig nur eine **breite Generation** (60+/70+/80+); das genaue Geburtsdatum bleibt privat.
+- **Verifikation (D-26):** **Telefonnummerverifikation vor der ersten Buchung verpflichtend**; die Nummer ist für andere Mitglieder nicht sichtbar.
 
 **Ausdrücklich nicht im MVP:** öffentliche vollständige Geburtsdaten, genaue Wohnadresse, Familienstand als Pflichtfeld, öffentliche Gesundheitsdiagnosen, frei sichtbare Teilnehmerlisten für Nichtangemeldete, Follower-/Like-/Popularitätsmechaniken.
 
@@ -241,7 +248,18 @@ Produkt-Hypothese für die Buchungs- und Mindestteilnehmerlogik **[HYPOTHESE]**:
 9. Die Plattform versendet Erinnerungen.
 10. Die tatsächliche Teilnahme wird per Check-in/Gastgeberbestätigung erfasst.
 
-**Offen (D-18, D-19, u. a.):** genaue Fristen, Reservierungsdauer beim Nachrücken, Stornogebühren, No-show-Regeln, Rückerstattungsfristen, Zahlung vor/nach Erreichen der Mindestzahl, Teilzahlungen, Kulanz, Anbieter-/Wetterabsagen, Ersatzpersonen, Buchungsübertragung. → **[OFFEN]** (Rückerstattungs-/Vertragsdetails zusätzlich **[EXTERN ZU PRÜFEN]**).
+**Beschlossene Regeln [BESCHLOSSEN] (siehe [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md)):**
+
+- **Zahlung (D-17):** je Event **Online-Zahlung und Zahlung vor Ort** möglich. Provisionsabrechnung bei Vor-Ort-Zahlung und der regulierte Zahlungsfluss sind **[EXTERN ZU PRÜFEN]**.
+- **Stornomodelle (D-18):** Anbieter wählen **eines von drei** Frello-Modellen; **keine freien eigenen Klauseln**:
+  - **Flexibel:** kostenlose Stornierung bis **24 h** vor Beginn.
+  - **Standard:** kostenlose Stornierung bis **7 Tage** vor Beginn; **50 % Rückerstattung bis 48 h** vor Beginn.
+  - **Fix:** grundsätzlich **keine reguläre Rückerstattung**.
+  Ausnahmen, Gebührenanteile, Ersatzpersonen und juristische Formulierungen sind **[EXTERN ZU PRÜFEN]**.
+- **Durchführung/Nachrücken (D-19):** Durchführungsentscheid bei lokalen Einzelveranstaltungen grundsätzlich spätestens **48 h** vorher; reguläres Nachrückangebot **12 h**; bei **<24 h** bis Beginn **2 h** Nachrückfrist.
+- **No-shows:** erstes Nichterscheinen ohne Absage → **Hinweis**; bei Wiederholung **zeitweise Buchungsbegrenzung mit Einsprachemöglichkeit**; **keine automatische Geldstrafe**.
+
+**Weiterhin offen:** Teilzahlungen, Kulanzdetails, Umgang mit Wetterabsagen, Buchungsübertragung sowie die vertrags-/konsumentenschutzrechtliche Ausgestaltung der Storno-/Rückerstattungsregeln **[OFFEN]/[EXTERN ZU PRÜFEN]**.
 
 ### Eventdarstellung (mögliche Felder)
 
@@ -253,7 +271,7 @@ Titel, Beschreibung, Veranstalter (+ Typ), Datum, Beginn/Ende, Treffpunkt, genau
 
 **Grundprinzip:** Bewertet werden **Veranstaltungen** (und daraus abgeleitet die Anbieterleistung). Teilnehmende erhalten **keine** öffentliche Sternebewertung **[BESCHLOSSEN]** (Leitplanke).
 
-**Bewertungsberechtigung:** grundsätzlich nur Personen, die verbindlich angemeldet **und** tatsächlich teilgenommen/eingecheckt wurden; die genaue Verifikation ist **[OFFEN]**.
+**Bewertungsberechtigung [BESCHLOSSEN] (D-24):** nur **verifiziert angemeldete und tatsächlich teilgenommene bzw. eingecheckte** Personen dürfen bewerten.
 
 **Empfohlene Standardfragen (Hypothese):**
 - Gesamtbewertung «Wie hat dir der Anlass gefallen?» (1–5 Sterne)
@@ -264,7 +282,7 @@ Titel, Beschreibung, Veranstalter (+ Typ), Datum, Beginn/Ende, Treffpunkt, genau
 
 **Veranstaltungsspezifische Zusatzkriterien (maximal wenige):** Organisation, Freundlichkeit, Preis-Leistung, Gruppengrösse, Tempo, körperliche Anforderung, Barrierefreiheit, Verpflegung, Treffpunkt, Erreichbarkeit, Möglichkeit neue Personen kennenzulernen. Gesamtes Feedback möglichst in unter einer Minute abschliessbar.
 
-**Öffentliche Anbieterbewertung (mögliche Darstellung):** Sternebewertung, Anzahl bestätigter Bewertungen, Anteil «würde wieder teilnehmen», häufig gelobte Aspekte, wiederkehrende Verbesserungspunkte. **Offen (D-24, D-25):** Mindestanzahl Bewertungen, Gewichtung, Rundung, Alter der Bewertungen, Freitextfreigabe, Anonymität, Anbieterantwort, Einspracheprozess, Moderationsregeln. Die Idee, öffentliche Bewertungen erst ab **fünf** bestätigten Bewertungen anzuzeigen, ist **[HYPOTHESE]**.
+**Öffentliche Anbieterbewertung [BESCHLOSSEN] (D-24/D-25):** erst **ab fünf bestätigten Bewertungen** und **immer mit sichtbarer Bewertungsanzahl**. **Freitextfeedback bleibt im MVP intern** und wird **nicht öffentlich** publiziert; öffentlich erscheinen **nur strukturierte, aggregierte** Ergebnisse. Anbieter können **interne, möglichst anonymisierte** Qualitätsrückmeldungen erhalten. **Weiterhin offen (Detailausgestaltung):** Gewichtung, Rundung, Alter der Bewertungen, Anbieterantwort, Einspracheprozess, Moderationsregeln **[OFFEN]**.
 
 **Qualitätssteuerung:** Kein Anbieter wird wegen einer einzelnen schlechten Bewertung automatisch entfernt. Interne Qualitätssignale (Durchschnitt, Trend, wiederkehrende Beschwerden, Beschreibungstreue, Wiederbuchung, No-show-/Absagerate, Rückerstattungsprobleme, Sicherheitsmeldungen) werden getrennt betrachtet. **Sicherheitsmeldungen** werden unabhängig von Sternebewertungen geprüft; keine automatische Entfernung aufgrund einer einzelnen Kennzahl.
 
@@ -288,9 +306,9 @@ Analytics sollen Bedürfnisse verstehen, das Angebot ausbauen, unpassende Angebo
 
 ## 19. Markt Schweiz
 
-Die Schweiz ist der vorgesehene **Startmarkt** **[BESCHLOSSEN]** (Rahmen). **Offen** sind Pilotkanton/-stadt, Sprachregion, geografische Abdeckung, mehrsprachiger Start und Markteintrittstermin (D-09, D-10).
+Startmarkt ist die **Deutschschweiz**, Produktsprache im Pilot **Deutsch** **[BESCHLOSSEN]** (D-09/10). Der Pilot läuft **parallel in Zürich, Basel, Bern und Luzern**; der öffentliche Start je Stadt erfolgt erst ab **≥5 geprüften Anbietern und ≥10 kommenden Terminen** **[BESCHLOSSEN]** (D-29). Die **Pilotdauer bleibt offen** (Hypothese A-03); ein mehrsprachiger Start ist im Pilot nicht vorgesehen; konkrete Termine sind **[OFFEN]**.
 
-**Empfohlene Markteintritts-Hypothese [HYPOTHESE]:** Start in einer kompakten Region → Aufbau ausreichender lokaler Angebotsdichte → schrittweise Expansion. **Zürich** kann als mögliche Pilotregion geprüft werden, ist aber **nicht** beschlossen.
+**Markteintritts-Logik:** Aufbau ausreichender lokaler Angebotsdichte je Stadt (Dichteschwelle als Gate gegen das Henne-Ei-Problem) → tragfähiger Betrieb → schrittweise Ausweitung nach belegten Kennzahlen.
 
 Demografischer Kontext (belegt) **[MARKTERKENNTNIS]**:
 
@@ -362,24 +380,24 @@ seniorengerechter Nutzung · kuratierten Angeboten · verifizierten Anbietern ·
 
 | Modell | Geeignet für | Empfehlung/Hypothese | Status |
 |---|---|---|---|
-| **Kostenloses Inserat / Anfrage** | kostenlose Gemeinde-, Vereins-, Kirchen-, gemeinnützige und ausgewählte Community-Angebote | Keine Provision bei kostenlosen Events; begrenzte Funktionen/kuratierte Freigabe; sichert Angebotsdichte | **[HYPOTHESE]** (D-11, D-12) |
-| **Buchung extern** | Anbieter mit eigenem Ticket-/Buchungssystem | Keine Monetarisierung früh / fixe Lead-Gebühr / Marketing- oder B2B-Paket; **kein** Anspruch auf volle 10 % (Transaktion/Storno extern) | **[OFFEN]** (D-13) |
-| **Standard-Marktplatzbuchung** | Restaurantabend, Kurs, lokaler Ausflug | Testkorridor **~6–10 %** inkl. Zahlungs-/Plattformleistung; exakte Höhe per Pilot | **[HYPOTHESE]** (D-11) |
-| **Managed Event** | Frello konzipiert/vermarktet/betreut das Format | **~12–20 %** oder fixe Produktionsgebühr bzw. Kombination; höhere Leistung → höhere Marge | **[HYPOTHESE]** |
+| **Kostenloses Inserat / Anfrage** | kostenlose Gemeinde-, Vereins-, Kirchen-, gemeinnützige und ausgewählte Community-Angebote | Keine Provision bei kostenlosen Events; kostenpflichtige Promotion später möglich (kein MVP-Beschluss) | **[BESCHLOSSEN]** (D-12) |
+| **Buchung extern** | ausgewählte, geprüfte Partner mit eigenem Ticket-/Buchungssystem | Nur für geprüfte Partner, klar gekennzeichnet; separate Monetarisierung über Reichweite/Lead/B2B – konkretes Modell offen | **[TEILWEISE BESCHLOSSEN]** (D-13) |
+| **Standard-Marktplatzbuchung** | Restaurantabend, Kurs, lokaler Ausflug | **8 %** inkl. Zahlungs-/Plattformleistung – Pilotgrundlage, Satz im Pilot zu validieren | **[BESCHLOSSEN – zu validieren]** (D-11) |
+| **Managed Event** | Frello konzipiert/vermarktet/betreut das Format | **15 %** (aktiv konzipierte/betreute Formate); betreute Formate ändern die Vermittlerrolle nicht automatisch | **[BESCHLOSSEN – zu validieren]** (D-11) |
 | **B2B Plus** | Ketten, Reiseanbieter, wiederkehrende Gastgeber | Monatstarif für Analytics, CRM-Export, mehrere Standorte, Promotions – **optional**, nicht einzige Monetarisierung | **[HYPOTHESE]** (nicht im MVP) |
 
-**Preisbenchmark [MARKTERKENNTNIS, vor Verwendung gegen offizielle Quelle prüfen]:** Eventfrog nennt kostenlose Einträge sowie (Selbstauskunft) Plus **CHF 0.49 + 2,4 %** und Pro **CHF 0.49 + 3,6 %** pro verkauftem Ticket, jeweils exkl. MWST. **Schlussfolgerung:** Eine Frello-Provision um 10 % ist nur begründbar, wenn Frello **deutlich mehr als Ticketing** liefert (neue passende Gäste, zielgruppenspezifische Reichweite, Gruppenbildung, Warteliste, höhere Auslastung, Support, Moderation, Vertrauens-/Zugänglichkeitsinfrastruktur, wiederkehrende Buchungen, Nachfrageanalysen).
+**Preisbenchmark [MARKTERKENNTNIS, vor Verwendung gegen offizielle Quelle prüfen]:** Eventfrog nennt kostenlose Einträge sowie (Selbstauskunft) Plus **CHF 0.49 + 2,4 %** und Pro **CHF 0.49 + 3,6 %** pro verkauftem Ticket, jeweils exkl. MWST. **Schlussfolgerung:** Die beschlossene Frello-Standardprovision von **8 %** (bzw. 15 % bei betreuten Formaten) ist nur begründbar, wenn Frello **deutlich mehr als Ticketing** liefert (neue passende Gäste, zielgruppenspezifische Reichweite, Gruppenbildung, Warteliste, höhere Auslastung, Support, Moderation, Vertrauens-/Zugänglichkeitsinfrastruktur, wiederkehrende Buchungen, Nachfrageanalysen). Der Satz bleibt im Pilot zu validieren.
 
 ---
 
 ## 24. Pricinghypothesen
 
-- Standard-Marktplatzprovision: **~6–10 %** (Testkorridor) **[HYPOTHESE]** – exakter Satz **[OFFEN]** (D-11).
-- Managed-Event: **~12–20 %** oder fixe Produktionsgebühr **[HYPOTHESE]**.
-- Externe Buchungen: keine feste Provision; Lead-/Marketing-/B2B-Modell **[OFFEN]** (D-13).
-- Kostenlose Inserate für gemeinnützige/öffentliche Angebote **[HYPOTHESE]** (D-12).
+- Standard-Marktplatzprovision: **8 %** als Pilotgrundlage **[BESCHLOSSEN – im Pilot zu validieren]** (D-11).
+- Betreute/aktiv konzipierte Formate: **15 %** **[BESCHLOSSEN – im Pilot zu validieren]** (D-11).
+- Externe Buchungen: nur geprüfte Partner, gekennzeichnet; Lead-/B2B-Preismodell **[OFFEN]** (D-13).
+- Kostenlose Inserate für geprüfte gemeinnützige/öffentliche Angebote **[BESCHLOSSEN]** (D-12); kostenpflichtige Promotion kein MVP-Beschluss.
 - Kein obligatorisches Teilnehmenden-Abo **[HYPOTHESE / Gründerpräferenz]**.
-- Zahlungsbereitschaft von Anbietern (6 % / 8 % / 10 %) und Teilnehmenden ist **[HYPOTHESE]** und im Pilot per Anbieterinterviews zu testen (siehe Kapitel 28).
+- Die **Validierung** der Sätze erfolgt im Pilot per Anbieterinterviews (Referenzpunkte 6 % / 8 % / 10 %), siehe Kapitel 28.
 
 *Ticketpreise selbst legen die Anbieter fest; Frello schreibt keine Ticketpreise vor.*
 
@@ -416,9 +434,9 @@ Nur **Formeln** – keine erfundenen Ergebnisse als Prognosen. Eingabewerte sind
 
 > **Dieses Beispiel ist keine Umsatzprognose, sondern illustriert die Mechanik des Provisionsmodells.**
 
-- Ticketpreis: CHF 70 · Teilnehmende: 16 · Provision: 10 %
-- Plattformumsatz: **CHF 112** pro ausverkauftem Event
-- 100 vergleichbare Events/Monat: **CHF 11'200** Bruttoumsatz **vor** Zahlungsgebühren, Rückerstattungen, Support, Akquise, Moderation, MWST und Personal.
+- Ticketpreis: CHF 70 · Teilnehmende: 16 · Provision: 8 % (beschlossene Standard-Pilotgrundlage, D-11)
+- Plattformumsatz: **CHF 89.60** pro ausverkauftem Event
+- 100 vergleichbare Events/Monat: **CHF 8'960** Bruttoumsatz **vor** Zahlungsgebühren, Rückerstattungen, Support, Akquise, Moderation, MWST und Personal.
 
 **Interpretation:** Provision allein trägt erst bei erheblicher lokaler Veranstaltungsdichte. Managed Events, Partnerschaften und optionale B2B-Werkzeuge können die Ökonomie verbessern.
 
@@ -442,7 +460,7 @@ Der Nettoerlös reagiert überproportional auf **Auslastung** und **Provisionssa
 
 **Grundsatz:** Vor umfassender technischer Umsetzung ein regionaler **Concierge-Pilot** – Prozesse teils manuell (Landingpage, Telefon, manuelle Buchung, WhatsApp/SMS im Hintergrund). Erst bei realen Anmeldungen und Wiederholungswünschen automatisieren.
 
-**Möglicher Pilotumfang [HYPOTHESE]:** eine kompakte Region · ~12 Wochen · 5–10 verifizierte Anbieter · 20–30 buchbare Termine · mehrere wiederkehrende Formate · Mischung kostenlos/kostenpflichtig. Formate: Mittagstisch, Bingo, Jass, Quiz, Kulturangebot, gemütlicher Ausflug, Bewegungsangebot, kostenloses Partnerangebot.
+**Pilotumfang:** paralleler Pilot in **Zürich, Basel, Bern, Luzern** **[BESCHLOSSEN]** (D-29); **öffentlicher Start je Stadt erst ab ≥5 geprüften Anbietern und ≥10 kommenden Terminen** **[BESCHLOSSEN]**. Die **Pilotdauer** bleibt offen (Hypothese A-03, Arbeitsannahme ~12 Wochen). Mehrere wiederkehrende Formate, Mischung kostenlos/kostenpflichtig; Formate: Mittagstisch, Bingo, Jass, Quiz, Kulturangebot, gemütlicher Ausflug, Bewegungsangebot, kostenloses Partnerangebot.
 
 **Interviews [HYPOTHESE]:** 20–30 Gespräche mit potenziellen Teilnehmenden und 10–15 Anbieterinterviews – über unterschiedliche Alters-, Digital-, Mobilitäts-, Einkommens-, Lebens- und Regionsgruppen sowie Anbieterarten. Anbieterinterviews prüfen ausdrücklich die Zahlungsbereitschaft für **6 % / 8 % / 10 %**.
 
@@ -458,7 +476,7 @@ Der Nettoerlös reagiert überproportional auf **Auslastung** und **Provisionssa
 
 **Anbieterprüfung (Massnahmen, teils [EXTERN ZU PRÜFEN]):** Handelsregister-/Identitätsprüfung, Bankkontoabgleich, Telefonnummerverifikation, Geschäftsadresse, verantwortliche Kontaktperson, Prüfung der Veranstaltungsbeschreibung, Kennzeichnung des Anbietertyps, Qualifikationsnachweis bei Gesundheits-/Bewegungsangeboten.
 
-**Teilnehmendenschutz:** Telefonnummerverifikation, progressive Kontaktfreischaltung, Melden/Blockieren, menschliche Moderation, Betrugswarnungen, Verbot privater Geldforderungen, Schutz vor Romance Scam/Anlagebetrug/Belästigung/Diskriminierung, Eskalationsprozess, nachvollziehbare Sanktionen. (Das SECO warnt bei Kontakt-/Datingplattformen ausdrücklich vor versteckten Kosten und betrügerischen Geldforderungen **[MARKTERKENNTNIS]**.)
+**Teilnehmendenschutz:** **verpflichtende Telefonnummerverifikation vor der ersten Buchung** (D-26, nicht öffentlich), **nur moderierter Event-Gruppenchat für bestätigte Teilnehmende – keine freien 1:1-Nachrichten** (D-23), Melden/Blockieren, menschliche Moderation, Betrugswarnungen, Verbot privater Geldforderungen, Schutz vor Romance Scam/Anlagebetrug/Belästigung/Diskriminierung, Eskalationsprozess, nachvollziehbare Sanktionen. Support im Pilot: **Rückrufservice in definierten Supportzeiten, keine ständig besetzte Hotline** (D-27, Zeiten offen). (Das SECO warnt bei Kontakt-/Datingplattformen ausdrücklich vor versteckten Kosten und betrügerischen Geldforderungen **[MARKTERKENNTNIS]**.)
 
 **Eventschutz:** klare Veranstalterrolle, Kontakt am Veranstaltungstag, Check-in, Gastgeberverantwortung, Begrüssung allein Ankommender, Notfallprozess, optionaler Notfallkontakt, Storno-/Absageregeln, Haftungsabgrenzung, Versicherungsprüfung (**[EXTERN ZU PRÜFEN]**).
 
@@ -495,7 +513,7 @@ Erforderliche Betriebsbereiche (ohne konkrete Stellen als beschlossen darzustell
 | Moderation / Trust & Safety | ja | ja | teilweise (Vorfilter) | **Eskalation/Sicherheit** |
 | Analytics/Nachfrageauswertung | teilweise | ja | ja | Interpretation |
 
-**Betreiberfirma, Eigentümerstruktur und Team sind [OFFEN]** (D-14), sofern nicht verbindlich im Repo festgelegt. `Kreativ Solutions GmbH` wird **nicht** automatisch als Betreiberin festgelegt, nur weil der Name (als Adressat der Research) existiert. Legt das Repository dies später ausdrücklich fest, wird es mit Quellenverweis übernommen.
+**Geplante Betreiberin ist die bestehende Kreativ Solutions GmbH; Frello wird als deren Produkt geplant** **[BESCHLOSSEN MIT VORBEHALT]** (D-14). Eine **separate Frello-Gesellschaft ist nicht beschlossen und für den MVP nicht anwendbar** (D-04); sie wird nur reaktiviert, falls später eine eigene juristische Person mit «Frello» im Firmennamen geplant wird. Die rechtlichen und steuerlichen Auswirkungen (Vertragspartner, Haftung, Zahlungsfluss, MWST) sind **[EXTERN ZU PRÜFEN]**. Eigentümerstruktur und Teamgrösse sind **[OFFEN]**. Support im Pilot erfolgt als Rückrufservice (D-27).
 
 ---
 
@@ -503,7 +521,7 @@ Erforderliche Betriebsbereiche (ohne konkrete Stellen als beschlossen darzustell
 
 Nur eine technische **Richtung**, keine endgültige Technologieauswahl.
 
-**Empfohlene Hypothese [HYPOTHESE]:** (1) responsive Website → (2) installierbare Web-App o. Ä. → (3) regionaler Pilot → (4) native Apps erst nach nachgewiesener wiederkehrender Nutzung. **Begründung:** bessere Auffindbarkeit, einfachere Nutzung für Angehörige, geringere frühe Entwicklungskosten, schnellere Validierung, einfacherer Support, Vermeidung unnötiger Doppelentwicklung.
+**Beschlossene Reihenfolge [BESCHLOSSEN] (D-28):** (1) responsive Website → (2) installierbare Web-App/PWA o. Ä. → (3) regionaler Pilot → (4) **native iOS-/Android-Apps erst bei belegter Wiederbuchung, regelmässiger mobiler Nutzung und erkennbarem App-/Push-Bedarf** (kein kalenderbasierter Automatismus; Schwellenwerte offen, A-21). **Begründung:** bessere Auffindbarkeit, einfachere Nutzung für Angehörige, geringere frühe Entwicklungskosten, schnellere Validierung, einfacherer Support, Vermeidung unnötiger Doppelentwicklung.
 
 **Offene technische Entscheidungen (nicht in diesem Auftrag zu treffen) [OFFEN]:** Webframework, native vs. Cross-Platform-App, Backend, Datenbank, Hosting, Datenregion, Authentifizierung, Payment-Provider, Chat, Analytics, E-Mail, SMS, Push, Moderationssystem, Anbieter-Dashboard, Adminbereich.
 
@@ -535,7 +553,7 @@ Zusammenfassung; das vollständige Risikoregister mit ID, Ursache, Wahrscheinlic
 | R-13 | No-shows | unverbindliche Anmeldung | mittel | mittel | steigende No-show-Rate | verbindliche Zahlung, Erinnerungen, Fristen | Produkt | offen |
 | R-14 | Anbieterabsagen | Mindestzahl nicht erreicht | mittel | mittel | häufige Absagen | Warteliste, Aktivierungsimpulse, Kuratierung | GTM | offen |
 | R-15 | Rückerstattungsprobleme | unklare Regeln | mittel | mittel | Beschwerden/Chargebacks | klare Regeln, Payment-Provider | Betrieb/Recht | extern zu prüfen |
-| R-16 | Haftungsfragen | unklare Veranstalter-/Vermittlerrolle | mittel | hoch | Rechtsanfragen | Rollen pro Angebot, juristische Prüfung | Recht | extern zu prüfen |
+| R-16 | Haftungsfragen | Vermittlerrolle beschlossen (D-16), juristische Bestätigung offen | mittel | hoch | Rechtsanfragen | Vermittlerrolle pro Angebot ausweisen, juristische Bestätigung einholen | Recht | extern zu prüfen |
 | R-17 | Zahlungsregulierung | Halten von Kundengeldern | mittel | hoch | regulatorische Rückfragen | Marketplace-Payment, keine Eigenhaltung | Recht | extern zu prüfen |
 | R-18 | Datenschutz (revDSG) | sensible Daten | mittel | hoch | Datenschutz-Beschwerden | Privacy by Design/Default | Recht | extern zu prüfen |
 | R-19 | Reiseveranstalterpflichten | Reise-/Pauschalangebote | mittel | hoch | Reiseangebote im Sortiment | gesonderte juristische Prüfung | Recht | extern zu prüfen |
@@ -547,19 +565,19 @@ Zusammenfassung; das vollständige Risikoregister mit ID, Ursache, Wahrscheinlic
 | R-25 | Zu frühe Expansion | Deutschland vor CH-PMF | mittel | hoch | Expansion ohne Wiederbuchungsbeleg | Expansionskriterien einhalten | Business | offen |
 | R-26 | Geringe Wiederbuchung | fehlender realer Mehrwert | mittel | hoch | niedrige 60-Tage-Wiederbuchung | Formatqualität, Gruppen, Support | Produkt | offen |
 | R-27 | Abhängigkeit von Drittanbietern | Payment/Hosting/Chat | mittel | mittel | Ausfälle/Preisänderungen | austauschbare Anbieter, Verträge | Technik | offen |
-| R-28 | Marken-/Domainkonflikt Frello | Namensrechte ungeprüft | mittel | hoch | Kollision bei Recherche | Marken-/Domainprüfung (D-01–D-06) | Gründer/Recht | extern zu prüfen |
+| R-28 | Marken-/Domainkonflikt Frello | Namensrechte noch nicht nachgewiesen | mittel | hoch | Kollision bei Recherche | Registrierung/Basisrecherche beschlossen (D-01/D-02), professionelle Recherche vor Markeninvestition | Gründer/Recht | extern zu prüfen |
 
 ---
 
 ## 34. Roadmap Schweiz
 
-Phasenmodell (Zeiträume bewusst **relativ**, keine Termine – Termine sind **[OFFEN]**, D-10):
+Phasenmodell (Zeiträume bewusst **relativ**, konkrete Termine **[OFFEN]**):
 
-1. **Fundament & Validierung:** Namens-/Marken-/Domainprüfung anstossen (D-01–D-06); 20–30 Teilnehmenden- und 10–15 Anbieterinterviews; Pilotregion und Kernsegment festlegen (D-07, D-09).
-2. **Concierge-Pilot:** kompakte Region, ~12 Wochen, 5–10 Anbieter, 20–30 Termine, Ankerformate; manuelle Prozesse; Kernkennzahlen messen.
-3. **Produkt-MVP:** responsive Plattform mit Suche/Filter, verifizierten Anbietern, Buchung/Warteliste/Storno, Steckbrief, Event-Gruppenchat, Bewertung, Check-in, Anbieter- und Adminbereich (siehe Kapitel 35).
+1. **Fundament & Validierung:** `frello.ch` registrieren (D-01) und Schweizer Marken-Basisrecherche inkl. Zefix-Produktnamensprüfung (D-02) anstossen; Social Handles sichern (D-06); rechtliche/steuerliche Erstberatung (Betreiberrolle D-14, Vermittlerrolle D-16, Zahlungsfluss D-17, revDSG); 20–30 Teilnehmenden- und 10–15 Anbieterinterviews.
+2. **Concierge-Pilot (Deutschschweiz):** parallel in Zürich, Basel, Bern, Luzern; je Stadt bis **≥5 Anbieter / ≥10 Termine** aufbauen, dann öffentlicher Stadt-Start (D-29); Ankerformate, manuelle Prozesse; Kernkennzahlen messen; Provision 8 %/15 % validieren (D-11).
+3. **Produkt-MVP (Web/PWA zuerst, D-28):** responsive Plattform mit Suche/Filter, verifizierten Anbietern, Buchung/Warteliste/Storno (D-18/19), Steckbrief (D-20–22/26), moderiertem Event-Gruppenchat (D-23), Bewertung (D-24/25), Check-in, Anbieter- und Adminbereich (siehe Kapitel 35).
 4. **Regionale Verdichtung:** Wiederholungsformate, weitere Anbieter, Optimierung von Auslastung und Wiederbuchung.
-5. **Schrittweise regionale Ausweitung** innerhalb der Schweiz nach belegten Kennzahlen.
+5. **Schrittweise Ausweitung** innerhalb der Deutschschweiz nach belegten Kennzahlen; native Apps erst bei erreichten Triggern (D-28).
 
 Übergänge zwischen den Phasen sind an belegte Kennzahlen (v. a. wiederholte reale Teilnahme) gebunden, nicht an Kalenderdaten.
 
@@ -567,14 +585,10 @@ Phasenmodell (Zeiträume bewusst **relativ**, keine Termine – Termine sind **[
 
 ## 35. Bedingungen für Deutschland (mögliche spätere Expansion)
 
-Deutschland ist **keine** kurzfristig beschlossene Expansion **[BESCHLOSSEN]** (Leitplanke). Voraussetzungen (Hypothese) vor Prüfung eines Eintritts:
+Deutschland ist **keine** kurzfristig beschlossene Expansion **[BESCHLOSSEN]** (Leitplanke). **Die Expansionsvoraussetzungen sind beschlossen [BESCHLOSSEN] (D-30):** Deutschland wird erst konkret geprüft, wenn **alle vier Schweizer Pilotstädte (Zürich, Basel, Bern, Luzern)** ausreichende **Angebotsdichte, reale Wiederbuchung, tragfähigen Betrieb und kontrollierte Sicherheitsprozesse** belegen. **Nur die operative Deutschland-Expansion bleibt zurückgestellt**, bis diese beschlossenen Schweizer Kriterien erfüllt sind. Ergänzende Voraussetzungen:
 
-- nachgewiesene Wiederbuchung in der Schweiz;
-- wiederholbarer Anbietergewinnungsprozess;
-- funktionierende lokale Angebotsdichte;
 - positive Unit Economics oder nachvollziehbarer Weg dorthin;
-- tragfähiger Moderations- und Supportprozess;
-- rechtliche Prüfung für Deutschland und EU (**[EXTERN ZU PRÜFEN]**);
+- rechtliche Prüfung für Deutschland und EU inkl. Namensprüfung (D-03) (**[EXTERN ZU PRÜFEN]**);
 - lokalisierbare technische und operative Prozesse.
 
 Eintritt eher **stadt-/regionsweise** (z. B. Süddeutschland) statt sofort landesweit. Wettbewerbsumfeld (Feierabend.de, Seniorentreff.de, nebenan.de, Seniorennetz Berlin) und EU-/deutsche Verbraucher-, Plattform- und Datenschutzanforderungen sind zu berücksichtigen; bei termingebundenen Freizeitveranstaltungen bestehen Ausnahmen vom allgemeinen Widerrufsrecht, die konkrete Vertrags-/Vermittlerrolle ist juristisch sauber festzulegen **[EXTERN ZU PRÜFEN]**.
@@ -589,15 +603,17 @@ Eintritt eher **stadt-/regionsweise** (z. B. Süddeutschland) statt sofort lande
 
 ---
 
-## 36. Offene Gründerentscheidungen (Zusammenfassung)
+## 36. Gründerentscheide und offene Punkte (Zusammenfassung)
 
-Die vollständige, priorisierte Liste steht in [`02_OPEN_FOUNDER_DECISIONS.md`](./02_OPEN_FOUNDER_DECISIONS.md). Prioritär u. a.: Domain `frello.ch` (D-01), Markenrecherche Schweiz (D-02), Prüfung Deutschland/EU (D-03), Betreiberfirma (D-14), Alterspositionierung (D-07), Pilotregion (D-09), Plattform- vs. Veranstalterrolle (D-16), Provisionsmodell (D-11). **Keine** dieser Entscheidungen ist getroffen; keine wird durch diesen Plan getroffen.
+Am 28.08.2026 wurde ein konsolidierter Gründerentscheid eingearbeitet; die vollständige Liste mit Decision-Status und ADR-Verweisen steht in [`02_OPEN_FOUNDER_DECISIONS.md`](./02_OPEN_FOUNDER_DECISIONS.md), die thematischen Nachweise in [`decisions/`](./decisions/README.md).
+
+**Weiterhin offen bzw. zu validieren (Auswahl):** Registrar-Nachweis `frello.ch` (D-01) und professionelle Markenrecherche (D-02); Validierung 8 %/15 % (D-11); Provisionsabrechnung Vor-Ort/Zahlungsfluss (D-17); Storno-Detailrecht (D-18); Lead-/B2B-Modell (D-13); Supportzeiten (D-27); Pilotdauer (D-29); Native-App-Schwellen (D-28). **Zurückgestellt/nicht anwendbar:** Deutschland/EU- und App-Store-Namensprüfung (D-03/D-05); separate Frello-Gesellschaft für den MVP nicht anwendbar (D-04); bei D-30 sind die Expansionskriterien **beschlossen**, nur die operative Deutschland-Expansion wartet auf deren Erfüllung. Rechtliche/steuerliche Punkte bleiben **[EXTERN ZU PRÜFEN]**. Dieser Plan trifft **keine** neuen Gründerentscheide über die freigegebenen hinaus.
 
 ---
 
 ## 37. Annahmen (Zusammenfassung)
 
-Die vollständige Liste mit Wertebereichen, Validierungsmethoden und Bestätigungs-/Widerlegungskriterien steht in [`03_ASSUMPTION_REGISTER.md`](./03_ASSUMPTION_REGISTER.md). Wichtigste Finanz-/Modellannahmen: Provisionskorridor (~6–10 % / ~12–20 %), Ø Ticketpreis, Ø Gruppengrösse/Auslastung, Anteil kostenpflichtiger Events, Wiederbuchungsfenster (60 Tage), Zahlungsbereitschaft von Anbietern und Teilnehmenden. Alle sind **[HYPOTHESE]** und im Pilot zu validieren.
+Die vollständige Liste mit Wertebereichen, Validierungsmethoden und Bestätigungs-/Widerlegungskriterien steht in [`03_ASSUMPTION_REGISTER.md`](./03_ASSUMPTION_REGISTER.md). Wichtigste Finanz-/Modellannahmen: **beschlossene Provisions-Pilotgrundlage 8 % / 15 % (in Validierung)**, Ø Ticketpreis (Illustration), Ø Gruppengrösse/Auslastung, Anteil kostenpflichtiger Events, Wiederbuchungsfenster (60 Tage), Dichteschwelle (≥5 Anbieter / ≥10 Termine je Stadt). Nicht beschlossene Werte sind **[HYPOTHESE]** und im Pilot zu validieren.
 
 ---
 
@@ -609,14 +625,14 @@ Vollständiges Register mit Herausgeber, Datum, URL, Abrufdatum, verwendeter Aus
 
 ## 39. Empfohlene nächste Schritte
 
-1. **Zielregion für den Pilot** festlegen (D-09).
-2. **Kernsegment** wählen: aktive 65–79 oder breiter 60+ (D-07).
-3. Entscheiden, ob nur professionelle/institutionelle oder später auch **private** Anbieter (D-08).
-4. **3–5 Ankerformate** und erste Anbieter gewinnen.
-5. **Anbieterinterviews** zur Zahlungsbereitschaft (6 %, 8 %, 10 %) durchführen (D-11).
-6. **Concierge-Pilot** vor Softwarebau durchführen.
-7. Erst danach **Name, Marke und technische Produktspezifikation** finalisieren (D-01–D-06).
-8. Parallel: **Marken-/Domain-/Handelsregister-/App-Store-/Social-Handle-Prüfung** anstossen (D-01–D-06) und **rechtliche/steuerliche Erstberatung** für Zahlungsfluss, Vertragsrolle und revDSG einholen (Kapitel 30).
+Die grossen Richtungsentscheide sind getroffen; die nächsten Schritte betreffen Umsetzung, Validierung und externe Prüfungen:
 
-> **Empfohlener nächster Gründerentscheid:** Pilotregion + Kernsegment (D-09, D-07) – sie steuern fast alle weiteren Annahmen.
-> **Empfohlener nächster Projektschritt:** Interviews + Concierge-Pilot vorbereiten (Kapitel 28), ohne Softwarebau.
+1. **`frello.ch` registrieren** und Registrar-Nachweis dokumentieren (D-01); Social Handles sichern (D-06).
+2. **Schweizer Marken-Basisrecherche** (Swissreg/Zefix/Domains) durchführen; professionelle Ähnlichkeitsrecherche vor Markeninvestition beauftragen (D-02).
+3. **Rechtliche/steuerliche Erstberatung** einholen: Betreiberstruktur (D-14), Vermittlerrolle (D-16), Zahlungsfluss/Vor-Ort-Abrechnung (D-17), Storno-Detailrecht (D-18), revDSG (Kapitel 30).
+4. **Anbietergewinnung je Pilotstadt** bis zur Dichteschwelle **≥5 Anbieter / ≥10 Termine** (D-29); 8 %/15 % validieren (D-11).
+5. **Interviews** (20–30 Teilnehmende, 10–15 Anbieter) und **Concierge-Pilot** vor Softwarebau (Kapitel 28).
+6. **Pilotdauer** und **Supportzeiten** festlegen (D-29, D-27).
+
+> **Empfohlener nächster Gründerentscheid:** Pilotdauer und konkrete Supportzeiten festlegen (D-29, D-27) sowie exakte Provisionssätze im Pilot validieren (D-11).
+> **Empfohlener nächster Projektschritt:** Domain/Marke sichern, rechtliche Erstberatung einholen und Anbietergewinnung je Stadt starten – ohne Softwarebau.

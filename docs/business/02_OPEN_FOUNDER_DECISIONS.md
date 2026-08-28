@@ -1,194 +1,236 @@
-# Offene Gründerentscheidungen – Frello
+# Gründerentscheide und offene Punkte – Frello
 
-**Stand:** 28. August 2026 · **Version:** 0.1 · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.1.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [README](./README.md)
+**Stand:** 28. August 2026 · **Version:** 0.2 · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.2.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [README](./README.md) · [ADR-Verzeichnis](./decisions/README.md)
 
-Dieses Register listet alle **materiellen Entscheidungen**, die durch den Gründer getroffen werden müssen und **nicht** durch Claude getroffen werden dürfen. Keine Entscheidung ist automatisch als akzeptiert markiert. Status jeder Entscheidung: **OFFEN**, bis der Gründer sie mit Datum und Nachweis/ADR-Link einträgt.
+Dieses Register führt alle materiellen Entscheidungen (`D-01`…`D-30`). Am **28. August 2026** wurde ein konsolidierter Gründerentscheid eingearbeitet; die meisten Punkte sind nun ganz oder teilweise entschieden. Jede D-ID verweist auf die zuständige [ADR](./decisions/README.md). Historische Fragestellungen bleiben erhalten, soweit sie der Nachvollziehbarkeit dienen.
 
-**Prioritätslogik:** **P1** = blockiert Namens-/Rechts-/Pilotfundament oder viele Folgeentscheidungen; **P2** = für MVP-/Pilotdesign nötig; **P3** = später, aber vorzumerken.
+## Decision-Status (Statusmodell)
 
-**Legende Feldstruktur** (pro Eintrag): ID · Titel · Fragestellung · Kontext · Status · Varianten · Empfehlung · Begründung · Vorteile · Nachteile · Produktrisiko · Businessauswirkung · technische Auswirkung · rechtliche Auswirkung · operative Auswirkung · Abhängigkeiten · spätester Entscheidungszeitpunkt · Gründerentscheid · Entscheidungsdatum · Nachweis/ADR.
+| Status | Bedeutung |
+|---|---|
+| **AKZEPTIERT** | Gründerentscheid vollständig getroffen. |
+| **AKZEPTIERT MIT VALIDIERUNG** | Grundrichtung beschlossen; Kennzahl/Satz im Pilot zu validieren. |
+| **TEILWEISE AKZEPTIERT** | Hauptentscheid getroffen; benannte Unterpunkte bleiben offen. |
+| **ZURÜCKGESTELLT** | Bewusst an späteren Trigger gebunden. |
+| **NICHT ANWENDBAR FÜR DEN MVP** | Fragestellung ist für den MVP nicht einschlägig; wird nur bei künftigem Bedarf reaktiviert. |
+| **AUSSTEHENDE UMSETZUNG** | Entscheid getroffen; externe Handlung noch nicht nachgewiesen. |
+| **EXTERN ZU PRÜFEN** | Fachliche Bestätigung ausstehend. |
+| **OFFEN** | Keine Gründerfreigabe. |
 
----
-
-## Übersicht (priorisiert)
-
-| ID | Titel | Priorität | Status | Spätester Zeitpunkt |
-|---|---|---|---|---|
-| D-01 | Registrierung `frello.ch` | P1 | OFFEN | vor öffentlicher Nutzung des Namens |
-| D-02 | Markenrecherche Schweiz | P1 | OFFEN | vor Marken-/Logoinvestition |
-| D-03 | Prüfung Deutschland/EU (Name) | P1 | OFFEN | vor Expansionsplanung |
-| D-04 | Handelsregisterprüfung Name | P1 | OFFEN | vor Firmengründung |
-| D-05 | App-Store-Namensprüfung | P2 | OFFEN | vor App-Planung |
-| D-06 | Social-Handle-Prüfung | P2 | OFFEN | vor Marketingstart |
-| D-07 | Alterspositionierung | P1 | OFFEN | vor Pilotdesign |
-| D-08 | Private Veranstalter zulassen? | P2 | OFFEN | vor MVP-Anbietermodell |
-| D-09 | Pilotregion | P1 | OFFEN | vor Pilot |
-| D-10 | Sprachregion & Termine | P1 | OFFEN | vor Pilot |
-| D-11 | Provisionsmodell/-satz | P1 | OFFEN | vor Anbietervertragsdesign |
-| D-12 | Kostenlose Inserate | P2 | OFFEN | vor MVP-Anbietermodell |
-| D-13 | Externe Buchungen | P2 | OFFEN | vor MVP-Anbietermodell |
-| D-14 | Betreiberfirma & Team | P1 | OFFEN | vor Vertrags-/Zahlungsaufbau |
-| D-15 | Angehörigenmodus | P2 | OFFEN | vor Profil-/Buchungsdesign |
-| D-16 | Plattform- vs. Veranstalterrolle | P1 | OFFEN | vor AGB/Zahlungsdesign |
-| D-17 | Zahlung online vs. vor Ort | P2 | OFFEN | vor Buchungsdesign |
-| D-18 | Stornoregeln | P2 | OFFEN | vor Buchungsdesign |
-| D-19 | Mindestteilnehmer-/Wartelistenfristen | P2 | OFFEN | vor Buchungsdesign |
-| D-20 | Buchung ohne Konto / Gastbuchung | P2 | OFFEN | vor Buchungsdesign |
-| D-21 | Öffentliche Teilnehmerlisten & Profilfoto | P2 | OFFEN | vor Profildesign |
-| D-22 | Altersband-Anzeige | P3 | OFFEN | vor Profildesign |
-| D-23 | Event-Gruppenchat vs. 1:1-Chat | P2 | OFFEN | vor Kommunikationsdesign |
-| D-24 | Bewertungsmindestzahl | P3 | OFFEN | vor Bewertungsfreigabe |
-| D-25 | Freitextveröffentlichung & Anbieterantworten | P3 | OFFEN | vor Bewertungsfreigabe |
-| D-26 | Telefonnummerverifikation | P2 | OFFEN | vor MVP-Vertrauensdesign |
-| D-27 | Telefon-Support-Umfang | P2 | OFFEN | vor Pilot |
-| D-28 | Web zuerst vs. native App | P2 | OFFEN | vor technischer Spezifikation |
-| D-29 | Pilotumfang | P2 | OFFEN | vor Pilot |
-| D-30 | Expansionskriterien Deutschland | P3 | OFFEN | vor Expansionsentscheid |
+**Entscheidungsdatum der eingearbeiteten Entscheide:** 28. August 2026. **Nachweis:** konsolidierte Gründerfreigabe im Arbeitsauftrag «Frello – konsolidierte Gründerentscheide und Übergabeprompt» (28.08.2026) und die abgeleiteten [ADRs](./decisions/README.md).
 
 ---
 
-## P1 – Fundamentale Entscheidungen
+## Übersicht nach Status
 
-### D-01 · Registrierung `frello.ch`
-- **Fragestellung:** Soll/darf `frello.ch` registriert werden, und ist der Name frei?
-- **Kontext:** Domain ist **nicht** registriert/gesichert; Registrierung ist **nicht** Teil des aktuellen Auftrags.
-- **Status:** OFFEN. **Varianten:** registrieren / alternativen Namen prüfen / zurückstellen.
-- **Empfehlung:** Verfügbarkeit prüfen und – nach D-02 – frühzeitig registrieren. **Begründung:** Namensrisiko früh senken.
-- **Vorteile:** Sicherung des Arbeitsnamens. **Nachteile:** Kosten/Bindung vor Marktvalidierung.
-- **Produktrisiko:** gering · **Business:** Markenkontinuität · **Technisch:** gering · **Rechtlich:** Markenkollision (mit D-02) · **Operativ:** gering.
-- **Abhängigkeiten:** D-02, D-04. **Spätester Zeitpunkt:** vor öffentlicher Nutzung. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+### AKZEPTIERT / AKZEPTIERT MIT VALIDIERUNG
 
-### D-02 · Markenrecherche Schweiz
-- **Fragestellung:** Ist «Frello» in relevanten Klassen in der Schweiz markenrechtlich verfügbar/konfliktfrei?
-- **Kontext:** Recherche **nicht** abgeschlossen. **Status:** OFFEN. **[EXTERN ZU PRÜFEN]**
-- **Varianten:** Recherche durch Fachperson / Eigenrecherche / später. **Empfehlung:** Fachperson beauftragen vor Marken-/Logoinvestition.
-- **Vorteile:** Rechtssicherheit. **Nachteile:** Kosten/Zeit.
-- **Produktrisiko:** gering · **Business:** hoch (Rebrand-Risiko) · **Rechtlich:** hoch · **Operativ:** gering.
-- **Abhängigkeiten:** D-01, D-04. **Spätester Zeitpunkt:** vor Markeninvestition. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+| ID | Titel | Status | ADR |
+|---|---|---|---|
+| D-01 | Registrierung `frello.ch` | AKZEPTIERT · Umsetzung ausstehend | [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) |
+| D-02 | Zweistufige Markenprüfung Schweiz | AKZEPTIERT · Durchführung ausstehend · Stufe 2 EXTERN ZU PRÜFEN | [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) |
+| D-06 | Social Handles defensiv sichern | AKZEPTIERT · Umsetzung ausstehend | [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) |
+| D-07 | Alterspositionierung 65+, offen für alle | AKZEPTIERT | [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md) |
+| D-08 | Nur geprüfte gewerbl./instit./gemeinnützige Anbieter | AKZEPTIERT | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-09/D-10 | Pilotgebiet Deutschschweiz, Sprache Deutsch | AKZEPTIERT | [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md) |
+| D-11 | Provision 8 % / 15 % (Pilotgrundlage) | AKZEPTIERT MIT VALIDIERUNG | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-12 | Kostenlose Inserate geprüfter Anbieter | AKZEPTIERT (Promotion offen) | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-14 | Betreiberin Kreativ Solutions GmbH | AKZEPTIERT MIT VORBEHALT · EXTERN ZU PRÜFEN | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-15 | Angehörigenbuchung erlaubt | AKZEPTIERT · Datenschutz EXTERN ZU PRÜFEN | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-16 | Frello ist Vermittler | AKZEPTIERT · EXTERN ZU PRÜFEN | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-18 | Drei Stornomodelle | AKZEPTIERT · Detail EXTERN ZU PRÜFEN | [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md) |
+| D-19 | Durchführungs-/Nachrückfristen | AKZEPTIERT | [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md) |
+| D-20 | Keine Gastbuchung, Kontopflicht | AKZEPTIERT | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-21 | Profil-Sichtbarkeit in der Eventgruppe | AKZEPTIERT | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-22 | Breite Generationsanzeige (60+/70+/80+) | AKZEPTIERT | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-23 | Nur moderierter Event-Gruppenchat | AKZEPTIERT | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-24 | Öffentliche Bewertung ab fünf | AKZEPTIERT | [ADR-006](./decisions/ADR-006-bewertungen-feedback-qualitaet.md) |
+| D-25 | Freitext nur intern, öffentlich aggregiert | AKZEPTIERT | [ADR-006](./decisions/ADR-006-bewertungen-feedback-qualitaet.md) |
+| D-26 | Telefonnummerverifikation vor erster Buchung | AKZEPTIERT | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-28 | Web/PWA zuerst, native Apps per Trigger | AKZEPTIERT | [ADR-007](./decisions/ADR-007-web-first-app-und-deutschland-trigger.md) |
+| D-30 | Deutschland-Expansionsvoraussetzungen | AKZEPTIERT (Kriterien beschlossen; operative Expansion wartet auf Kriterienerfüllung) | [ADR-007](./decisions/ADR-007-web-first-app-und-deutschland-trigger.md) |
 
-### D-03 · Prüfung Deutschland/EU (Name)
-- **Fragestellung:** Ist der Name in Deutschland/EU verfügbar?
-- **Kontext:** **nicht** geprüft. **Status:** OFFEN. **[EXTERN ZU PRÜFEN]**
-- **Empfehlung:** Vor Expansionsplanung prüfen. **Business:** hoch bei Expansion · **Rechtlich:** hoch.
-- **Abhängigkeiten:** D-30. **Spätester Zeitpunkt:** vor Expansion. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+### TEILWEISE AKZEPTIERT
 
-### D-04 · Handelsregisterprüfung Name
-- **Fragestellung:** Bestehen Handelsregisterkonflikte für Firmen-/Produktname?
-- **Kontext:** **nicht** geprüft. **Status:** OFFEN. **[EXTERN ZU PRÜFEN]**
-- **Empfehlung:** vor Firmengründung prüfen. **Rechtlich:** hoch. **Abhängigkeiten:** D-14. **Spätester Zeitpunkt:** vor Gründung. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+| ID | Titel | Offener Unterpunkt | ADR |
+|---|---|---|---|
+| D-13 | Externe Buchungen (nur geprüfte Partner) | Lead-/B2B-Preismodell | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
+| D-17 | Online- und Vor-Ort-Zahlung | Provisionsabrechnung Vor-Ort, Zahlungsfluss | [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md) |
+| D-27 | Rückrufservice statt Hotline | konkrete Supportzeiten | [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md) |
+| D-29 | Paralleler Pilot ZH/BS/BE/LU, Dichte 5/10 | Pilotdauer | [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md) |
 
-### D-07 · Alterspositionierung
-- **Fragestellung:** Kernsegment «aktive 65–79» oder breiter «60+/alle Erwachsenen», und wie wird der Altersfokus je Event gehandhabt?
-- **Kontext:** Plattform grundsätzlich für alle Erwachsenen; primärer Fokus Ältere. Konkrete Positionierung offen.
-- **Status:** OFFEN. **Varianten:** enger 65–79 / breit 60+ / offen mit veranstaltungsabhängigem Fokus.
-- **Empfehlung:** «Primär 65+, offen für alle» als Marken-Hypothese; finale Positionierung per Interviews/Pilot. **Begründung:** vermeidet Stigmatisierung, hält Reichweite.
-- **Produktrisiko:** mittel · **Business:** hoch (steuert Zielgruppen/GTM) · **Rechtlich:** Diskriminierungsaspekte bei Alters-/Geschlechterfiltern **[EXTERN ZU PRÜFEN]**.
-- **Abhängigkeiten:** D-09, D-22. **Spätester Zeitpunkt:** vor Pilotdesign. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+### ZURÜCKGESTELLT / NICHT ANWENDBAR FÜR DEN MVP (an Trigger bzw. künftigen Bedarf gebunden)
 
-### D-09 · Pilotregion
-- **Fragestellung:** Welche kompakte Region startet den Pilot?
-- **Kontext:** Zürich als Prüf-Option genannt, **nicht** beschlossen. **Status:** OFFEN.
-- **Empfehlung:** kompakte, dichte Region wählen; nicht ganze Schweiz. **Business:** hoch · **Operativ:** hoch.
-- **Abhängigkeiten:** D-10, D-29. **Spätester Zeitpunkt:** vor Pilot. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+| ID | Titel | Trigger / Reaktivierung | ADR |
+|---|---|---|---|
+| D-03 | Deutschland-/EU-Namensprüfung | vor konkreter Deutschland-Expansion | [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) |
+| D-05 | App-Store-Namensprüfung | bei Erreichen der Native-App-Schwellen | [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) |
+| D-04 | Separate Frello-Gesellschaft | **NICHT ANWENDBAR FÜR DEN MVP**; nur reaktivieren, falls später eine eigene juristische Person mit «Frello» im Firmennamen geplant wird | [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md) |
 
-### D-10 · Sprachregion & Termine
-- **Fragestellung:** Startsprachregion (D/F/I) und Termine (Start/Launch/Expansion)?
-- **Kontext:** mehrsprachiger Start und alle Termine offen. **Status:** OFFEN.
-- **Empfehlung:** eine Sprachregion zuerst; Termine an Kennzahlen, nicht Kalender, binden.
-- **Abhängigkeiten:** D-09. **Spätester Zeitpunkt:** vor Pilot. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
-
-### D-11 · Provisionsmodell/-satz
-- **Fragestellung:** Welche Provisions-/Gebührenstruktur je Anbietermodell?
-- **Kontext:** Korridore ~6–10 % (Standard), ~12–20 % (Managed) sind **[HYPOTHESE]**; kein definitiver Satz.
-- **Status:** OFFEN. **Varianten:** einheitliche Provision / gestuftes Modell / Fixgebühr / Kombination.
-- **Empfehlung:** gestuftes Modell, exakte Sätze per Anbieterinterviews (6/8/10 %) validieren.
-- **Business:** sehr hoch · **Rechtlich:** Abrechnung/MWST **[EXTERN ZU PRÜFEN]** · **Operativ:** Auszahlung.
-- **Abhängigkeiten:** D-12, D-13, D-16, D-17. **Spätester Zeitpunkt:** vor Anbietervertragsdesign. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
-
-### D-14 · Betreiberfirma & Team
-- **Fragestellung:** Welche juristische Person betreibt Frello; Eigentümer-/Teamstruktur?
-- **Kontext:** **[OFFEN]**. `Kreativ Solutions GmbH` erscheint nur als Adressat der Research, **nicht** als verbindlicher Betreiberentscheid und wird nicht automatisch festgelegt.
-- **Status:** OFFEN. **Varianten:** bestehende GmbH / Neugründung / andere Rechtsform.
-- **Rechtlich:** hoch (Vertragspartner, Haftung, Zahlungsfluss) **[EXTERN ZU PRÜFEN]** · **Business:** hoch.
-- **Abhängigkeiten:** D-04, D-16, D-17. **Spätester Zeitpunkt:** vor Vertrags-/Zahlungsaufbau. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
-
-### D-16 · Plattform- vs. Veranstalterrolle
-- **Fragestellung:** Ist Frello reiner Vermittler oder (teils) Veranstalter (v. a. bei Managed Events/Reisen)?
-- **Kontext:** bestimmt Haftung, AGB, Zahlungsfluss, Reiseveranstalterpflichten.
-- **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** **Empfehlung:** Rolle pro Angebotstyp eindeutig festlegen; juristisch bestätigen.
-- **Rechtlich:** sehr hoch · **Business:** hoch · **Operativ:** hoch.
-- **Abhängigkeiten:** D-11, D-14, D-17, D-18. **Spätester Zeitpunkt:** vor AGB/Zahlungsdesign. **Gründerentscheid:** — **Datum:** — **Nachweis/ADR:** —
+> **Historische offene Punkte, die entfallen sind:** Die frühere Version 0.1 führte D-07, D-09, D-10, D-16, D-24, D-26, D-28 u. a. als **OFFEN**. Diese sind nun entschieden (siehe oben). Keine Entscheidung wurde stillschweigend getroffen; jede beruht auf der Gründerfreigabe vom 28.08.2026.
 
 ---
 
-## P2 – MVP-/Pilotdesign
+## Detailliste (mit Gründerentscheid, Datum, ADR)
 
-### D-05 · App-Store-Namensprüfung
-- **Frage:** Ist «Frello» in App Stores verfügbar? **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** **Abhängigkeit:** D-28. **Spätester Zeitpunkt:** vor App-Planung.
+### Marke, Schutz und Expansion
 
-### D-06 · Social-Handle-Prüfung
-- **Frage:** Sind relevante Social-Media-Handles frei? **Status:** OFFEN. **Spätester Zeitpunkt:** vor Marketingstart.
+#### D-01 · Registrierung `frello.ch`
+- **Fragestellung (historisch):** Soll `frello.ch` registriert werden und ist der Name frei?
+- **Gründerentscheid:** `frello.ch` soll jetzt registriert werden. **Status:** AKZEPTIERT · **AUSSTEHENDE UMSETZUNG** (kein Registrar-Nachweis).
+- **Offen:** Registrar-Nachweis. **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
-### D-08 · Private Veranstalter zulassen?
-- **Frage:** Dürfen Privatpersonen eigene Veranstaltungen anbieten? **Kontext:** offen; erst später und mit strengeren Regeln denkbar. **Status:** OFFEN. **Empfehlung:** im MVP nur professionelle/institutionelle Anbieter; Private später prüfen. **Rechtlich/Trust:** hoch. **Spätester Zeitpunkt:** vor MVP-Anbietermodell.
+#### D-02 · Zweistufige Markenprüfung Schweiz
+- **Gründerentscheid:** Stufe 1 jetzt (Swissreg/Zefix/Domain-Basisrecherche); Stufe 2 (professionelle Ähnlichkeitsrecherche) vor Logo-Investition/öffentlichem Markenaufbau/Anmeldung. **Status:** AKZEPTIERT · Durchführung ausstehend · Stufe 2 **EXTERN ZU PRÜFEN**.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
-### D-12 · Kostenlose Inserate
-- **Frage:** Für welche Anbieter (Gemeinden, Vereine, Kirchen, gemeinnützig) gilt kostenlose Veröffentlichung, mit welchen Funktionsgrenzen? **Status:** OFFEN. **Empfehlung:** kostenlose Inserate zur Sicherung der Angebotsdichte. **Abhängigkeit:** D-11.
+#### D-03 · Deutschland-/EU-Namensprüfung
+- **Gründerentscheid:** Nicht im Schweizer Pilot; spätestens vor konkreter Deutschland-Expansion. **Status:** ZURÜCKGESTELLT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
-### D-13 · Externe Buchungen
-- **Frage:** Wie werden Anbieter mit eigenem Ticketsystem eingebunden/monetarisiert (keine/ Lead-Gebühr/ B2B-Paket)? **Status:** OFFEN. **Abhängigkeit:** D-11.
+#### D-05 · App-Store-Namensprüfung
+- **Gründerentscheid:** Erst bei Erreichen der Native-App-Schwellen (D-28). **Status:** ZURÜCKGESTELLT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
-### D-15 · Angehörigenmodus
-- **Frage:** Darf mit Zustimmung für eine andere Person gebucht werden; wie datenschutzkonform ausgestalten? **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** **Empfehlung:** Angehörigenbuchung mit klar getrennter Teilnehmeridentität. **Rechtlich:** hoch.
+#### D-06 · Social Handles
+- **Gründerentscheid:** Nach unauffälliger Basisrecherche defensiv sichern. **Status:** AKZEPTIERT · Umsetzung ausstehend.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
-### D-17 · Zahlung online vs. vor Ort
-- **Frage:** Online-Zahlung, Zahlung vor Ort oder beides; und vor/nach Erreichen der Mindestzahl? **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** (Payment/Kundengelder). **Abhängigkeit:** D-11, D-16.
+#### D-30 · Deutschland-Expansionsvoraussetzungen
+- **Gründerentscheid:** Die **Expansionsvoraussetzungen sind beschlossen** – Deutschland wird konkret erst geprüft, wenn alle vier Pilotstädte Angebotsdichte, reale Wiederbuchung, tragfähigen Betrieb und kontrollierte Sicherheitsprozesse belegen. **Status:** **AKZEPTIERT** (Kriterien beschlossen); **nur die operative Deutschland-Expansion bleibt zurückgestellt**, bis diese Schweizer Kriterien erfüllt sind.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-007](./decisions/ADR-007-web-first-app-und-deutschland-trigger.md).
 
-### D-18 · Stornoregeln
-- **Frage:** Storno-, No-show-, Absage- und Rückerstattungsregeln, Fristen, Gebühren, Kulanz? **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** (Konsumentenschutz). **Abhängigkeit:** D-16.
+### Zielgruppe und Pilot
 
-### D-19 · Mindestteilnehmer-/Wartelistenfristen
-- **Frage:** Fristen für Mindestzahl-Entscheid, Reservierungsdauer beim Nachrücken, Buchungsschluss? **Status:** OFFEN. **Abhängigkeit:** D-18.
+#### D-07 · Alterspositionierung
+- **Gründerentscheid:** Primär 65+, offen für alle Erwachsenen; eventbezogene Altersfokusse transparent möglich. **Status:** AKZEPTIERT.
+- **Offen/extern:** diskriminierungsrechtliche Zulässigkeit der Altersfokusse **[EXTERN ZU PRÜFEN]**. **Datum:** 28.08.2026 · **ADR:** [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md).
 
-### D-20 · Buchung ohne Konto / Gastbuchung
-- **Frage:** Ist Buchung ohne Konto oder als Gast möglich? **Status:** OFFEN. **Empfehlung:** aus Zugänglichkeitsgründen prüfen; gegen Vertrauens-/Verifikationsanforderungen abwägen.
+#### D-09/D-10 · Pilotgebiet und Sprache
+- **Gründerentscheid:** Deutschschweiz; Produktsprache Deutsch. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md).
 
-### D-21 · Öffentliche Teilnehmerlisten & Profilfoto
-- **Frage:** Sichtbarkeit anderer Teilnehmender; öffentliches (geprüftes) Profilfoto ja/nein? **Status:** OFFEN. **Empfehlung:** im MVP keine frei sichtbaren Teilnehmerlisten für Nichtangemeldete; Foto freiwillig/moderiert. **Rechtlich:** Datenschutz **[EXTERN ZU PRÜFEN]**.
+#### D-29 · Pilotstädte und Dichte
+- **Gründerentscheid:** Paralleler Pilot in Zürich, Basel, Bern, Luzern; öffentlicher Start je Stadt erst ab **≥5 geprüften Anbietern und ≥10 kommenden Terminen**. **Status:** TEILWEISE AKZEPTIERT.
+- **Offen:** Pilotdauer (Hypothese A-03). **Datum:** 28.08.2026 · **ADR:** [ADR-002](./decisions/ADR-002-zielgruppe-pilotgebiet-dichte.md).
 
-### D-23 · Event-Gruppenchat vs. 1:1-Chat
-- **Frage:** Umfang der Kommunikationsfunktionen im MVP? **Status:** OFFEN. **Empfehlung:** eventbezogener Gruppenchat im MVP; offener 1:1-Chat später und gestuft. **Trust:** hoch.
+### Anbieter, Rolle und Monetarisierung
 
-### D-26 · Telefonnummerverifikation
-- **Frage:** Wird die Telefonnummer als internes Vertrauensmerkmal verifiziert? **Status:** OFFEN. **Empfehlung:** ja, als Vertrauensbaustein (nicht öffentlich). **Rechtlich:** Datenschutz **[EXTERN ZU PRÜFEN]**.
+#### D-14 · Betreiberin
+- **Gründerentscheid:** Geplante Betreiberin ist die bestehende **Kreativ Solutions GmbH**; Frello wird als deren **Produkt** geplant. **Status:** AKZEPTIERT MIT VORBEHALT · **EXTERN ZU PRÜFEN** (rechtlich/steuerlich).
+- **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
 
-### D-27 · Telefon-Support-Umfang
-- **Frage:** Welcher Umfang an Telefon-/Rückrufhilfe im Pilot/MVP? **Status:** OFFEN. **Operativ:** hoch (Supportkosten).
+#### D-04 · Separate Frello-Gesellschaft
+- **Gründerentscheid:** Es ist **keine separate Frello-Gesellschaft beschlossen**. Die Frage einer eigenen juristischen Person mit «Frello» im Firmennamen ist **für den MVP nicht anwendbar**. **Status:** **NICHT ANWENDBAR FÜR DEN MVP / ZURÜCKGESTELLT** – Reaktivierung nur, falls später eine eigene juristische Person mit Frello im Firmennamen geplant wird. Die **Zefix-Basisprüfung des Produktnamens** bleibt Bestandteil von **D-02** (nicht von D-04).
+- **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
 
-### D-28 · Web zuerst vs. native App
-- **Frage:** Reihenfolge Web/PWA vs. native Apps? **Status:** OFFEN. **Empfehlung:** Web zuerst; native Apps nach nachgewiesener wiederkehrender Nutzung. **Abhängigkeit:** D-05.
+#### D-08 · Anbieterzulassung
+- **Gründerentscheid:** Im MVP nur geprüfte gewerbliche/institutionelle/gemeinnützige Anbieter; keine privaten Veranstalter. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
 
-### D-29 · Pilotumfang
-- **Frage:** Konkreter Umfang (Anbieterzahl, Termine, Dauer, Formate)? **Status:** OFFEN. **Empfehlung:** Hypothese 5–10 Anbieter, 20–30 Termine, ~12 Wochen validieren. **Abhängigkeit:** D-09.
+#### D-16 · Plattformrolle
+- **Gründerentscheid:** Frello ist Vermittler; Anbieter bleibt Veranstalter/Leistungserbringer/Vertragspartner; Rolle pro Angebot juristisch bestätigen. **Status:** AKZEPTIERT · **EXTERN ZU PRÜFEN**.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
+
+#### D-11 · Provisionsmodell
+- **Gründerentscheid:** 8 % Standard, 15 % für aktiv konzipierte/betreute Formate (Pilotgrundlage); betreute Formate ändern die Vermittlerrolle nicht automatisch. **Status:** AKZEPTIERT MIT VALIDIERUNG.
+- **Offen:** Validierung der Sätze (A-09/A-10/A-13). **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
+
+#### D-12 · Kostenlose Inserate
+- **Gründerentscheid:** Kostenlose Veranstaltungen geprüfter Anbieter kostenlos inserierbar; kostenpflichtige Promotion kein MVP-Beschluss. **Status:** AKZEPTIERT (Promotion **OFFEN**).
+- **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
+
+#### D-13 · Externe Buchungen
+- **Gründerentscheid:** Nur für ausgewählte, geprüfte Partner, klar gekennzeichnet; separate Monetarisierung über Reichweite/Lead/B2B möglich. **Status:** TEILWEISE AKZEPTIERT.
+- **Offen:** konkretes Lead-/B2B-Preismodell. **Datum:** 28.08.2026 · **ADR:** [ADR-003](./decisions/ADR-003-betreiberin-anbieter-rolle-monetarisierung.md).
+
+#### D-17 · Zahlung online / vor Ort
+- **Gründerentscheid:** Je Event Online-Zahlung und Zahlung vor Ort möglich. **Status:** TEILWEISE AKZEPTIERT · **EXTERN ZU PRÜFEN**.
+- **Offen:** Provisionsabrechnung bei Vor-Ort-Zahlung; regulierter Zahlungsfluss. **Datum:** 28.08.2026 · **ADR:** [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md).
+
+### Identität, Buchung und Profile
+
+#### D-15 · Angehörigenbuchung
+- **Gründerentscheid:** Erlaubt; buchende Person benötigt Konto; buchende und teilnehmende Person getrennt; Zustimmung nachvollziehbar. **Status:** AKZEPTIERT · Datenschutz **EXTERN ZU PRÜFEN**.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+#### D-20 · Gast-/Kontobuchung
+- **Gründerentscheid:** Keine Gastbuchung; jede Buchung erfordert ein Konto; bei Angehörigenbuchung braucht die teilnehmende Person nicht zwingend ein eigenes Konto. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+#### D-21 · Profil-Sichtbarkeit
+- **Gründerentscheid:** Aussenstehende sehen nur die Teilnehmerzahl; bestätigte Teilnehmende sehen Vornamen und freiwillige Profilbilder ihrer Eventgruppe; Profilbilder freiwillig. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+#### D-22 · Altersanzeige
+- **Gründerentscheid:** Freiwillig sichtbare breite Generation (60+/70+/80+); genaues Geburtsdatum privat. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+#### D-26 · Telefonnummerverifikation
+- **Gründerentscheid:** Vor der ersten Buchung verpflichtend; Nummer nicht öffentlich. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+#### D-27 · Support
+- **Gründerentscheid:** Rückrufservice in definierten Supportzeiten; keine ständig besetzte Hotline. **Status:** TEILWEISE AKZEPTIERT.
+- **Offen:** konkrete Supportzeiten. **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+### Kommunikation
+
+#### D-23 · Chat
+- **Gründerentscheid:** Im MVP nur moderierter Event-Gruppenchat für bestätigte Teilnehmende; keine freien 1:1-Nachrichten. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-005](./decisions/ADR-005-konten-angehoerige-profile-chat-support.md).
+
+### Storno, Durchführung, Warteliste und No-show
+
+#### D-18 · Stornomodelle
+- **Gründerentscheid:** Anbieter wählen eines von drei Frello-Modellen (Flexibel: kostenlos bis 24 h; Standard: kostenlos bis 7 Tage, 50 % bis 48 h; Fix: keine reguläre Rückerstattung); keine freien eigenen Klauseln. **Status:** AKZEPTIERT · Detail **EXTERN ZU PRÜFEN**.
+- **Offen/extern:** Ausnahmen, Gebührenanteile, Ersatzpersonen, juristische Formulierung. **Datum:** 28.08.2026 · **ADR:** [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md).
+
+#### D-19 · Durchführung/Nachrücken
+- **Gründerentscheid:** Durchführungsentscheid grundsätzlich spätestens 48 h vorher; reguläres Nachrückangebot 12 h; bei <24 h bis Beginn 2 h Nachrückfrist. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md).
+
+#### No-show-Unterentscheid
+- **Gründerentscheid:** Erster Fall Hinweis; bei Wiederholung zeitweise Buchungsbegrenzung mit Einsprachemöglichkeit; keine automatische Geldstrafe. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-004](./decisions/ADR-004-buchung-zahlung-storno-warteliste.md).
+
+### Bewertungen
+
+#### D-24 · Öffentliche Bewertung
+- **Gründerentscheid:** Ab fünf bestätigten Bewertungen; Bewertungsanzahl immer sichtbar; nur verifiziert Angemeldete/Teilgenommene bewerten; keine öffentliche Teilnehmerbewertung. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-006](./decisions/ADR-006-bewertungen-feedback-qualitaet.md).
+
+#### D-25 · Freitext/Feedback
+- **Gründerentscheid:** Freitext im MVP nur intern; öffentlich nur strukturierte, aggregierte Resultate; Anbieter erhalten interne, möglichst anonymisierte Rückmeldungen. **Status:** AKZEPTIERT.
+- **Datum:** 28.08.2026 · **ADR:** [ADR-006](./decisions/ADR-006-bewertungen-feedback-qualitaet.md).
+
+### Technik
+
+#### D-28 · Web-first / Native-App-Trigger
+- **Gründerentscheid:** Responsive Web/PWA zuerst; native Apps erst bei belegter Wiederbuchung, regelmässiger mobiler Nutzung und erkennbarem App-/Push-Bedarf; kein Kalendertermin. **Status:** AKZEPTIERT.
+- **Offen:** konkrete Schwellenwerte (Hypothese A-21). **Datum:** 28.08.2026 · **ADR:** [ADR-007](./decisions/ADR-007-web-first-app-und-deutschland-trigger.md).
 
 ---
 
-## P3 – Später, aber vorgemerkt
+## Weiterhin offene Unterentscheide (Sammelübersicht)
 
-### D-22 · Altersband-Anzeige
-- **Frage:** Welches Altersband wird öffentlich angezeigt (statt exaktem Geburtsdatum)? **Status:** OFFEN. **Rechtlich:** Datenschutz **[EXTERN ZU PRÜFEN]**.
-
-### D-24 · Bewertungsmindestzahl
-- **Frage:** Ab wie vielen bestätigten Bewertungen wird öffentlich angezeigt? **Kontext:** Idee «ab fünf» ist **[HYPOTHESE]**. **Status:** OFFEN.
-
-### D-25 · Freitextveröffentlichung & Anbieterantworten
-- **Frage:** Werden Freitextbewertungen veröffentlicht; dürfen Anbieter antworten; Einspracheprozess? **Status:** OFFEN. **[EXTERN ZU PRÜFEN]** (Persönlichkeitsrecht/Moderation).
-
-### D-30 · Expansionskriterien Deutschland
-- **Frage:** Welche belegten Kriterien lösen die Deutschland-Prüfung aus? **Kontext:** Voraussetzungen als Hypothese im Businessplan (Kapitel 35). **Status:** OFFEN. **Abhängigkeit:** D-03.
-
----
+| Bezug | Offener Unterpunkt | Status |
+|---|---|---|
+| D-01 | Registrar-Nachweis `frello.ch` | AUSSTEHENDE UMSETZUNG |
+| D-02 | professionelle Ähnlichkeitsrecherche (Stufe 2) | EXTERN ZU PRÜFEN |
+| D-06 | Nachweis Handle-Sicherung | AUSSTEHENDE UMSETZUNG |
+| D-11 | Validierung 8 %/15 % | AKZEPTIERT MIT VALIDIERUNG |
+| D-12 | kostenpflichtige Promotion | OFFEN |
+| D-13 | Lead-/B2B-Preismodell | OFFEN |
+| D-17 | Provisionsabrechnung Vor-Ort, Zahlungsfluss | EXTERN ZU PRÜFEN |
+| D-18 | Ausnahmen/Gebühren/Ersatzpersonen/Formulierung | EXTERN ZU PRÜFEN |
+| D-27 | konkrete Supportzeiten | OFFEN |
+| D-28 | Schwellenwerte Native-App-Trigger | OFFEN (Hypothese) |
+| D-29 | Pilotdauer | OFFEN (Hypothese) |
+| D-07 | diskriminierungsrechtliche Altersfokus-Prüfung | EXTERN ZU PRÜFEN |
+| D-04 | Reaktivierung nur bei geplanter eigener Frello-Gesellschaft | NICHT ANWENDBAR FÜR DEN MVP |
+| D-30 | operative Deutschland-Expansion (Kriterien beschlossen) | wartet auf Kriterienerfüllung |
 
 ## Dokumentierte Konflikte gleichrangiger Quellen
 
-Zum Stand 0.1 wurden **keine** Konflikte zwischen gleichrangigen verbindlichen Quellen festgestellt (das Repository enthält ausser der Research keine weiteren verbindlichen Business-/ADR-Dokumente). Der einzige Klärungspunkt – die Erwähnung von `Kreativ Solutions GmbH` in der Research – ist als D-14 erfasst und wird neutral behandelt (keine automatische Festlegung als Betreiberin).
+Zum Stand 0.2 bestehen **keine** Konflikte zwischen gleichrangigen verbindlichen Quellen. Der frühere Klärungspunkt zu `Kreativ Solutions GmbH` (in V0.1 als D-14 offen geführt) ist durch den Gründerentscheid **D-14** aufgelöst: Die Kreativ Solutions GmbH ist die **geplante** Betreiberin, vorbehaltlich externer rechtlicher/steuerlicher Prüfung. **D-04** (separate Frello-Gesellschaft) ist davon getrennt und **für den MVP nicht anwendbar**; die Zefix-Produktnamensprüfung liegt bei **D-02**.
