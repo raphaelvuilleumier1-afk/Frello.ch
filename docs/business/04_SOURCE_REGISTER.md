@@ -4,7 +4,7 @@
 
 Alle in diesem Dokumentensatz verwendeten externen Quellen. **Wettbewerber-Reichweiten sind Selbstauskünfte**, sofern nicht unabhängig bestätigt.
 
-**Verifizierungsstatus – Hinweis:** Sämtliche Quellen stammen aus der [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Abrufdatum dort: 28.08.2026). In dieser Businessplan-Version 0.1 wurden die Links **nicht erneut live abgerufen/verifiziert**. Vor externer Verwendung (Investoren, Behörden, Verträge) sind Aktualität, Bezugsjahr, Definition und geografische Relevanz erneut zu prüfen. Kennzeichnungen unten: **[R]** = aus Research übernommen, nicht erneut live verifiziert.
+**Verifizierungsstatus – Hinweis:** Sämtliche Quellen stammen aus der [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Abrufdatum dort: 28.08.2026). In dieser Businessplan-Version 0.2 wurden die Links **nicht erneut live abgerufen/verifiziert**. Vor externer Verwendung (Investoren, Behörden, Verträge) sind Aktualität, Bezugsjahr, Definition und geografische Relevanz erneut zu prüfen. Kennzeichnungen unten: **[R]** = aus Research übernommen, nicht erneut live verifiziert.
 
 ---
 

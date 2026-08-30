@@ -16,6 +16,7 @@ Ergänzend zu den Governance-Kategorien der Businessdokumente (siehe [Business-R
 | **AKZEPTIERT MIT VALIDIERUNG** | Operative Grundrichtung beschlossen; Kennzahl/Satz muss im Pilot validiert werden. |
 | **TEILWEISE AKZEPTIERT** | Hauptentscheid getroffen; klar bezeichnete Unterpunkte bleiben offen. |
 | **ZURÜCKGESTELLT** | Bewusst an einen späteren Trigger gebunden. |
+| **NICHT ANWENDBAR FÜR DEN MVP / ZURÜCKGESTELLT** | Fragestellung ist für den aktuellen MVP nicht anwendbar und bleibt zurückgestellt; Reaktivierung nur, wenn die dafür definierte spätere Voraussetzung eintritt (z. B. D-04: nur falls später eine separate juristische Person mit «Frello» im Firmennamen geplant wird). |
 | **AUSSTEHENDE UMSETZUNG** | Entscheid getroffen; externe Handlung (z. B. Registrar-Nachweis) noch nicht belegt. |
 | **EXTERN ZU PRÜFEN** | Fachliche (rechtliche/steuerliche/regulatorische) Bestätigung ausstehend. |
 | **OFFEN** | Keine Gründerfreigabe. |

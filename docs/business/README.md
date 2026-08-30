@@ -48,6 +48,7 @@ Zusätzlich zu den obigen Governance-Kategorien (die den *Aussagen* im Businessp
 | **AKZEPTIERT MIT VALIDIERUNG** | Grundrichtung beschlossen; Kennzahl/Satz im Pilot zu validieren. |
 | **TEILWEISE AKZEPTIERT** | Hauptentscheid getroffen; benannte Unterpunkte bleiben offen. |
 | **ZURÜCKGESTELLT** | Bewusst an einen späteren Trigger gebunden. |
+| **NICHT ANWENDBAR FÜR DEN MVP / ZURÜCKGESTELLT** | Fragestellung ist für den aktuellen MVP nicht anwendbar und bleibt zurückgestellt; Reaktivierung nur, wenn die dafür definierte spätere Voraussetzung eintritt (z. B. D-04: nur falls später eine separate juristische Person mit «Frello» im Firmennamen geplant wird). |
 | **AUSSTEHENDE UMSETZUNG** | Entscheid getroffen; externe Handlung (z. B. Registrar-Nachweis) noch nicht belegt. |
 | **EXTERN ZU PRÜFEN** | Fachliche Bestätigung ausstehend. |
 | **OFFEN** | Keine Gründerfreigabe. |
