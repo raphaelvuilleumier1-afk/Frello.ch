@@ -1,9 +1,9 @@
 # ADR-003 – Betreiberin, Anbieterzulassung, Vermittlerrolle und Monetarisierung
 
 - **Status:** AKZEPTIERT / AKZEPTIERT MIT VALIDIERUNG / TEILWEISE AKZEPTIERT · D-04 NICHT ANWENDBAR FÜR DEN MVP / ZURÜCKGESTELLT · durchgehend EXTERN ZU PRÜFEN (rechtlich/steuerlich)
-- **Datum:** 28. August 2026
-- **Betroffene D-IDs:** D-04, D-08, D-11, D-12, D-13, D-14, D-16
-- **Zugehörig:** [Businessplan §7](../01_BUSINESS_PLAN_V0.2.md#7-geschäftsidee) · [Businessplan §23](../01_BUSINESS_PLAN_V0.2.md#23-geschäftsmodell) · [Businessplan §31](../01_BUSINESS_PLAN_V0.2.md#31-betrieb-und-organisation) · [Entscheidungsregister](../02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](../03_ASSUMPTION_REGISTER.md)
+- **Datum:** 28. August 2026 · **Ergänzt:** 31. August 2026 (D-38, D-39)
+- **Betroffene D-IDs:** D-04, D-08, D-11, D-12, D-13, D-14, D-16, D-38, D-39
+- **Zugehörig:** [Businessplan §7](../01_BUSINESS_PLAN_V0.3.md#7-geschäftsidee) · [Businessplan §23](../01_BUSINESS_PLAN_V0.3.md#23-geschäftsmodell) · [Businessplan §31](../01_BUSINESS_PLAN_V0.3.md#31-betrieb-und-organisation) · [Entscheidungsregister](../02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](../03_ASSUMPTION_REGISTER.md)
 
 ## Kontext
 
@@ -16,8 +16,13 @@ Betreiberfirma, Anbieterzulassung, Plattformrolle und Monetarisierung waren offe
 - **D-08:** Im MVP nur **geprüfte gewerbliche, institutionelle oder gemeinnützige Anbieter**. **Keine privaten Veranstalter.** **Status AKZEPTIERT.**
 - **D-16:** Frello ist im MVP **Vermittler**. Der jeweilige Anbieter bleibt **Veranstalter, Leistungserbringer und grundsätzlich Vertragspartner**. Diese Rolle muss pro Angebot klar und **juristisch bestätigt** werden. **Status AKZEPTIERT · EXTERN ZU PRÜFEN.**
 - **D-11:** Gestuftes Modell als Pilotgrundlage: **8 % Standardprovision** und **15 % bei von Frello aktiv konzipierten oder betreuten Formaten**. Sätze im Pilot zu validieren. Betreute Formate ändern die Vermittlerrolle nicht automatisch. **Status AKZEPTIERT MIT VALIDIERUNG.**
-- **D-12:** Kostenlose Veranstaltungen geprüfter Anbieter dürfen **kostenlos inseriert** werden. Spätere kostenpflichtige Promotion bleibt möglich, ist aber **kein MVP-Beschluss**. **Status AKZEPTIERT (Kerngrundsatz); Promotion OFFEN.**
-- **D-13:** **Externe Buchungen** nur für **ausgewählte, geprüfte Partner**, klar gekennzeichnet; separate Monetarisierung über Reichweite/Lead/B2B möglich. **Konkretes Modell offen.** **Status TEILWEISE AKZEPTIERT.**
+- **D-12:** Kostenlose Veranstaltungen geprüfter Anbieter dürfen **kostenlos inseriert** werden. **Status AKZEPTIERT (Kerngrundsatz).** Der Promotions-Unterpunkt ist durch **D-38** für den MVP geschlossen (siehe unten).
+- **D-13:** **Externe Buchungen** nur für **ausgewählte, geprüfte Partner**, klar gekennzeichnet; separate Monetarisierung über Reichweite/Lead/B2B möglich. **Status TEILWEISE AKZEPTIERT.** Der MVP-Scope ist durch **D-39** geändert (siehe unten): im MVP ausgeschlossen.
+- **D-38 (Keine kostenpflichtige Promotion im MVP, 31.08.2026):** Im MVP **keine** kostenpflichtige Promotion, **keine** bezahlte Hervorhebung oder bevorzugte Platzierung; Reihung rein inhaltlich. Ein mögliches Promotionsmodell wird **frühestens nach dem Pilot** neu entschieden. Schließt den MVP-Unterpunkt von D-12, ohne ein späteres Geschäftsmodell festzulegen. **Status AKZEPTIERT FÜR DEN MVP (spätere Entscheidung OFFEN).**
+- **D-39 (Keine externen Buchungen im MVP, 31.08.2026 – ändert MVP-Scope von D-13):**
+  - **Frühere Regel (D-13):** externe Buchungen im MVP für ausgewählte, geprüfte Partner möglich.
+  - **Neue Regel:** Externe Buchungen sind **nicht Bestandteil des MVP**; keine Weiterleitung an externe Buchungssysteme; **kein** Lead-, B2B- oder externes Buchungsgebührenmodell im MVP. Eine Einführung wird **frühestens nach dem Pilot** neu entschieden.
+  - **Status AKZEPTIERT FÜR DEN MVP / SPÄTER ZURÜCKGESTELLT.**
 
 ## Begründung
 
@@ -38,9 +43,14 @@ Nutzung der bestehenden Gesellschaft (D-14) vermeidet unnötige Gründungskomple
 ## Offen bleibende Unterpunkte
 
 - 8 %/15 % validieren (D-11).
-- Kostenpflichtiges Promotionsmodell (D-12).
-- Lead-/B2B-Preismodell für externe Buchungen (D-13).
+- Kostenpflichtiges Promotionsmodell – im MVP ausgeschlossen (D-38); späteres Modell erst nach Pilot (D-12/D-38).
+- Lead-/B2B-Preismodell für externe Buchungen – im MVP ausgeschlossen (D-39); erst nach Pilot (D-13/D-39).
 - D-04 bleibt zurückgestellt und wird nur reaktiviert, falls später eine eigene juristische Person mit «Frello» im Firmennamen geplant wird.
+
+## Änderungshistorie
+
+- **28.08.2026:** D-04, D-08, D-11, D-12, D-13, D-14, D-16 beschlossen.
+- **31.08.2026:** D-38 (keine kostenpflichtige Promotion im MVP) schließt den Promotions-Unterpunkt von D-12; D-39 (keine externen Buchungen im MVP) nimmt D-13 aus dem MVP-Scope. Frühere Regeln bleiben oben als Historie sichtbar; spätere Optionen sind zurückgestellt.
 
 ## Externe Prüfpflichten
 
@@ -50,4 +60,4 @@ Nutzung der bestehenden Gesellschaft (D-14) vermeidet unnötige Gründungskomple
 
 ## Nachweis
 
-Konsolidierte Gründerfreigabe (28.08.2026).
+Konsolidierte Gründerfreigabe (28.08.2026); strukturierte interaktive Gründerklärung (31.08.2026, Entscheidungsblock 4) für D-38/D-39.

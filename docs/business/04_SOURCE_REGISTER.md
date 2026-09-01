@@ -1,10 +1,10 @@
 # Quellenregister – Frello
 
-**Stand:** 28. August 2026 · **Version:** 0.2 · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.2.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [README](./README.md) · [ADR-Verzeichnis](./decisions/README.md)
+**Stand:** 31. August 2026 · **Version:** 0.3 (zweite Tranche 31.08.2026) · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.3.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Annahmenregister](./03_ASSUMPTION_REGISTER.md) · [README](./README.md) · [ADR-Verzeichnis](./decisions/README.md)
 
 Alle in diesem Dokumentensatz verwendeten externen Quellen. **Wettbewerber-Reichweiten sind Selbstauskünfte**, sofern nicht unabhängig bestätigt.
 
-**Verifizierungsstatus – Hinweis:** Sämtliche Quellen stammen aus der [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Abrufdatum dort: 28.08.2026). In dieser Businessplan-Version 0.2 wurden die Links **nicht erneut live abgerufen/verifiziert**. Vor externer Verwendung (Investoren, Behörden, Verträge) sind Aktualität, Bezugsjahr, Definition und geografische Relevanz erneut zu prüfen. Kennzeichnungen unten: **[R]** = aus Research übernommen, nicht erneut live verifiziert.
+**Verifizierungsstatus – Hinweis:** Sämtliche Quellen stammen aus der [Deep-Research-Analyse](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Abrufdatum dort: 28.08.2026). In der aktuellen Businessplan-Version 0.3 (wie schon in V0.2) wurden die Links **nicht erneut live abgerufen/verifiziert**. Vor externer Verwendung (Investoren, Behörden, Verträge) sind Aktualität, Bezugsjahr, Definition und geografische Relevanz erneut zu prüfen. Kennzeichnungen unten: **[R]** = aus Research übernommen, nicht erneut live verifiziert.
 
 ---
 
@@ -49,12 +49,13 @@ Alle in diesem Dokumentensatz verwendeten externen Quellen. **Wettbewerber-Reich
 
 ## S3b · Prüfpfad-Referenzen Marke/Domain/Firma (noch ohne Ergebnis)
 
-Offizielle Register für den in [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) unter **D-02** verankerten Prüfpfad (zweistufige Schweizer Marken-/Firmen-/Produktnamensrecherche; die Zefix-Basisprüfung des Produktnamens ist Bestandteil von D-02). **Es liegt kein überprüfbarer Nachweis vor; keine Verfügbarkeit ist als geprüft dokumentiert.**
+Offizielle Register/Prüfpfade für die in [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) verankerten Namens-/Marken-/Firmenprüfungen unter **D-02** (zweistufige Schweizer Marken-/Firmen-/Produktnamensrecherche; die Zefix-Basisprüfung des Produktnamens ist Bestandteil von D-02) sowie **D-05** (App-Store-Namensprüfung, seit 31.08.2026 organisatorisch anstehend, ausgelöst durch D-46). **Es liegt kein überprüfbarer Nachweis vor; keine Verfügbarkeit ist als geprüft dokumentiert.**
 
 | ID | Titel | Herausgeber | Datum | URL | Abruf | Verwendete Aussage | Relevanz | Einschränkung | Status |
 |---|---|---|---|---|---|---|---|---|---|
 | Q-26 | Swissreg – Markenrecherche | Eidg. Institut für Geistiges Eigentum (IGE) | — | https://www.swissreg.ch/ | nicht abgefragt | Prüfpfad für Schweizer Markenrecherche (D-02, Stufe 1) | CH | **Noch nicht abgefragt; kein Ergebnis/Nachweis** | nicht durchgeführt |
 | Q-27 | Zefix – Zentraler Firmenindex | Eidg. Amt für das Handelsregister (EHRA) | — | https://www.zefix.ch/ | nicht abgefragt | Prüfpfad für Firmen-/Produktnamensrecherche (D-02) | CH | **Noch nicht abgefragt; kein Ergebnis/Nachweis** | nicht durchgeführt |
+| Q-28 | App-Store-Namensprüfung (Apple App Store / Google Play) | Apple / Google (Betreiberportale) | — | — | nicht abgefragt | Prüfpfad für die App-Store-Namensverfügbarkeit (D-05, nun organisatorisch anstehend) | international | **Noch nicht abgefragt; kein Ergebnis/Nachweis; keine App-Store-Verfügbarkeit behauptet** | nicht durchgeführt |
 
 ## S4 · Interne Grundlagen (Repository)
 
@@ -71,5 +72,5 @@ Offizielle Register für den in [ADR-001](./decisions/ADR-001-marke-domain-schut
 - **BFS-Zahlen (Q-01, Q-02):** Bezugsjahr beim Zitieren angeben; Szenarien nicht als Prognose.
 - **Einsamkeitsangaben (Q-04):** enge Definition beibehalten; nicht mit allgemeinen Einsamkeitsstatistiken vermischen.
 - **Rechtsquellen (Q-19–Q-24):** behördliche Übersichten – ersetzen keine Rechts-/Steuerberatung; alle als **[EXTERN ZU PRÜFEN]** behandeln.
-- **Prüfpfad-Referenzen (Q-26, Q-27):** Swissreg/Zefix sind als Prüfpfade dokumentiert, **nicht** als Ergebnisse. Marken-, Firmen-, Domain- oder Social-Verfügbarkeit darf erst als geprüft gelten, wenn ein überprüfbarer Nachweis vorliegt. Gründerentscheide sind keine externen Quellen.
-- **Kein Internetzugriff in dieser Version:** Die Links wurden auch in Version 0.2 nicht erneut live abgerufen; fehlende Live-Verifikation ist hiermit dokumentiert. Es wurde **keine** Aktualisierung und **kein** Registerresultat erfunden.
+- **Prüfpfad-Referenzen (Q-26, Q-27, Q-28):** Swissreg/Zefix (D-02) und die App-Store-Namensprüfung (Q-28, D-05) sind als Prüfpfade dokumentiert, **nicht** als Ergebnisse. Marken-, Firmen-, Domain-, App-Store- oder Social-Verfügbarkeit darf erst als geprüft gelten, wenn ein überprüfbarer Nachweis vorliegt. Die App-Store-Namensprüfung (D-05) ist seit 31.08.2026 organisatorisch anstehend, aber **ohne Ergebnis**. Gründerentscheide sind keine externen Quellen.
+- **Kein Internetzugriff in dieser Version:** Die Links wurden auch in Version 0.3 (wie in V0.2) nicht erneut live abgerufen; fehlende Live-Verifikation ist hiermit dokumentiert. Es wurde **keine** Aktualisierung und **kein** Registerresultat erfunden.
