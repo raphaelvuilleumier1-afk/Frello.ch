@@ -16,6 +16,8 @@ Dieser Ordner enthält die konsolidierte Business-, Markt- und Produktgrundlage 
 
 Ergänzende Grundlage: [`../research/Senioren_Erlebnisplattform_Deep_Research.md`](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Deep-Research-Markt- und Produktanalyse, Stand 28.08.2026).
 
+> **Kanonische öffentliche Exportquelle:** [`../../PUBLIC_PRESENTATION.md`](../../PUBLIC_PRESENTATION.md) (im Repo-Root) ist die **einzige freigegebene öffentliche Produktquelle** für die Darstellung von Frello auf `kreativ-solutions.ch/<produkt>` und für weitere öffentliche Präsentationen. Die internen Dokumente in diesem Ordner sind **nicht** öffentlich; öffentliche Inhalte werden ausschliesslich über `PUBLIC_PRESENTATION.md` kuratiert und freigegeben.
+
 ## Dokumentstatus
 
 - **Version:** 0.2 (konsolidierte Gründerentscheide vom 28.08.2026 eingearbeitet)
