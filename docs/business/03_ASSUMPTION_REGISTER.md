@@ -1,8 +1,8 @@
 # Annahmenregister – Frello
 
-**Stand:** 28. August 2026 · **Version:** 0.2 · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.2.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [README](./README.md) · [ADR-Verzeichnis](./decisions/README.md)
+**Stand:** 31. August 2026 · **Version:** 0.3 (zweite Tranche 31.08.2026) · Zugehörig: [Businessplan](./01_BUSINESS_PLAN_V0.3.md) · [Offene Gründerentscheidungen](./02_OPEN_FOUNDER_DECISIONS.md) · [Quellenregister](./04_SOURCE_REGISTER.md) · [README](./README.md) · [ADR-Verzeichnis](./decisions/README.md)
 
-Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** wurden mehrere frühere Annahmen durch Gründerentscheide **abgeschlossen** (Status «entschieden», mit Verweis auf die zuständige [ADR](./decisions/README.md)); ihre Historie bleibt erhalten. Die verbleibenden Punkte – insbesondere **8 %/15 %**, **Pilotdauer**, **App-Schwellen** und **operative Supportdetails** – sind als präzise Resthypothesen geführt. **Keine** dieser Werte ist eine Prognose.
+Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** wurden mehrere frühere Annahmen durch Gründerentscheide **abgeschlossen** (Status «entschieden», mit Verweis auf die zuständige [ADR](./decisions/README.md)); ihre Historie bleibt erhalten. Der **Nachtrag vom 31.08.2026** setzt die **Pilotdauer auf 16 Wochen** (A-03, D-36, zu validieren), ersetzt die **Native-App-Schwellen** durch eine Gründer-Gesamtbewertung (A-21, D-45/D-46) und ergänzt die neuen Hypothesen **A-28** (native App vs. PWA) und **A-29** (Wartelisten-Broadcast <2 h). Die verbleibenden Kernpunkte – insbesondere **8 %/15 %** und operative Pilotannahmen – sind als präzise Resthypothesen geführt. **Keine** dieser Werte ist eine Prognose.
 
 **Kategorien:** HYPOTHESE · SZENARIOANNAHME. **Herkunft:** Research = Deep-Research-Analyse; Prompt = Gründervorgabe; Ableitung = logische Ableitung.
 **Statuswerte:** offen · **entschieden** (durch Gründerentscheid abgelöst) · **in Validierung** (beschlossen, Kennzahl im Pilot zu bestätigen).
@@ -15,7 +15,7 @@ Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** 
 |---|---|---|---|---|---|
 | A-01 | Altersfokus «primär 65+, offen für alle» | 65+ Fokus, offen für alle | — | D-07 | **entschieden** (ADR-002) |
 | A-02 | Pilotgebiet | Deutschschweiz, ZH/BS/BE/LU | — | D-09/10/29 | **entschieden** (ADR-002) |
-| A-03 | Pilotdauer | offen | mittel | D-29 | offen (Hypothese) |
+| A-03 | Pilotdauer | **16 Wochen (gesetzt)** | mittel | D-29/D-36 | **Pilotparameter gesetzt; Wirksamkeit zu validieren** |
 | A-04 | Anbieter je Pilotstadt | ≥5 (Schwelle) | mittel | D-29 | Schwelle entschieden; Realisierung in Validierung |
 | A-05 | Termine je Pilotstadt | ≥10 kommende | mittel | D-29 | Schwelle entschieden; Realisierung in Validierung |
 | A-06 | Ø Ticketpreis (Modellbeispiel) | CHF 70 (Illustration) | hoch | D-11 | offen (Illustration) |
@@ -33,13 +33,15 @@ Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** 
 | A-18 | Nutzen Event-Gruppenchat | positiv (Hypothese) | mittel | D-23 | offen (Wirkung) |
 | A-19 | Bewertungsbereitschaft | ausreichend (Hypothese) | mittel | D-24 | offen (Wirkung) |
 | A-20 | Mindestzahl öffentl. Bewertungen | 5 | — | D-24 | **entschieden** (ADR-006) |
-| A-21 | Native-App-Schwellen | Wiederbuchung + mobile Nutzung + App-/Push-Bedarf | mittel | D-28 | offen (Schwellenwerte) |
-| A-22 | Web-zuerst senkt Frühkosten/Zeit | ja (Begründung zu D-28) | mittel | D-28 | offen (Wirkung) |
+| A-21 | Native-App-Auslösung | **keine festen Schwellen; Gründer-Gesamtbewertung** | mittel | D-28/D-45/D-46 | **Schwellen entfallen (D-45); App als Fast-Follow (D-46)** |
+| A-22 | Web-zuerst senkt Frühkosten/Zeit | ja (Begründung zu D-28) | mittel | D-28/D-46 | offen (Wirkung); native App nun Fast-Follow |
 | A-23 | Interviewumfang | 20–30 TN / 10–15 Anbieter | niedrig | D-29 | offen |
 | A-24 | Kostenlose Inserate sichern Dichte | ja (Hypothese) | mittel | D-12 | offen (Wirkung) |
 | A-25 | Differenzierung senkt Konkurrenz | ja (Hypothese) | hoch | D-07/D-16 | offen |
-| A-26 | Vier-Städte-Parallelbetrieb tragfähig | operativ leistbar | hoch | D-29 | offen (neu) |
+| A-26 | Vier-Städte-Parallelbetrieb tragfähig | operativ leistbar | hoch | D-29/D-33/D-36/D-37 | offen; **Last erhöht** (manuelle Freigabe, 16 Wochen, Fast-Follow) |
 | A-27 | Dichteschwelle 5/10 genügt für Start | ausreichend für PMF-Signal | hoch | D-29 | offen (neu) |
+| A-28 | Native App wesentlich einfacher als PWA für Zielgruppe | Annahme (Gründerprämisse) | hoch | D-46 | **offen (neu, 31.08.2026); im Pilot/Feldtest zu prüfen** |
+| A-29 | Wartelisten-Broadcast <2 h füllt Plätze wirksam | Annahme | mittel | D-44 | **offen (neu, 31.08.2026)** |
 
 ---
 
@@ -56,8 +58,8 @@ Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** 
 - **Resthypothesen:** A-03 (Dauer), A-04/A-05 (Realisierung der Dichte), A-26/A-27.
 
 ### A-03 · Pilotdauer
-- **Aussage:** Concierge-Pilot ~12 Wochen als Arbeitshypothese; Dauer bleibt gründerseitig offen (D-29). **SZENARIOANNAHME · Unsicherheit:** mittel.
-- **Validierung:** Pilotverlauf · **Bestätigung:** aussagekräftige Kennzahlen inkl. 60-Tage-Wiederbuchungssignal · **Widerlegung:** zu kurz. **Status:** offen · **Entscheidung:** D-29.
+- **Aussage:** Die Pilotdauer ist durch **D-36 (31.08.2026) auf 16 Wochen gesetzt** (zuvor Arbeitshypothese ~12 Wochen, offen). Die Eignung von 16 Wochen zur Beurteilung von Wiederbuchung, Angebotsdichte und Betriebsbelastung bleibt eine **zu validierende Pilothypothese**. **SZENARIOANNAHME · Unsicherheit:** mittel.
+- **Validierung:** Pilotverlauf · **Bestätigung:** aussagekräftige Kennzahlen inkl. 60-Tage-Wiederbuchungssignal innerhalb der 16 Wochen · **Widerlegung:** zu kurz. **Status:** Pilotparameter gesetzt, Wirksamkeit zu validieren · **Entscheidung:** D-29/D-36.
 
 ### A-04 · Anbieter je Pilotstadt
 - **Aussage:** Mindestschwelle **≥5 geprüfte Anbieter je Stadt** ist durch D-29 gesetzt; ob sie in allen vier Städten realisierbar ist, bleibt zu validieren. **Unsicherheit:** mittel.
@@ -117,11 +119,11 @@ Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** 
 - **Historische Aussage (V0.1):** «ab fünf» als Hypothese.
 - **Auflösung:** Durch **D-24** entschieden (ab fünf bestätigten Bewertungen, Anzahl sichtbar). **Status:** entschieden · **ADR:** ADR-006.
 
-### A-21 · Native-App-Schwellen
-- **Aussage:** Web-first ist entschieden (D-28); native Apps erst bei belegter Wiederbuchung, regelmässiger mobiler Nutzung und App-/Push-Bedarf. Konkrete Schwellenwerte offen. **Unsicherheit:** mittel · **Validierung:** Nutzungsdaten. **Status:** offen (Schwellenwerte) · **Entscheidung:** D-28.
+### A-21 · Native-App-Auslösung
+- **Aussage:** **Aktualisiert (31.08.2026):** Es gibt **keine festen Kennzahlenschwellen** mehr (frühere Annahme «Wiederbuchung + mobile Nutzung + App-/Push-Bedarf» als Trigger ist durch **D-45** ersetzt). Start/Ausbau nativer Apps erfolgt per **Gesamtbewertung des Gründers** mit separater Freigabe; die native App wird als **Fast-Follow** vorbereitet (D-46). **Unsicherheit:** mittel · **Validierung:** Pilotdaten/Nutzerfeedback als Grundlage (nicht als Automatismus). **Status:** keine festen Schwellen; Startentscheid offen · **Entscheidung:** D-28/D-45/D-46.
 
 ### A-22 · Web-zuerst senkt Frühkosten/Zeit
-- **Aussage:** Begründung zu D-28; Kosten- und Zeitvorteil real. **Unsicherheit:** mittel · **Validierung:** Umsetzung. **Status:** offen (Wirkung) · **Entscheidung:** D-28.
+- **Aussage:** Begründung zu D-28; Kosten- und Zeitvorteil real. **Aktualisierung (31.08.2026):** Web/PWA bleibt MVP-Launch (installierbare PWA verbindlich), die native App folgt als Fast-Follow (D-46) – der Frühkosten-/Zeitvorteil des Web-Starts bleibt die Begründung. **Unsicherheit:** mittel · **Validierung:** Umsetzung. **Status:** offen (Wirkung) · **Entscheidung:** D-28/D-46.
 
 ### A-23 · Interviewumfang
 - **Wert:** 20–30 Teilnehmende, 10–15 Anbieter. **Unsicherheit:** niedrig · **Validierung:** Durchführung. **Status:** offen · **Entscheidung:** D-29.
@@ -132,13 +134,21 @@ Dieses Register erfasst Hypothesen und Szenarioannahmen. Am **28. August 2026** 
 ### A-25 · Differenzierung senkt Konkurrenzintensität
 - **Aussage:** Kombination aus Kuratierung, verbindlicher Buchung, Kleingruppen, Vertrauen und Zugänglichkeit senkt die effektive Konkurrenzintensität. **Unsicherheit:** hoch · **Validierung:** Markt-/Pilotbeobachtung. **Status:** offen · **Entscheidung:** D-07/D-16.
 
-### A-26 · Vier-Städte-Parallelbetrieb tragfähig *(neu, 28.08.2026)*
-- **Aussage:** Der parallele Pilot in vier Deutschschweizer Städten (D-29) ist operativ (Akquise, Support, Moderation) mit den geplanten Ressourcen leistbar. **Unsicherheit:** hoch.
-- **Validierung:** Pilotbetrieb · **Bestätigung:** alle vier Städte erreichen Betriebsfähigkeit ohne Qualitätsverlust · **Widerlegung:** Überlastung/Qualitätseinbruch. **Status:** offen · **Entscheidung:** D-29.
+### A-26 · Vier-Städte-Parallelbetrieb tragfähig *(neu, 28.08.2026; verschärft 31.08.2026)*
+- **Aussage:** Der parallele Pilot in vier Deutschschweizer Städten (D-29) ist operativ (Akquise, Support, Moderation) mit den geplanten Ressourcen leistbar. **Verschärfung (31.08.2026):** Die Last steigt durch die **vollständige manuelle Freigabe jedes Events (D-33)**, die **16-wöchige** Messdauer (D-36), den **gemeinsamen Start** (D-37, alle Städte gleichzeitig) und die **parallele Native-App-Fast-Follow-Vorbereitung** (D-46). **Unsicherheit:** hoch.
+- **Validierung:** Pilotbetrieb · **Bestätigung:** alle vier Städte erreichen Betriebsfähigkeit ohne Qualitätsverlust · **Widerlegung:** Überlastung/Qualitätseinbruch. **Status:** offen · **Entscheidung:** D-29 (mit D-33/D-36/D-37/D-46).
 
 ### A-27 · Dichteschwelle 5/10 genügt für Start *(neu, 28.08.2026)*
 - **Aussage:** ≥5 Anbieter und ≥10 kommende Termine je Stadt (D-29) genügen, um einen tragfähigen öffentlichen Start und ein belastbares Nachfrage-/Wiederbuchungssignal zu erzeugen. **Unsicherheit:** hoch.
 - **Validierung:** Pilot · **Bestätigung:** Start bei Schwelle erzeugt Buchungen/Wiederbuchung · **Widerlegung:** Schwelle zu tief für tragfähigen Betrieb. **Status:** offen · **Entscheidung:** D-29.
+
+### A-28 · Native App wesentlich einfacher als PWA für die Zielgruppe *(neu, 31.08.2026)*
+- **Aussage:** Die Gründerprämisse zu **D-46**, dass eine native App für ältere Personen **wesentlich einfacher** zu nutzen ist als eine installierbare PWA, ist eine Annahme und **keine** belegte Tatsache. **Unsicherheit:** hoch.
+- **Validierung:** Nutzer-/Feldtests mit der Zielgruppe (PWA vs. native App) · **Bestätigung:** messbar bessere Nutzbarkeit/Adoption der nativen App · **Widerlegung:** kein relevanter Unterschied zur installierten PWA. **Status:** offen · **Entscheidung:** D-45/D-46 (Startentscheid per Gründer-Gesamtbewertung).
+
+### A-29 · Wartelisten-Broadcast <2 h füllt Plätze wirksam *(neu, 31.08.2026)*
+- **Aussage:** Der Broadcast an alle Wartenden im <2-h-Sonderfall (**D-44**) füllt frei werdende Plätze wirksam, ohne die Zielgruppe zu verwirren. **Unsicherheit:** mittel.
+- **Validierung:** Pilot · **Bestätigung:** Plätze werden kurzfristig gefüllt, geringe Beschwerde-/Verwirrungsquote · **Widerlegung:** Verwirrung/Frust oder geringe Füllquote. **Status:** offen · **Entscheidung:** D-44.
 
 ---
 
