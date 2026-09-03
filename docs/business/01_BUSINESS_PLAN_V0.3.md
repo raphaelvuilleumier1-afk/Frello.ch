@@ -39,7 +39,7 @@ Jede wesentliche Aussage ist einer Governance-Kategorie zugeordnet und im Text s
 
 Das gesellschaftliche Umfeld ist tragfähig: In der Schweiz leben rund **1,8 Mio. Personen ab 65 Jahren**, mit langfristig deutlich steigender Tendenz **[MARKTERKENNTNIS]**. Ein relevanter Teil der zu Hause lebenden älteren Menschen fühlt sich häufig einsam (Grössenordnung **80'000–150'000** ab 65 gemäss «connect!») **[MARKTERKENNTNIS]**, und **neun von zehn** Personen über 65 sind online **[MARKTERKENNTNIS]** – bei zugleich heterogenen digitalen Kompetenzen.
 
-Der Markt ist **nicht konkurrenzlos**: Freizeit-Communities (Freizeit60Plus/GemeinsamErleben), Kontaktbörsen (Sozialkontakt.ch), institutionelle Anbieter (Pro Senectute) sowie Event-/Ticketplattformen (Eventfrog, Eventbrite) decken jeweils Teile ab **[MARKTERKENNTNIS]**. Wird Frello nur als «Profile + Chat + Events für 60+» verstanden, ist die funktionale Konkurrenz mittel bis hoch. Der **Differenzierungsraum** liegt in einer klaren Kombination **[HYPOTHESE]**: vertrauenswürdige, seniorengerechte **Kleingruppen-Erlebnisse** mit verifizierten Anbietern, verbindlicher Buchung, Mindest-/Höchstteilnehmerzahl, Warteliste mit Nachrücken, ereignisbezogenem Gruppenchat, Zugänglichkeits- und Mobilitätsangaben, Angehörigen- und Telefonunterstützung sowie Fokus auf **reale, wiederkehrende Teilnahme statt Bildschirmzeit**.
+Der Markt ist **nicht konkurrenzlos**: Freizeit-Communities (Freizeit60Plus/GemeinsamErleben), Kontaktbörsen (Sozialkontakt.ch), institutionelle Anbieter (Pro Senectute) sowie Event-/Ticketplattformen (Eventfrog) decken jeweils Teile ab **[MARKTERKENNTNIS]**. Wird Frello nur als «Profile + Chat + Events für 60+» verstanden, ist die funktionale Konkurrenz mittel bis hoch. Der **Differenzierungsraum** liegt in einer klaren Kombination **[HYPOTHESE]**: vertrauenswürdige, seniorengerechte **Kleingruppen-Erlebnisse** mit verifizierten Anbietern, verbindlicher Buchung, Mindest-/Höchstteilnehmerzahl, Warteliste mit Nachrücken, ereignisbezogenem Gruppenchat, Zugänglichkeits- und Mobilitätsangaben, Angehörigen- und Telefonunterstützung sowie Fokus auf **reale, wiederkehrende Teilnahme statt Bildschirmzeit**.
 
 **Betrieb & Rolle:** Geplante Betreiberin ist die bestehende **Kreativ Solutions GmbH** (Frello als deren Produkt), **[BESCHLOSSEN MIT VORBEHALT]** / **[EXTERN ZU PRÜFEN]** (D-14); eine separate Frello-Gesellschaft ist für den MVP nicht anwendbar (D-04). Frello ist **Vermittler**; der Anbieter bleibt Veranstalter und Vertragspartner **[BESCHLOSSEN]** / **[EXTERN ZU PRÜFEN]** (D-16).
 
@@ -362,7 +362,7 @@ Jede spätere Berechnung muss Formel, Quelle, Jahr, geografische Abdeckung, Anna
 | **Pro Senectute** | Institutioneller Freizeitveranstalter | Regionale Kurse, Sport, Kultur, Treffen, Reisen; teils Online-/Telefon-/E-Mail-Anmeldung | – | Institutionell/kantonal fragmentiert; keine offene anbieterübergreifende Marktplatzlogik – **potenzieller Partner** |
 | **Infosenior** | Lokales Verzeichnis | Suchportal für Dienstleistungen im Alter inkl. Freizeit | – | Verzeichnischarakter; wenig Gruppenbildung/Transaktion |
 | **Spontacts / Meetup** | Allgemeine Freizeit-Community | Lokale Aktivitäten, Gruppen, neue Kontakte | – | Nicht auf Vertrauens-/Zugänglichkeits-/Supportbedürfnisse Älterer zugeschnitten |
-| **Eventfrog / Eventbrite** | Eventkalender / Ticketplattform | Eventagenda, Ticketverkauf, Veranstalterwerkzeuge | Eventfrog nennt **>90'000** Veranstalter, **5,1 Mio.** erreichbare Menschen (Selbstauskunft) | Keine gezielte soziale Begleitung (passende Kleingruppen, Mobilitätsinfos, sozialer Check-in) |
+| **Eventfrog** | Eventkalender / Ticketplattform | Eventagenda, Ticketverkauf, Veranstalterwerkzeuge | Eventfrog nennt **>90'000** Veranstalter, **5,1 Mio.** erreichbare Menschen (Selbstauskunft) | Keine gezielte soziale Begleitung (passende Kleingruppen, Mobilitätsinfos, sozialer Check-in) |
 | **Gemeinden, Vereine, Kirchen, Seniorentreffs** | Offline-Alternative | Mittagstische, Spielnachmittage, Bewegung, Kultur, Ausflüge | – | Fragmentierte Auffindbarkeit/Anmeldung – wichtige **Angebots-/Vertriebspartner** |
 | **Facebook-/WhatsApp-Gruppen, Vereins-/Freundesnetzwerke** | Kommunikationsalternative | Informelle Organisation | – | Kein verbindliches Buchungs-/Vertrauenssystem |
 
@@ -554,7 +554,7 @@ Zusammenfassung; das vollständige Risikoregister mit ID, Ursache, Wahrscheinlic
 
 | ID | Risiko | Ursache | Eintritt | Schaden | Frühwarnsignal | Gegenmassnahme | Zuständig | Status |
 |---|---|---|---|---|---|---|---|---|
-| R-01 | Henne-Ei-Problem | Kein Angebot → keine Nutzer und umgekehrt | hoch | hoch | tiefe Angebotsdichte, leere Suchen | stadtweise starten, Angebotsseite vorfinanzieren/kuratieren, Ankerformate | Business/GTM | offen |
+| R-01 | Henne-Ei-Problem | Kein Angebot → keine Nutzer und umgekehrt | hoch | hoch | tiefe Angebotsdichte, leere Suchen | Angebotsdichte regional je Stadt aufbauen; offizieller Pilotstart gemeinsam nach Erreichen der Dichteschwellen in allen vier Städten, Angebotsseite vorfinanzieren/kuratieren, Ankerformate | Business/GTM | offen |
 | R-02 | Unzureichende Angebotsdichte | zu breite Region, zu wenige Anbieter | hoch | hoch | wenige buchbare Termine/Region | regionale Konzentration, wiederkehrende Events | GTM | offen |
 | R-03 | Stigmatisierende Positionierung | «Einsamkeits-App» | mittel | hoch | Ablehnung aktiver 65+ | positive Erlebnismarke, Alter als Fokus statt Defizit | Marke | offen |
 | R-04 | Geringe Anbieterbereitschaft | unklarer Mehrwert vs. Ticketing | mittel | hoch | Absagen in Anbieterinterviews | Mehrwert belegen (Gäste/Gruppe/Support) | GTM | offen |
@@ -639,7 +639,7 @@ Die vollständige Liste mit Wertebereichen, Validierungsmethoden und Bestätigun
 
 ## 38. Quellen
 
-Vollständiges Register mit Herausgeber, Datum, URL, Abrufdatum, verwendeter Aussage, geografischer Relevanz, Einschränkung und Verifizierungsstatus: [`04_SOURCE_REGISTER.md`](./04_SOURCE_REGISTER.md). Kernquellen: BFS (Altersstruktur, Bevölkerungsszenarien, Altersbild), connect!, Pro Senectute (Digital Seniors 2025), Anbieterseiten (Freizeit60Plus/GemeinsamErleben, Sozialkontakt.ch, Infosenior, Spontacts, Meetup, Eventfrog/Eventbrite, Feierabend.de, Seniorentreff.de, nebenan.de, Seniorennetz Berlin), SECO, EDÖB, FINMA. Wettbewerber-Reichweiten sind Selbstauskünfte.
+Vollständiges Register mit Herausgeber, Datum, URL, Abrufdatum, verwendeter Aussage, geografischer Relevanz, Einschränkung und Verifizierungsstatus: [`04_SOURCE_REGISTER.md`](./04_SOURCE_REGISTER.md). Kernquellen: BFS (Altersstruktur, Bevölkerungsszenarien, Altersbild), connect!, Pro Senectute (Digital Seniors 2025), Anbieterseiten (Freizeit60Plus/GemeinsamErleben, Sozialkontakt.ch, Infosenior, Spontacts, Meetup, Eventfrog, Feierabend.de, Seniorentreff.de, nebenan.de, Seniorennetz Berlin), SECO, EDÖB, FINMA. Wettbewerber-Reichweiten sind Selbstauskünfte.
 
 ---
 
