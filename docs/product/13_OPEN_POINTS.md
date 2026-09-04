@@ -28,7 +28,7 @@ Vollständige, klassifizierte Liste offener Gründer-Unterentscheide, externer P
 | OP-012 | EXTERN ZU PRÜFEN | D-34; ADR-006 | Persönlichkeitsrecht/Datenschutz bei anonymisierter Feedback-Einsicht und Einsprache. | BR-022/PR-010 unter Vorbehalt. | Bestätigung ausstehend |
 | OP-013 | EXTERN ZU PRÜFEN | D-07; ADR-002 | Diskriminierungsrechtliche Zulässigkeit eventbezogener Altersfokusse. | BR-030 unter Vorbehalt. | Bestätigung ausstehend |
 | OP-014 | AUSSTEHENDE UMSETZUNG / EXTERN ZU PRÜFEN | D-01/D-02/D-03/D-05/D-06; ADR-001; Q-26/Q-27/Q-28 | Marken-, Domain-, Firmen-, App-Store- und Social-Handle-Prüfungen. | **Keine** Verfügbarkeit wird behauptet; kein Produktverhalten hängt davon ab. | ohne Ergebnis; nicht als erledigt darstellen |
-| OP-033 | EXTERN ZU PRÜFEN | §30 | Reiseveranstalter-/Pauschalreiserecht, Versicherung, weitere Compliance. | Betrifft bestimmte Angebotsarten; fachlich nur als Prüfpflicht. | Bestätigung ausstehend |
+| OP-033 | EXTERN ZU PRÜFEN | §30 | Reiseveranstalter-/Pauschalreiserecht, Versicherung, weitere Compliance. | Betrifft bestimmte Angebotsarten (DO-007); fachlich nur als Prüfpflicht. | Bestätigung ausstehend |
 
 ## C · Pilotparameter und zu validierende Hypothesen
 

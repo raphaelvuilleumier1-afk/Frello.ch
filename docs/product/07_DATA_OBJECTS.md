@@ -63,3 +63,4 @@ körperliches Aktivitätsniveau · erforderliche Ausrüstung · Verpflegung · t
 - **[OFFEN – D-40, OP-003]** Guardrails/Häufigkeitsgrenzen der Buchungsübertragung (DO-013).
 - **[OFFEN – D-23]** Genauer Schliesszeitpunkt des Gruppenchats nach dem Event (DO-019).
 - **[OFFEN – §15]** Umfang/Zugänglichkeit des Notfallkontakts (Bezug DO-002/DO-003).
+- **[EXTERN ZU PRÜFEN – §30, OP-033]** Reiseveranstalter-/Pauschalreiserecht, Versicherung und weitere Compliance bei mehrtägigen oder reiseähnlichen Angeboten (Bezug DO-007).
