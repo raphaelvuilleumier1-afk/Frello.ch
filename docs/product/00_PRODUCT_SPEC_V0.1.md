@@ -1,6 +1,6 @@
 # Produktspezifikation Frello – V0.1 (MVP)
 
-**Stand:** 3. September 2026 · **Status:** Entwurf zur Gründerprüfung – **nicht freigegeben**, bewusst uncommitted · **Grundlage:** Businessplan V0.3, Register (D-01…D-46, A-01…A-29, Q-01…Q-28), ADR-001…ADR-008
+**Stand:** 3. September 2026 · **Fachlicher Status:** Entwurf zur Gründerprüfung – **nicht freigegeben** · **Repository-Status:** committed und über PR #4 in `main` integriert · **Grundlage:** Businessplan V0.3, Register (D-01…D-46, A-01…A-29, Q-01…Q-28), ADR-001…ADR-008
 
 **Zugehörige Dokumente:** [README](./README.md) · [Glossar](./01_GLOSSARY.md) · [Rollen](./02_ROLES_PERMISSIONS.md) · [Journeys](./03_USER_JOURNEYS.md) · [Funktionale Anforderungen](./04_FUNCTIONAL_REQUIREMENTS.md) · [Geschäftsregeln](./05_BUSINESS_RULES.md) · [Zustände](./06_STATE_MODELS.md) · [Datenobjekte](./07_DATA_OBJECTS.md) · [Ausnahmen](./08_EXCEPTIONS_ESCALATIONS.md) · [Privacy/Sicherheit/Audit](./09_PRIVACY_SECURITY_AUDIT.md) · [Nichtfunktionale Anforderungen](./10_NON_FUNCTIONAL_REQUIREMENTS.md) · [Akzeptanzkriterien](./11_ACCEPTANCE_CRITERIA.md) · [Traceability](./12_TRACEABILITY_MATRIX.md) · [Offene Punkte](./13_OPEN_POINTS.md)
 
@@ -75,4 +75,6 @@ Es bestehen **keine** das Produktverhalten des MVP blockierenden Widersprüche. 
 
 ## 12. Freigabestatus der Spezifikation
 
-**Entwurf – nicht freigegeben.** Der Dokumentensatz ist bewusst **uncommitted** und wartet auf eine **separate ausdrückliche Freigabe** des Gründers. Diese Spezifikation autorisiert **keine** technische Implementierung und trifft **keine** Architektur- oder Technologieentscheidung.
+**Fachlich: Entwurf – nicht freigegeben.** Der Dokumentensatz wartet auf eine **separate ausdrückliche Freigabe** des Gründers. Diese Spezifikation autorisiert **keine** technische Implementierung und trifft **keine** Architektur- oder Technologieentscheidung.
+
+**Im Repository: committed.** Der Dokumentensatz ist über PR #4 in `main` integriert und damit versioniert. Beide Status sind getrennt zu lesen: Die Aufnahme in `main` dokumentiert den Arbeitsstand nachvollziehbar, sie ist **keine** fachliche Freigabe, **kein** Versionssprung auf V1.0 und **keine** Umdeutung früherer Freigaben.
