@@ -16,6 +16,13 @@ Dieser Ordner enthält die konsolidierte Business-, Markt- und Produktgrundlage 
 
 Ergänzende Grundlage: [`../research/Senioren_Erlebnisplattform_Deep_Research.md`](../research/Senioren_Erlebnisplattform_Deep_Research.md) (Deep-Research-Markt- und Produktanalyse, Stand 28.08.2026).
 
+Weitere Dokumente ausserhalb dieses Ordners, auf die aus der Business-Dokumentation verwiesen wird (sie ändern die [Source-of-Truth-Reihenfolge](#source-of-truth-reihenfolge) und die Bedeutung der bestehenden Quellen nicht):
+
+| Datei | Rolle |
+|---|---|
+| [`../public/PUBLIC_PRESENTATION.md`](../public/PUBLIC_PRESENTATION.md) | Arbeitsquelle für die öffentliche Produktdarstellung (kuratierte Inhalte, PUBLIC/CONFIDENTIAL-Grenze). Aktuelle Fassung: **v0.2.0 – Entwurf, aktualisierte Fassung zur Freigabe.** Eine Freigabe dieser Fassung liegt **nicht** vor; frühere Freigaben gelten **nicht** für sie. |
+| [`../brand/BRAND_ASSETS.md`](../brand/BRAND_ASSETS.md) | Kanonische Referenz für die bereits intern verankerten, vom Gründer bereitgestellten Markenmaster und deren Schutzregeln. Die interne Ablage begründet **keine** Freigabe zur öffentlichen Markenverwendung; [D-02](./02_OPEN_FOUNDER_DECISIONS.md) und [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) gelten unverändert weiter. |
+
 ## Dokumentstatus
 
 - **Version:** 0.3 (aktueller konsolidierter Stand)

@@ -105,6 +105,8 @@ Dieses Register führt alle materiellen Entscheidungen (`D-01`…`D-46`). Am **2
 - **Gründerentscheid:** Stufe 1 jetzt (Swissreg/Zefix/Domain-Basisrecherche); Stufe 2 (professionelle Ähnlichkeitsrecherche) vor Logo-Investition/öffentlichem Markenaufbau/Anmeldung. **Status:** AKZEPTIERT · Durchführung ausstehend · Stufe 2 **EXTERN ZU PRÜFEN**.
 - **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
 
+> **Dokumentationshinweis (nicht normativ; ändert D-02 nicht):** Die auf **direkte Gründeranweisung** erfolgte interne Verankerung der vorhandenen Markenmaster ist in [`../brand/BRAND_ASSETS.md`](../brand/BRAND_ASSETS.md) dokumentiert. Die **professionelle Ähnlichkeitsrecherche (Stufe 2) bleibt ausstehend bzw. EXTERN ZU PRÜFEN**. Die oben festgehaltenen Voraussetzungen von D-02 und [ADR-001](./decisions/ADR-001-marke-domain-schutz.md) für weitere Arbeiten, öffentlichen Markenaufbau und Markenanmeldung gelten **unverändert**. Dieser Hinweis trifft keine neue Entscheidung, begründet keine Ausnahme und behauptet weder eine erledigte Recherche noch geklärte Rechte.
+
 #### D-03 · Deutschland-/EU-Namensprüfung
 - **Gründerentscheid:** Nicht im Schweizer Pilot; spätestens vor konkreter Deutschland-Expansion. **Status:** ZURÜCKGESTELLT.
 - **Datum:** 28.08.2026 · **ADR:** [ADR-001](./decisions/ADR-001-marke-domain-schutz.md).
