@@ -15,7 +15,8 @@ Dieser Ordner enthält die **fachliche Produktspezifikation V0.1** für das Frel
 - **Version:** V0.1 (Erstentwurf der Produktspezifikation)
 - **Stand:** 3. September 2026
 - **Grundlage:** Businessplan V0.3, Register (D/A/Q), ADR-001…ADR-008
-- **Freigabestatus:** **Entwurf zur Gründerprüfung – nicht freigegeben.** Der Dokumentensatz ist bewusst uncommitted und wartet auf eine separate ausdrückliche Freigabe.
+- **Fachlicher Freigabestatus:** **Entwurf zur Gründerprüfung – nicht freigegeben.** Der Dokumentensatz wartet auf eine separate ausdrückliche Freigabe.
+- **Repository-Status:** committed und über PR #4 in `main` integriert. Die Versionierung im Repository ist **keine** fachliche Freigabe und ändert den Entwurfsstatus nicht.
 
 ## Abgrenzung zu `docs/business/` und `docs/research/`
 
