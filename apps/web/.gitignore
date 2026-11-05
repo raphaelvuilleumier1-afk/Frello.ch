@@ -1,0 +1,33 @@
+# Frello – Interner Prototyp 01
+# Rails-Standard-Ignorierliste. Wichtig: config/master.key darf NIE eingecheckt
+# werden; sie ist ein lokal erzeugtes Entwicklungsgeheimnis.
+
+# Temporäre Dateien und Protokolle
+/.bundle
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/tmp/pids/*
+!/tmp/pids/.keep
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/.keep
+
+# Kompilierte Assets
+/public/assets
+
+# Lokale Umgebungsdateien
+/.env
+/.env.*
+!/.env.example
+
+# Schlüssel für verschlüsselte Zugangsdaten – niemals einchecken
+/config/master.key
+/config/credentials/*.key
+
+# Editor- und Systemdateien
+.DS_Store
+*.swp
+*~

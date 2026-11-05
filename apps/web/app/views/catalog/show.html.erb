@@ -1,0 +1,72 @@
+<% content_for :title, "#{@event.title} (interne Vorschau)" %>
+
+<p><%= link_to "Zurück zur Suche", catalog_path, class: "btn" %></p>
+
+<h1><%= @event.title %></h1>
+
+<p class="banner" role="note">
+  <strong>Interne Vorschau.</strong> Dieses Angebot kann hier nicht gebucht werden.
+  Es gibt keine Buchungsfunktion, keine Zahlung und keine Anmeldung für Teilnehmende.
+</p>
+
+<p><%= @event.short_description %></p>
+
+<%# FR-004 / AC-004: alle immer erforderlichen Angaben nach D-31 sind sichtbar. %>
+<h2>Angaben zum Angebot</h2>
+<dl class="detail">
+  <div><dt>Kategorie</dt><dd><%= @event.category %></dd></div>
+  <div><dt>Datum</dt><dd><%= l(@event.event_date, format: :long) %></dd></div>
+  <div><dt>Beginn</dt><dd><%= @event.start_time.strftime("%H:%M") %> Uhr</dd></div>
+  <div><dt>Ende</dt><dd><%= @event.end_time.strftime("%H:%M") %> Uhr</dd></div>
+  <div><dt>Veranstaltungsort</dt><dd><%= @event.venue_name %></dd></div>
+  <div><dt>Vollständige Adresse</dt><dd><%= @event.full_address %></dd></div>
+  <div><dt>Stadt bzw. Region</dt><dd><%= @event.city_region %></dd></div>
+  <div><dt>Preis</dt><dd><%= @event.free? ? "kostenlos" : "CHF #{number_with_precision(@event.price_chf, precision: 2)}" %></dd></div>
+  <div><dt>Zahlungsart</dt><dd><%= @event.payment_method_label %></dd></div>
+  <div><dt>Mindestteilnehmerzahl</dt><dd><%= @event.min_participants %></dd></div>
+  <div><dt>Höchstteilnehmerzahl</dt><dd><%= @event.max_participants %></dd></div>
+  <div><dt>Buchungsschluss</dt><dd><%= l(@event.booking_deadline_at, format: :long) %></dd></div>
+  <div><dt>Gewähltes Stornomodell</dt><dd><%= @event.cancellation_model_label %></dd></div>
+  <div><dt>Zeitpunkt des Durchführungsentscheids</dt><dd><%= l(@event.decision_point_at, format: :long) %></dd></div>
+  <div><dt>Sprache</dt><dd><%= @event.language_label %></dd></div>
+  <div><dt>Verantwortlicher geprüfter Anbieter</dt>
+       <dd><%= @event.provider.organisation_name %> (<%= @event.provider.type_label %>, <%= @event.provider.status_label %>)</dd></div>
+  <div><dt>Kontaktmöglichkeit</dt><dd><%= @event.contact_option %></dd></div>
+  <div><dt>Zugänglichkeitsangaben</dt><dd><%= @event.accessibility_info %></dd></div>
+  <div><dt>Kennzeichnung «Alleine willkommen»</dt><dd><%= @event.alone_welcome ? "Ja" : "Nein" %></dd></div>
+</dl>
+
+<h2>Weitere Angaben, soweit für dieses Angebot einschlägig</h2>
+<dl class="detail">
+  <% if @event.activity_level_relevant %>
+    <div><dt>Körperliches Aktivitätsniveau</dt><dd><%= @event.activity_level_label %></dd></div>
+  <% end %>
+  <% if @event.required_equipment_relevant %>
+    <div><dt>Erforderliche Ausrüstung</dt><dd><%= @event.required_equipment %></dd></div>
+  <% end %>
+  <% if @event.catering_relevant %>
+    <div><dt>Verpflegung</dt><dd><%= @event.catering_info %></dd></div>
+  <% end %>
+  <% if @event.age_focus_relevant %>
+    <div><dt>Transparenter Altersfokus</dt><dd><%= @event.age_focus %></dd></div>
+  <% end %>
+  <% if @event.qualification_evidence.present? %>
+    <div><dt>Qualifikationsnachweis</dt><dd><%= @event.qualification_evidence %></dd></div>
+  <% end %>
+  <% if @event.public_transport_info.present? %>
+    <div><dt>ÖV-Informationen</dt><dd><%= @event.public_transport_info %></dd></div>
+  <% end %>
+  <% if @event.parking_info.present? %>
+    <div><dt>Parkmöglichkeiten</dt><dd><%= @event.parking_info %></dd></div>
+  <% end %>
+  <% if @event.event_image_note.present? %>
+    <div><dt>Veranstaltungsbild</dt><dd><%= @event.event_image_note %> <span class="badge-soft badge">im Prototyp als Textverweis</span></dd></div>
+  <% end %>
+  <div>
+    <dt>Plätze</dt>
+    <dd>
+      <%= @event.synthetic_available_places %> von <%= @event.max_participants %> frei
+      <span class="badge badge-soft">synthetischer Testwert, keine Buchungslogik</span>
+    </dd>
+  </div>
+</dl>

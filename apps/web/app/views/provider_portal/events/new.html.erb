@@ -1,0 +1,8 @@
+<% content_for :title, "Neuen Evententwurf anlegen" %>
+<h1>Neuen Evententwurf anlegen</h1>
+<p>
+  Sie können den Entwurf jederzeit unvollständig speichern. Erst beim Einreichen
+  zur Prüfung müssen alle erforderlichen Angaben vorliegen.
+</p>
+<%= render "form", event: @event, url: provider_events_path, method: :post,
+                   submit_label: "Entwurf speichern" %>

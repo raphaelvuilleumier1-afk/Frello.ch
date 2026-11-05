@@ -1,0 +1,15 @@
+<%# Fehlerzusammenfassung am Formularkopf mit Sprungzielen zu den Feldern (WCAG 3.3.1/3.3.3) %>
+<% if record.errors.any? %>
+  <div class="error-summary" role="alert" tabindex="-1" id="fehlerzusammenfassung">
+    <h2>Bitte prüfen Sie <%= record.errors.count %> Angabe<%= "n" if record.errors.count > 1 %></h2>
+    <ul>
+      <% record.errors.each do |error| %>
+        <li>
+          <a href="#<%= field_id %>_<%= error.attribute %>">
+            <%= record.class.human_attribute_name(error.attribute) %>: <%= error.message %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,67 @@
+de:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%-d. %B %Y"
+      short: "%d.%m."
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+  time:
+    formats:
+      default: "%d.%m.%Y, %H:%M Uhr"
+      long: "%-d. %B %Y, %H:%M Uhr"
+      short: "%d.%m., %H:%M"
+  number:
+    format:
+      separator: "."
+      delimiter: "'"
+      precision: 2
+  errors:
+    format: "%{message}"
+    messages:
+      blank: "muss ausgefüllt werden"
+      inclusion: "ist kein gültiger Wert"
+      taken: "ist bereits vergeben"
+      not_a_number: "muss eine Zahl sein"
+      greater_than_or_equal_to: "muss grösser oder gleich %{count} sein"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Gültigkeitsprüfung fehlgeschlagen: %{errors}"
+        restrict_dependent_destroy:
+          has_many: "kann nicht gelöscht werden, da abhängige Datensätze bestehen"
+    attributes:
+      event:
+        title: "Titel"
+        short_description: "Kurzbeschreibung"
+        category: "Kategorie"
+        event_date: "Datum"
+        start_time: "Beginn"
+        end_time: "Ende"
+        venue_name: "Veranstaltungsort"
+        full_address: "Vollständige Adresse"
+        city_region: "Stadt bzw. Region"
+        price_chf: "Preis"
+        payment_method: "Zahlungsart"
+        min_participants: "Mindestteilnehmerzahl"
+        max_participants: "Höchstteilnehmerzahl"
+        booking_deadline_at: "Buchungsschluss"
+        cancellation_model: "Stornomodell"
+        decision_point_at: "Zeitpunkt des Durchführungsentscheids"
+        language: "Sprache"
+        contact_option: "Kontaktmöglichkeit"
+        accessibility_info: "Zugänglichkeitsangaben"
+        alone_welcome: "Kennzeichnung «Alleine willkommen»"
+        synthetic_booked_count: "Synthetischer Testwert belegte Plätze"
+        external_booking_marker: "Kennzeichnung externer Buchung"
+      provider:
+        organisation_name: "Name der Organisation"
+        provider_type: "Anbietertyp"
+        contact_person_name: "Kontaktperson"
+        contact_email: "E-Mail"
+        contact_phone: "Telefon"
+        business_address: "Geschäftsadresse"
+        business_postal_code: "Postleitzahl"
+        business_city: "Ort"

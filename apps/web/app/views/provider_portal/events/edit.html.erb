@@ -1,0 +1,5 @@
+<% content_for :title, "Evententwurf bearbeiten" %>
+<h1>Evententwurf bearbeiten</h1>
+<p>Zustand: <strong><%= @event.status_label %></strong></p>
+<%= render "form", event: @event, url: provider_event_path(@event), method: :patch,
+                   submit_label: "Entwurf speichern" %>
