@@ -1,0 +1,4 @@
+# Interner Prototyp – nicht öffentlich, nicht zu indexieren.
+# Zusätzlich setzt jede Seite <meta name="robots" content="noindex, nofollow">.
+User-agent: *
+Disallow: /

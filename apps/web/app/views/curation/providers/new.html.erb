@@ -1,0 +1,25 @@
+<% content_for :title, "Synthetischen Anbieter erfassen" %>
+<h1>Synthetischen Anbieter erfassen</h1>
+<p class="notice">
+  Es dürfen ausschliesslich <strong>synthetische Testdaten</strong> erfasst werden.
+  Echte Anbieterdaten sind in diesem Bauabschnitt nicht freigegeben.
+</p>
+<%= render "shared/error_summary", record: @provider, field_id: "provider" %>
+<%= form_with model: @provider, url: curation_providers_path, method: :post do |f| %>
+  <fieldset>
+    <legend>Stammdaten</legend>
+    <div class="field"><%= f.label :organisation_name, "Name der Organisation (Pflichtangabe)" %><%= f.text_field :organisation_name, id: "provider_organisation_name" %></div>
+    <div class="field">
+      <%= f.label :provider_type, "Anbietertyp (Pflichtangabe)" %>
+      <span class="hint" id="hint_ptype">Nach BR-001 nur gewerblich, institutionell oder gemeinnützig. Private Gastgeber sind im MVP nicht zugelassen (AC-033).</span>
+      <%= f.select :provider_type, Provider::TYPES.map { |k, v| [ v, k ] }, { include_blank: "Bitte wählen" }, id: "provider_provider_type", "aria-describedby": "hint_ptype" %>
+    </div>
+    <div class="field"><%= f.label :contact_person_name, "Verantwortliche Kontaktperson (Pflichtangabe)" %><%= f.text_field :contact_person_name, id: "provider_contact_person_name" %></div>
+    <div class="field"><%= f.label :contact_email, "E-Mail (Pflichtangabe)" %><%= f.text_field :contact_email, id: "provider_contact_email" %></div>
+    <div class="field"><%= f.label :contact_phone, "Telefon (Pflichtangabe)" %><%= f.text_field :contact_phone, id: "provider_contact_phone" %></div>
+    <div class="field"><%= f.label :business_address, "Geschäftsadresse (Pflichtangabe)" %><%= f.text_field :business_address, id: "provider_business_address" %></div>
+    <div class="field"><%= f.label :business_postal_code, "Postleitzahl (Pflichtangabe)" %><%= f.text_field :business_postal_code, id: "provider_business_postal_code" %></div>
+    <div class="field"><%= f.label :business_city, "Ort (Pflichtangabe)" %><%= f.text_field :business_city, id: "provider_business_city" %></div>
+  </fieldset>
+  <div class="actions"><%= f.submit "Anbieter erfassen" %></div>
+<% end %>

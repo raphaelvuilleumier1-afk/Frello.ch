@@ -1,0 +1,22 @@
+<% content_for :title, "Anmelden" %>
+<h1>Anmelden</h1>
+
+<p>
+  Dieser Bereich ist den internen Testrollen vorbehalten. Es gibt keine
+  Selbstregistrierung. Die Zugangsdaten der synthetischen Testkonten werden
+  beim Einspielen der Testdaten einmalig in der Konsole ausgegeben.
+</p>
+
+<%= form_with url: sign_in_path, method: :post do |f| %>
+  <div class="field">
+    <%= f.label :email, "E-Mail-Adresse" %>
+    <%= f.email_field :email, value: params[:email], autocomplete: "username", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Passwort" %>
+    <%= f.password_field :password, autocomplete: "current-password", required: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Anmelden" %>
+  </div>
+<% end %>

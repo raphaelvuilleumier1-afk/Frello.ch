@@ -1,0 +1,64 @@
+<% content_for :title, "Meine Events" %>
+<h1>Meine Events</h1>
+
+<p>
+  Hier sehen Sie ausschliesslich die Events Ihres eigenen Anbieterkontos
+  (<%= current_internal_user.provider.organisation_name %>,
+  Status: <%= current_internal_user.provider.status_label %>).
+</p>
+
+<% provider = current_internal_user.provider %>
+<% if provider.status == "registered" %>
+  <section aria-labelledby="verifikation-titel" class="notice">
+    <h2 id="verifikation-titel">Verifikation einreichen</h2>
+    <p>
+      Ihr Anbieterkonto ist noch nicht verifiziert. Sie können Entwürfe anlegen und
+      speichern, aber erst nach erfolgreicher Prüfung durch Frello zur Prüfung einreichen.
+      Reichen Sie dazu zuerst Ihre Verifikation ein.
+    </p>
+    <%= button_to "Verifikation zur Prüfung einreichen", provider_verification_path,
+                  method: :post, class: "btn btn-primary" %>
+  </section>
+<% elsif provider.status == "in_review" %>
+  <p class="notice" role="status">
+    Ihre Verifikation liegt bei Frello zur Prüfung. Sie können Entwürfe anlegen und
+    speichern; einreichen können Sie sie nach erfolgreicher Prüfung.
+  </p>
+<% elsif provider.status == "rejected" %>
+  <p class="alert" role="alert">
+    Ihre Verifikation wurde abgelehnt. Sie können keine Events zur Prüfung einreichen.
+  </p>
+<% end %>
+
+<div class="actions">
+  <%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn btn-primary" %>
+</div>
+
+<% if @events.empty? %>
+  <p class="notice">Sie haben noch keine Events angelegt.</p>
+<% else %>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Eigene Events, horizontal scrollbar">
+  <table>
+    <caption>Eigene Events (nur lesende Übersicht)</caption>
+    <thead>
+      <tr><th scope="col">Titel</th><th scope="col">Datum</th><th scope="col">Zustand</th><th scope="col">Aktion</th></tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.title.presence || "(ohne Titel)" %></td>
+          <td><%= event.event_date ? l(event.event_date, format: :long) : "–" %></td>
+          <td><%= event.status_label %></td>
+          <td><%= link_to "Ansehen", provider_event_path(event) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% end %>
+
+<p class="notice">
+  <strong>Umfangsgrenze:</strong> Die Verwaltung von Buchungen, Warteliste und
+  Teilnehmerliste (FR-036 vollständig, AC-036) ist nicht Bestandteil dieses
+  Bauabschnitts. Hier steht ausschliesslich die lesende Eventliste zur Verfügung.
+</p>

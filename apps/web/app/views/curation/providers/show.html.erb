@@ -1,0 +1,70 @@
+<% content_for :title, @provider.organisation_name %>
+<p><%= link_to "Zurück zur Anbieterliste", curation_providers_path, class: "btn" %></p>
+<h1><%= @provider.organisation_name %></h1>
+<p>Zustand: <strong><%= @provider.status_label %></strong></p>
+
+<dl class="detail">
+  <div><dt>Anbietertyp</dt><dd><%= @provider.type_label %></dd></div>
+  <div><dt>Kontaktperson</dt><dd><%= @provider.contact_person_name %></dd></div>
+  <div><dt>E-Mail</dt><dd><%= @provider.contact_email %></dd></div>
+  <div><dt>Telefon</dt><dd><%= @provider.contact_phone %></dd></div>
+  <div><dt>Geschäftsadresse</dt><dd><%= @provider.business_address %>, <%= @provider.business_postal_code %> <%= @provider.business_city %></dd></div>
+</dl>
+
+<% if @provider.status == "registered" %>
+  <h2>Noch nicht zur Prüfung eingereicht</h2>
+  <p class="notice">
+    Nach ST-001 reicht der <strong>Anbieter</strong> seine Verifikation selbst ein.
+    Die Frello-Kuration kann diesen Schritt nicht auslösen und prüft erst danach.
+    <% if @provider.internal_users.where(role: "provider").none? %>
+      Diesem synthetischen Anbieter ist noch kein Anbieter-Testkonto zugeordnet.
+      Anbieter-Testkonten entstehen in diesem Prototyp ausschliesslich über die
+      synthetischen Testdaten; eine Kontoverwaltung ist nicht Bestandteil dieses Bauabschnitts.
+    <% end %>
+  </p>
+<% elsif @provider.status == "in_review" %>
+  <h2>Schritt 2: Prüfergebnis erfassen</h2>
+  <p class="notice">
+    Die Prüfmassnahmen werden <strong>manuell</strong> erfasst. Es besteht keine Schnittstelle
+    zu Handelsregister-, Identitäts- oder Bankprüfdiensten; Teile dieser Massnahmen sind im
+    Businessplan §29 als extern zu prüfen geführt.
+  </p>
+  <%= form_with url: decide_curation_provider_path(@provider), method: :post do |f| %>
+    <fieldset>
+      <legend>Manuell erfasste Prüfmassnahmen (DO-006)</legend>
+      <div class="field check-row"><label><%= check_box_tag :register_check, "1" %> Handelsregisterabgleich durchgeführt</label></div>
+      <div class="field check-row"><label><%= check_box_tag :identity_check, "1" %> Identitätsprüfung durchgeführt</label></div>
+      <div class="field check-row"><label><%= check_box_tag :bank_account_check, "1" %> Bankkontoabgleich durchgeführt</label></div>
+      <div class="field check-row"><label><%= check_box_tag :qualification_check, "1" %> Qualifikationsnachweis geprüft (bei sensiblen Angeboten)</label></div>
+      <div class="field">
+        <%= label_tag :note, "Prüfvermerk (Pflichtangabe)" %>
+        <%= text_area_tag :note, nil, rows: 3, id: "note" %>
+      </div>
+    </fieldset>
+    <div class="actions">
+      <%= button_tag "Verifizieren", type: "submit", name: "step", value: "verify", class: "btn btn-primary" %>
+      <%= button_tag "Ablehnen", type: "submit", name: "step", value: "reject", class: "btn" %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @provider.provider_reviews.any? %>
+  <h2>Prüfhistorie</h2>
+  <ul class="card-list">
+    <% @provider.provider_reviews.order(decided_at: :desc).each do |r| %>
+      <li class="card">
+        <h3><%= r.outcome_label %></h3>
+        <p><%= r.note %></p>
+        <ul class="meta">
+          <li><span class="k">Entschieden am:</span> <%= l(r.decided_at, format: :long) %></li>
+          <li><span class="k">Durch:</span> <%= r.decided_by.display_name %></li>
+          <li><span class="k">Manuell erfasst:</span>
+            Register <%= r.register_check ? "ja" : "nein" %>,
+            Identität <%= r.identity_check ? "ja" : "nein" %>,
+            Bankkonto <%= r.bank_account_check ? "ja" : "nein" %>,
+            Qualifikation <%= r.qualification_check ? "ja" : "nein" %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
