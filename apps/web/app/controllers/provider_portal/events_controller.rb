@@ -9,8 +9,18 @@ module ProviderPortal
   # Eigentümerschaft wird bei jedem Zugriff serverseitig geprüft: ein Anbieter
   # sieht und bearbeitet ausschliesslich eigene Entwürfe und kann sich nicht
   # selbst freigeben (D-33).
+  #
+  # Schreibrechte nur für GEPRÜFTE Anbieter: FR-034 ("Geprüfte Anbieter legen
+  # Events als Entwurf … an") und 02_ROLES_PERMISSIONS.md §5 ("Schreib-/
+  # Verwaltungsrechte an Events erst nach erfolgreicher Anbieterprüfung", D-08).
+  # Lesen der eigenen Events bleibt in jedem Anbieterzustand möglich.
+  # Die Einreichung (submit) ist zusätzlich im Dienst unter Sperre abgesichert
+  # (AC-032) und liefert dort die fachliche Begründung.
   class EventsController < ApplicationController
+    WRITE_ACTIONS = %i[new create edit update].freeze
+
     before_action :require_provider!
+    before_action :require_verified_provider!, only: WRITE_ACTIONS
     before_action :load_event, only: %i[show edit update submit]
     before_action :ensure_editable, only: %i[edit update]
 
@@ -26,16 +36,27 @@ module ProviderPortal
       @event = scope.new(language: "de", status: "draft", synthetic: true)
     end
 
+    # Entwurf und Auditeintrag event.draft_created entstehen gemeinsam oder gar nicht.
     def create
       @event = scope.new(event_params.merge(status: "draft", synthetic: true))
-      if @event.save
+      saved = false
+      ActiveRecord::Base.transaction do
+        raise ActiveRecord::Rollback unless @event.save
+
         AuditTrail.record!(actor: current_internal_user, subject: @event,
                            action: "event.draft_created", to_state: "draft",
                            details: { "state_model" => "ST-002" })
-        redirect_to provider_event_path(@event), notice: "Entwurf gespeichert."
-      else
-        render :new, status: :unprocessable_entity
+        saved = true
       end
+      return redirect_to(provider_event_path(@event), notice: "Entwurf gespeichert.") if saved
+
+      render :new, status: :unprocessable_entity
+    rescue ActiveRecord::ActiveRecordError => e
+      # Nicht stumm verdecken: Ursache protokollieren, Nutzende erhalten eine
+      # verstaendliche Meldung; die Transaktion ist bereits zurueckgerollt.
+      Rails.logger.error("[#{self.class.name}#create] #{e.class}: #{e.message}")
+      flash.now[:alert] = "Der Entwurf konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+      render :new, status: :unprocessable_entity
     end
 
     def edit
@@ -63,6 +84,12 @@ module ProviderPortal
     end
 
     private
+
+    def require_verified_provider!
+      return if current_internal_user.provider&.verified?
+
+      render "shared/provider_not_verified", status: :forbidden
+    end
 
     # Serverseitige Eigentümerschaft: niemals über Parameter steuerbar.
     def scope = ::Event.where(provider_id: current_internal_user.provider_id)

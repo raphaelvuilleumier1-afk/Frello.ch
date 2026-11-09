@@ -13,6 +13,12 @@ class Event < ApplicationRecord
   belongs_to :provider
   has_many :event_reviews, dependent: :destroy
 
+  # Nicht gewaehlte Auswahlfelder kommen aus dem Formular als "". Die Datenbank-
+  # Pruefregeln erlauben fuer diese Felder nur NULL oder einen gueltigen Wert;
+  # ohne Normalisierung scheiterte jeder unvollstaendige Entwurf (Befund 7).
+  normalizes :activity_level, :payment_method, :cancellation_model,
+             with: ->(value) { value.presence }
+
   validates :status, inclusion: { in: EventLifecycle::STATES }
   validates :category, inclusion: { in: D31::CATEGORIES }, allow_blank: true
   validates :payment_method, inclusion: { in: D31::PAYMENT_METHODS.keys }, allow_blank: true
@@ -25,6 +31,7 @@ class Event < ApplicationRecord
   validates :synthetic_booked_count,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validate  :max_not_below_min
+  validate  :synthetic_booked_count_within_max
   validate  :external_booking_marker_inactive
 
   scope :in_catalog, -> { where(status: EventLifecycle::VISIBLE_IN_CATALOG) }
@@ -57,6 +64,16 @@ class Event < ApplicationRecord
     return if max_participants >= min_participants
 
     errors.add(:max_participants, "darf nicht kleiner sein als die Mindestteilnehmerzahl")
+  end
+
+  # BR-007 nur Erfassung und Anzeige: der synthetische Testwert darf die
+  # Höchstzahl nicht übersteigen. Ohne Höchstzahl (unvollständiger Entwurf)
+  # findet kein Vergleich statt.
+  def synthetic_booked_count_within_max
+    return if max_participants.blank? || synthetic_booked_count.blank?
+    return if synthetic_booked_count <= max_participants
+
+    errors.add(:synthetic_booked_count, "darf die Höchstteilnehmerzahl nicht übersteigen")
   end
 
   def external_booking_marker_inactive

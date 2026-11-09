@@ -5,7 +5,8 @@
 <h1><%= @event.title.presence || "Evententwurf ohne Titel" %></h1>
 <p>Zustand: <strong><%= @event.status_label %></strong></p>
 
-<% if @event.editable_by_provider? %>
+<% can_write = current_internal_user.provider.verified? %>
+<% if @event.editable_by_provider? && can_write %>
   <div class="actions">
     <%= link_to "Entwurf bearbeiten", edit_provider_event_path(@event), class: "btn" %>
     <%= button_to "Zur Prüfung einreichen", submit_provider_event_path(@event),
@@ -18,7 +19,14 @@
     noch erneut einreichen: Wie es danach weitergeht, ist fachlich noch nicht
     entschieden. Sie können einen neuen Entwurf anlegen.
   </p>
-  <p><%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn" %></p>
+  <% if can_write %>
+    <p><%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn" %></p>
+  <% end %>
+<% elsif !can_write %>
+  <p class="notice">
+    Evententwürfe können erst nach erfolgreicher Prüfung Ihres Anbieterkontos
+    bearbeitet werden.
+  </p>
 <% else %>
   <p class="notice">
     In diesem Zustand ist keine Bearbeitung vorgesehen. Bearbeitbar sind nur Entwürfe.

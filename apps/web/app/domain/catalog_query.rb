@@ -82,10 +82,13 @@ class CatalogQuery
     scope.where("accessibility_info ILIKE ?", "%#{Event.sanitize_sql_like(params[:accessibility])}%")
   end
 
+  # Nur Events, bei denen das Aktivitaetsniveau als einschlaegig gekennzeichnet ist
+  # (D-31: bedingt erforderlich "wenn fuer das Angebot relevant"). So stimmen
+  # Filtertreffer und Detailanzeige ueberein; gespeicherte Werte bleiben unberuehrt.
   def apply_activity_level(scope)
     return scope if params[:activity_level].blank?
 
-    scope.where(activity_level: params[:activity_level])
+    scope.where(activity_level_relevant: true, activity_level: params[:activity_level])
   end
 
   def apply_alone_welcome(scope)

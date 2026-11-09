@@ -13,9 +13,10 @@
 module AuditTrail
   module_function
 
-  def record!(actor:, subject:, action:, from_state: nil, to_state: nil, note: nil, details: {})
+  def record!(actor:, subject:, action:, from_state: nil, to_state: nil, note: nil,
+              details: {}, occurred_at: Time.current)
     AuditEntry.create!(
-      occurred_at:   Time.current,
+      occurred_at:   occurred_at,
       actor:         actor,
       actor_role:    actor&.role.to_s.presence || "system",
       actor_label:   actor&.display_name.to_s.presence || "System (Regel)",

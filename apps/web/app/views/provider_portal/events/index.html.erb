@@ -12,8 +12,8 @@
   <section aria-labelledby="verifikation-titel" class="notice">
     <h2 id="verifikation-titel">Verifikation einreichen</h2>
     <p>
-      Ihr Anbieterkonto ist noch nicht verifiziert. Sie können Entwürfe anlegen und
-      speichern, aber erst nach erfolgreicher Prüfung durch Frello zur Prüfung einreichen.
+      Ihr Anbieterkonto ist noch nicht verifiziert. Evententwürfe können Sie erst
+      nach erfolgreicher Prüfung durch Frello anlegen und bearbeiten.
       Reichen Sie dazu zuerst Ihre Verifikation ein.
     </p>
     <%= button_to "Verifikation zur Prüfung einreichen", provider_verification_path,
@@ -21,18 +21,21 @@
   </section>
 <% elsif provider.status == "in_review" %>
   <p class="notice" role="status">
-    Ihre Verifikation liegt bei Frello zur Prüfung. Sie können Entwürfe anlegen und
-    speichern; einreichen können Sie sie nach erfolgreicher Prüfung.
+    Ihre Verifikation liegt bei Frello zur Prüfung. Evententwürfe können Sie nach
+    erfolgreicher Prüfung anlegen und bearbeiten.
   </p>
 <% elsif provider.status == "rejected" %>
   <p class="alert" role="alert">
-    Ihre Verifikation wurde abgelehnt. Sie können keine Events zur Prüfung einreichen.
+    Ihre Verifikation wurde abgelehnt. Sie können keine Evententwürfe anlegen,
+    bearbeiten oder zur Prüfung einreichen.
   </p>
 <% end %>
 
-<div class="actions">
-  <%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn btn-primary" %>
-</div>
+<% if provider.verified? %>
+  <div class="actions">
+    <%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 <% if @events.empty? %>
   <p class="notice">Sie haben noch keine Events angelegt.</p>

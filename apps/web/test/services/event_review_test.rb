@@ -1,17 +1,5 @@
 require "test_helper"
 
-# Test-Schalter: laesst AuditTrail.record! gezielt fehlschlagen, ohne das
-# Produktionsverhalten dauerhaft zu veraendern.
-module AuditTrailFailSwitch
-  def record!(**kwargs)
-    if Thread.current[:frello_test_fail_audit]
-      raise ActiveRecord::RecordInvalid, AuditEntry.new
-    end
-
-    super
-  end
-end
-AuditTrail.singleton_class.prepend(AuditTrailFailSwitch)
 
 # Prueft Einreichung und Kurationsentscheid einschliesslich Audit und Atomaritaet.
 class EventReviewTest < ActiveSupport::TestCase

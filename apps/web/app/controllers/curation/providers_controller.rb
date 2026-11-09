@@ -14,16 +14,27 @@ module Curation
       @provider = ::Provider.new(status: "registered", synthetic: true)
     end
 
+    # Anbieter und Auditeintrag provider.registered entstehen gemeinsam oder gar nicht.
     def create
       @provider = ::Provider.new(provider_params.merge(status: "registered", synthetic: true))
-      if @provider.save
+      saved = false
+      ActiveRecord::Base.transaction do
+        raise ActiveRecord::Rollback unless @provider.save
+
         AuditTrail.record!(actor: current_internal_user, subject: @provider,
                            action: "provider.registered", to_state: "registered",
                            details: { "state_model" => "ST-001" })
-        redirect_to curation_provider_path(@provider), notice: "Synthetischer Anbieter erfasst."
-      else
-        render :new, status: :unprocessable_entity
+        saved = true
       end
+      return redirect_to(curation_provider_path(@provider), notice: "Synthetischer Anbieter erfasst.") if saved
+
+      render :new, status: :unprocessable_entity
+    rescue ActiveRecord::ActiveRecordError => e
+      # Nicht stumm verdecken: Ursache protokollieren, Nutzende erhalten eine
+      # verstaendliche Meldung; die Transaktion ist bereits zurueckgerollt.
+      Rails.logger.error("[#{self.class.name}#create] #{e.class}: #{e.message}")
+      flash.now[:alert] = "Der Anbieter konnte nicht erfasst werden. Bitte versuchen Sie es erneut."
+      render :new, status: :unprocessable_entity
     end
 
     def show

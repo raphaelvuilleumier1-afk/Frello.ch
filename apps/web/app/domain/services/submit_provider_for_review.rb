@@ -6,6 +6,9 @@ module Services
   #
   # Zulässig ist ausschliesslich ein Anbieter-Testkonto für den IHM ZUGEORDNETEN
   # Anbieter. Fremde Anbieterkonten und die Kuration sind nicht berechtigt.
+  #
+  # Nebenläufigkeit: Anbieter gesperrt (FOR UPDATE) und neu geladen; eine doppelte
+  # Einreichung wartet auf die Sperre und wird danach abgewiesen.
   class SubmitProviderForReview
     Result = Struct.new(:ok?, :error, keyword_init: true)
 
@@ -15,16 +18,17 @@ module Services
     end
 
     def call
-      unless @actor&.provider_role? && @actor.provider_id == @provider.id
+      unless @actor&.provider_role? && @actor.provider_id == @provider&.id
         return Result.new(ok?: false, error: "Nicht berechtigt (ST-001: nur der zugeordnete Anbieter).")
       end
 
-      unless ProviderLifecycle.allowed?(@provider.status, "in_review", role: @actor.role)
-        return Result.new(ok?: false, error: "Übergang nicht zulässig (ST-001).")
-      end
-
-      from = @provider.status
       ActiveRecord::Base.transaction do
+        @provider.lock!
+        unless ProviderLifecycle.allowed?(@provider.status, "in_review", role: @actor.role)
+          raise Rejection, "Übergang nicht zulässig (ST-001)."
+        end
+
+        from = @provider.status
         @provider.update!(status: "in_review")
         AuditTrail.record!(actor: @actor, subject: @provider,
                            action: "provider.submitted_for_review",
@@ -32,7 +36,11 @@ module Services
                            details: { "rule" => "BR-001", "state_model" => "ST-001" })
       end
       Result.new(ok?: true)
+    rescue Rejection => e
+      @provider.reload if @provider.persisted?
+      Result.new(ok?: false, error: e.message)
     rescue ActiveRecord::RecordInvalid => e
+      @provider.reload if @provider.persisted?
       Result.new(ok?: false, error: e.message)
     end
   end

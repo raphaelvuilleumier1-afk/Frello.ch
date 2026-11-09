@@ -10,8 +10,11 @@ module Services
   # BR-005: Eine Freigabe ist bei fehlenden Pflichtangaben ausgeschlossen –
   # auch dann, wenn die Kuration sie anfordert.
   #
-  # DO-008 Prüfergebnis und DO-024 Auditeintrag entstehen in derselben
-  # Transaktion wie der Zustandswechsel.
+  # Nebenläufigkeit: Das Event wird innerhalb der Transaktion gesperrt
+  # (SELECT … FOR UPDATE) und neu geladen; der verantwortliche Anbieter wird mit
+  # FOR SHARE gelesen. Erst danach werden Zustand und Vollständigkeit geprüft.
+  # Ein zweiter, gleichzeitiger Entscheid wartet auf die Sperre und wird danach
+  # abgewiesen. DO-008, Zustandswechsel und DO-024 entstehen gemeinsam oder gar nicht.
   class DecideEventReview
     Result = Struct.new(:ok?, :error, :review, keyword_init: true)
 
@@ -29,45 +32,50 @@ module Services
     end
 
     def call
+      # Reine Eingabeprüfungen, unabhängig vom Datenbankstand.
       target = OUTCOME_TO_STATE[@outcome]
       return Result.new(ok?: false, error: "Unbekanntes Prüfergebnis.") if target.nil?
-
-      unless @actor.curation?
-        return Result.new(ok?: false, error: "Nur die Frello-Kuration entscheidet (D-33).")
-      end
-
-      unless EventLifecycle.allowed?(@event.status, target, role: @actor.role)
-        return Result.new(ok?: false, error: "Übergang nicht zulässig (ST-002).")
-      end
-
       return Result.new(ok?: false, error: "Ein Prüfvermerk ist erforderlich.") if @note.strip.blank?
 
-      completeness = @event.completeness
-      if target == "released" && !completeness.submittable?
-        # BR-005 / AC-035: ohne vollständige Pflichtangaben keine Veröffentlichung.
-        return Result.new(ok?: false,
-                          error: "Freigabe nicht möglich: Pflichtangaben fehlen (BR-005).")
-      end
-
-      from = @event.status
       review = nil
       ActiveRecord::Base.transaction do
+        @event.lock!
+        Provider.lock("FOR SHARE").find(@event.provider_id)
+        @event.association(:provider).reset
+
+        raise Rejection, "Nur die Frello-Kuration entscheidet (D-33)." unless @actor.curation?
+        unless EventLifecycle.allowed?(@event.status, target, role: @actor.role)
+          raise Rejection, "Übergang nicht zulässig (ST-002)."
+        end
+
+        completeness = @event.completeness
+        if target == "released" && !completeness.submittable?
+          # BR-005 / AC-035: ohne vollständige Pflichtangaben keine Veröffentlichung.
+          raise Rejection, "Freigabe nicht möglich: Pflichtangaben fehlen (BR-005)."
+        end
+
+        from = @event.status
+        now = Time.current
         review = EventReview.create!(
           event: @event, decided_by: @actor, outcome: @outcome, note: @note,
-          decided_at: Time.current, completeness_snapshot: completeness.snapshot
+          decided_at: now, completeness_snapshot: completeness.snapshot
         )
         attrs = { status: target }
-        attrs[:released_at] = Time.current if target == "released"
+        attrs[:released_at] = now if target == "released"
         @event.update!(attrs)
         AuditTrail.record!(actor: @actor, subject: @event,
-                           action: "event.review_decided",
+                           action: "event.review_decided", occurred_at: now,
                            from_state: from, to_state: target, note: @note,
                            details: { "outcome" => @outcome, "rule" => "BR-004",
                                       "state_model" => "ST-002", "review_id" => review.id,
                                       "decision_mode" => "manuell durch Person (D-33)" })
       end
       Result.new(ok?: true, review: review)
+    rescue Rejection => e
+      @event.reload if @event.persisted?
+      Result.new(ok?: false, error: e.message)
     rescue ActiveRecord::RecordInvalid => e
+      @event.reload if @event.persisted?
       Result.new(ok?: false, error: e.message)
     end
   end

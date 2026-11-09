@@ -2,6 +2,19 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+# Test-Schalter: laesst AuditTrail.record! gezielt fehlschlagen, ohne das
+# Produktionsverhalten dauerhaft zu veraendern (Thread-lokal, je Test gesetzt).
+module AuditTrailFailSwitch
+  def record!(**kwargs)
+    if Thread.current[:frello_test_fail_audit]
+      raise ActiveRecord::RecordInvalid, AuditEntry.new
+    end
+
+    super
+  end
+end
+AuditTrail.singleton_class.prepend(AuditTrailFailSwitch)
+
 # Zufaelliges Passwort je Testlauf: in keiner Quelldatei steht ein Passwortwert.
 TEST_ACCOUNT_PASSWORD = SecureRandom.alphanumeric(20).freeze
 
@@ -58,6 +71,16 @@ module ActiveSupport
     end
   end
 end
+
+module FailingAudit
+  def with_failing_audit
+    Thread.current[:frello_test_fail_audit] = true
+    yield
+  ensure
+    Thread.current[:frello_test_fail_audit] = nil
+  end
+end
+ActiveSupport::TestCase.include(FailingAudit)
 
 class ActionDispatch::IntegrationTest
   def sign_in_as(user)

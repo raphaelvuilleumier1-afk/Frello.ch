@@ -2,6 +2,13 @@
 
 # Synthetische Testdaten fuer den internen Prototyp 01.
 #
+# Verhalten:
+#   - leere Datenbank:            spielt die synthetischen Testdaten ein;
+#   - nicht leere Datenbank:      bricht ohne jede Loeschung ab;
+#   - FRELLO_SEED_RESET=1 gesetzt: loescht ALLE Prototypdaten der Zieldatenbank
+#                                  und spielt die Testdaten neu ein.
+#   Nur in development und test zulaessig.
+#
 # ALLE Datensaetze sind erfunden. Es gibt KEINE realen Schweizer Anbieter,
 # KEINE realen Personen, KEINE realen Kontaktdaten. Jeder Datensatz traegt
 # zusaetzlich das Kennzeichen `synthetic = true` (durch Check-Constraint erzwungen).
@@ -14,15 +21,31 @@ require "securerandom"
 
 raise "Seeds nur in development/test" unless Rails.env.development? || Rails.env.test?
 
+# Schutz vor stillem Datenverlust: Ist die Zieldatenbank nicht leer, bricht ein
+# normaler Seed-Aufruf ab, BEVOR etwas geloescht wird. Ein bewusster Reset
+# verlangt den ausdruecklich gesetzten Schalter FRELLO_SEED_RESET=1 und bleibt
+# (siehe oben) auf development/test beschraenkt.
+SEED_TABLES = [ AuditEntry, EventReview, ProviderReview, Event, InternalUser, Provider ].freeze
+existing = SEED_TABLES.sum(&:count)
+reset_requested = ENV["FRELLO_SEED_RESET"] == "1"
+
+if existing.positive? && !reset_requested
+  raise "Seeds abgebrochen: Die Datenbank #{ActiveRecord::Base.connection_db_config.database} " \
+        "enthaelt bereits #{existing} Datensaetze. Es wurde nichts geloescht. " \
+        "Fuer einen bewussten Reset FRELLO_SEED_RESET=1 setzen (nur development/test)."
+end
+
 password = ENV["FRELLO_PROTOTYPE_PASSWORD"].presence || SecureRandom.alphanumeric(16)
 
-ActiveRecord::Base.transaction do
-  AuditEntry.delete_all
-  EventReview.delete_all
-  ProviderReview.delete_all
-  Event.delete_all
-  InternalUser.delete_all
-  Provider.delete_all
+if existing.positive?
+  ActiveRecord::Base.transaction do
+    AuditEntry.delete_all
+    EventReview.delete_all
+    ProviderReview.delete_all
+    Event.delete_all
+    InternalUser.delete_all
+    Provider.delete_all
+  end
 end
 
 # --- Frello-Kuration ---------------------------------------------------------

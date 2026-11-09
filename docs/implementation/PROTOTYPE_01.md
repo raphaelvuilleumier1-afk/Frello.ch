@@ -176,7 +176,8 @@ Umfangsgrenze ausgewiesen:
 | **`FR-036`** | Nur lesende Eventliste. Verwaltung von Buchungen, Warteliste und Teilnehmerliste fehlt, da es keine Buchungen gibt. `AC-036` ist **nicht** Teil der Freigabe und wird **nicht** beansprucht | Auftragsumfang |
 | **`FR-038`** | Nur Kurationsteil. Support, Moderation und Rückerstattungen fehlen. `AC-037` ist **nicht** Teil der Freigabe und wird **nicht** beansprucht | Auftragsumfang |
 | **`BR-007`** | Mindest- und Höchstteilnehmerzahl werden erfasst und angezeigt. Es gibt **keine** Wartelistenauslösung | Auftragsumfang |
-| **Verfügbare Plätze** | `synthetic_booked_count` ist ein ausdrücklich als synthetisch bezeichneter Testwert, nur für den Filter «verfügbare Plätze». **Keine** Buchungslogik, **keine** echten Teilnehmenden; in der Oberfläche jeweils so beschriftet | Auftragsumfang |
+| **Verfügbare Plätze** | `synthetic_booked_count` ist ein ausdrücklich als synthetisch bezeichneter Testwert, nur für den Filter «verfügbare Plätze». Er darf die Höchstteilnehmerzahl nicht übersteigen, sobald eine angegeben ist. **Keine** Buchungslogik, **keine** echten Teilnehmenden; in der Oberfläche jeweils so beschriftet | Auftragsumfang |
+| **Schreibrechte an Events** | Nur Anbieter im Zustand «verifiziert/aktiv» können Entwürfe anlegen und bearbeiten (FR-034; `02_ROLES_PERMISSIONS.md` §5). Registrierte, in Prüfung befindliche, abgelehnte und gesperrte Anbieter sehen ihre Events nur lesend; ihre Verifikationseinreichung bleibt möglich | FR-034, §5 |
 | **Nachträgliche Bearbeitung freigegebener Events** | Nicht Bestandteil. Bearbeitbar ist nur `draft`; serverseitig erzwungen. Zurückgegebene Events siehe unten (ST-002) | Auftragsumfang |
 | **Spätere ST-002-Zustände** | `ausgebucht`, `Buchungsschluss erreicht`, `durchgeführt`, `abgesagt`, `ausgefallen`, `abgeschlossen` fehlen vollständig | Auftragsumfang |
 | **Anbieterprüfung nach §29** | Register-, Identitäts- und Bankkontoabgleich werden **manuell erfasst**. Es besteht **keine** Schnittstelle zu Registern oder Prüfdiensten; Teile dieser Massnahmen sind in §29 als `[EXTERN ZU PRÜFEN]` geführt | §29 |
@@ -337,10 +338,16 @@ bundle install
 bin/rails db:create
 bin/rails db:migrate
 
-# Synthetische Testdaten; das Passwort wird einmalig auf der Konsole ausgegeben
+# Synthetische Testdaten; das Passwort wird einmalig auf der Konsole ausgegeben.
+# Nur in einer LEEREN Datenbank: ist sie nicht leer, bricht der Aufruf ab,
+# ohne etwas zu löschen.
 bin/rails db:seed
 # optional mit eigenem Passwort:
 # FRELLO_PROTOTYPE_PASSWORD='…' bin/rails db:seed
+
+# Bewusster Reset (nur development/test): löscht ALLE Prototypdaten der
+# Zieldatenbank und spielt die Testdaten neu ein. Der Schalter muss genau "1" lauten.
+# FRELLO_SEED_RESET=1 bin/rails db:seed
 
 # Server starten (nur lokal, nicht öffentlich binden)
 bin/rails server -b 127.0.0.1 -p 3000
@@ -377,8 +384,9 @@ Ein `config/master.key` ist **nicht** erforderlich.
 Trennung nach bestanden / fehlgeschlagen / nicht ausgeführt siehe Abschlussbericht
 des Bauauftrags. Kurzfassung:
 
-- **Automatisierte Prüfungen:** 108 Prüfläufe, 727 Zusicherungen, 0 Fehlschläge
-  (`bin/rails test`, Stand nach der Nachbesserung, Abschnitt 11).
+- **Automatisierte Prüfungen:** 162 Prüfläufe, 1 040 Zusicherungen, 0 Fehlschläge
+  (`bin/rails test`, Stand nach den Korrekturen aus der Codeprüfung, Abschnitt 12),
+  davon vier echte Paralleltests mit getrennten Datenbankverbindungen.
 - **Browserprüfung:** Chromium über Playwright; zentrale Abläufe, Tastaturbedienung,
   Fokusdarstellung, Zielgrössen, Textvergrösserung auf 200 %.
 - **Automatisierter Barrierefreiheitsscan:** axe-core 4.10.2 über acht Bildschirme,
@@ -419,6 +427,14 @@ Keine Geschäftsregel liegt ausschliesslich in einer Oberflächenkomponente. Jed
 Zustandswechsel wird zusammen mit Prüfergebnis und Auditeintrag in **einer**
 Datenbanktransaktion geschrieben; eine fehlgeschlagene Aktion hinterlässt keinen
 Freigabezustand (abgesichert durch `test/services/event_review_test.rb`).
+
+Gleichzeitige Zustandswechsel: Die vier Dienste sperren den betroffenen Datensatz
+innerhalb der Transaktion (`lock!`, `SELECT … FOR UPDATE`), lesen ihn dabei neu und
+prüfen erst danach Zustand, Berechtigung und Voraussetzungen. Der verantwortliche
+Anbieter eines Events wird mit `FOR SHARE` gelesen. Ein zweiter, gleichzeitiger
+Vorgang wartet auf die Sperre und wird danach kontrolliert abgewiesen (abgesichert
+durch `test/services/stale_instance_test.rb` und
+`test/integration/parallel_state_change_test.rb`).
 
 Es wurde **keine** separate Backend-Anwendung und **keine** vollständige externe
 HTTP-API gebaut. Es wurde **kein** App-Framework festgelegt; `D-45` und `D-46`
@@ -466,3 +482,28 @@ Datenbankkopien, Protokolle) ergab **keine Treffer**.
 
 - Gründerentscheidung zum weiteren Ablauf zurückgegebener Events (Abschnitt 4).
 - Reale iOS-/Android-Installationsprüfung und Screenreader-Prüfung (Abschnitt 9).
+
+---
+
+## 12. Korrekturen aus der Codeprüfung von Draft-PR #6
+
+Grundlage: statische Codeprüfung von PR #6 am Commit `9acce23`. Freigegeben waren
+lokale Korrekturen unter `apps/web/` und die Nachführung dieses Dokuments; keine neue
+Produktfunktion, keine neue D-ID, keine ADR.
+
+| # | Ursache | Korrektur | Absicherung |
+|---|---|---|---|
+| 1 | Schreibaktionen prüften nur die Rolle Anbieter, nicht dessen Prüfstatus. Widerspruch zu FR-034 und `02_ROLES_PERMISSIONS.md` §5. | Neuer Filter `require_verified_provider!` für `new`, `create`, `edit` und `update`; Sperrseite mit Begründung; Hinweistexte und Schaltflächen angepasst. Die Einreichung bleibt zusätzlich im Dienst unter Sperre abgesichert (AC-032). | `provider_write_rights_test.rb`: alle vier nicht geprüften Zustände, direkte und manipulierte Requests, Lesen, Verifikationseinreichung, zulässige Schreibaktionen eines geprüften Anbieters. Ohne die Korrektur schlagen 9 der 20 Tests fehl. |
+| 2 | Alle vier Dienste prüften den Übergang an einer womöglich veralteten Instanz und schrieben ohne Sperre. | Datensatz innerhalb der Transaktion sperren und neu lesen (`lock!`), Anbieter mit `FOR SHARE`; alle Prüfungen danach; Abweisung über `Services::Rejection` mit Rückrollung; ein gemeinsamer Zeitstempel für Prüfergebnis, Freigabezeitpunkt und Audit. | `stale_instance_test.rb` (6 Tests) und `parallel_state_change_test.rb` (4 Paralleltests mit getrennten PostgreSQL-Verbindungen, Koordination über Queues und `pg_stat_activity`, Zeitlimits). Vor der Korrektur alle 10 fehlgeschlagen. |
+| 3 | Der Filter Aktivitätsniveau ignorierte die Relevanzkennzeichnung. | Filter nur auf als einschlägig gekennzeichnete Werte; gespeicherte Werte bleiben unberührt. | `catalog_filters_test.rb`; Gegenprobe ohne Korrektur schlägt fehl. |
+| 4 | Keine Begrenzung des synthetischen Belegungswerts. | Validierung `synthetic_booked_count ≤ max_participants`, nur wenn eine Höchstzahl vorliegt. | `synthetic_booking_and_atomic_create_test.rb`: Grenze, Überschreitung, unvollständiger Entwurf ohne Höchstzahl. |
+| 5 | Evententwurf bzw. Anbieter und ihr Auditeintrag wurden getrennt gespeichert. | Beide Vorgänge in einer Transaktion; bei einem Fehler verständliche Meldung, Ursache wird protokolliert. | `atomic_create_test.rb` mit gezielt fehlschlagendem Audit. |
+| 6 | Veralteter Kommentar zur erneuten Einreichung; Seeds löschten vorhandene Daten ohne Hinweis. | Kommentar korrigiert (der Übergang bleibt gesperrt). Seeds brechen bei nicht leerer Datenbank vor jeder Löschung ab; Reset nur mit `FRELLO_SEED_RESET=1`, nur development/test. | `seeds_guard_test.rb`; zusätzlich über `bin/rails db:seed` an einer eigens angelegten Datenbank geprüft. |
+| 7 | **Bei der Browserprüfung neu gefunden, bereits in `9acce23` vorhanden:** Nicht gewählte Auswahlfelder kamen als `""`; die Datenbank-Prüfregeln für Aktivitätsniveau, Zahlungsart und Stornomodell lassen nur `NULL` oder gültige Werte zu. Jeder unvollständige Entwurf aus dem echten Formular scheiterte. | Normalisierung leerer Werte zu `NULL` für diese drei Felder im Modell. | `blank_form_fields_test.rb` sendet das vollständige leere Formular wie der Browser; mit dem Stand `9acce23` schlägt er mit `PG::CheckViolation` fehl. |
+
+Zusätzlich geschlossene Testlücken: funktionale Tests für die Filter Datum/Zeitraum,
+Kategorie, Preis, Zugänglichkeit und Aktivitätsniveau (Treffer, Nichttreffer,
+Grenzen) sowie der Nachweis, dass ein Event «in Prüfung» nicht bearbeitbar ist.
+
+Nicht umgesetzt, weil nicht beauftragt: Begrenzung der Anmeldeversuche,
+Content-Security-Policy und Plausibilitätsprüfungen von Zeitangaben.
