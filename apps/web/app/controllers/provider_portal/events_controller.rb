@@ -65,10 +65,23 @@ module ProviderPortal
     def update
       # Unvollständige Entwürfe dürfen gespeichert werden (BR-005 greift erst
       # bei der Einreichung).
-      if @event.update(event_params)
-        redirect_to provider_event_path(@event), notice: "Entwurf gespeichert."
-      else
-        render :edit, status: :unprocessable_entity
+      #
+      # Nebenläufigkeit: Das Event wird innerhalb der Transaktion gesperrt
+      # (SELECT … FOR UPDATE) und neu geladen; erst danach wird die
+      # Bearbeitbarkeit geprüft und in derselben Transaktion gespeichert. Eine
+      # gleichzeitige Einreichung wartet auf die Sperre oder wird vorher
+      # abgeschlossen – ein Event in Prüfung wird nicht mehr geschrieben.
+      outcome = ActiveRecord::Base.transaction do
+        @event.lock!
+        next :not_editable unless @event.editable_by_provider?
+
+        @event.update(event_params) ? :saved : :invalid
+      end
+
+      case outcome
+      when :saved        then redirect_to provider_event_path(@event), notice: "Entwurf gespeichert."
+      when :not_editable then render "shared/not_editable", status: :forbidden
+      else render :edit, status: :unprocessable_entity
       end
     end
 
