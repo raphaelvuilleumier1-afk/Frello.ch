@@ -1,6 +1,6 @@
 # Interner Katalog- und Kurationsprototyp – Bauabschnitt 01
 
-- **Stand:** 5. November 2026
+- **Stand:** 10. November 2026
 - **Grundlage:** Gründerfreigabe «Frello — Bauauftrag 01: Interner Katalog- und Kurationsprototyp»
 - **Ausgangsbasis:** `acb92fdeea5f5fec21efa5ddc18c165c2967c6f3`
 - **Arbeitsbranch:** `claude/frello-internal-prototype-01`
@@ -384,9 +384,36 @@ Ein `config/master.key` ist **nicht** erforderlich.
 Trennung nach bestanden / fehlgeschlagen / nicht ausgeführt siehe Abschlussbericht
 des Bauauftrags. Kurzfassung:
 
-- **Automatisierte Prüfungen:** 162 Prüfläufe, 1 040 Zusicherungen, 0 Fehlschläge
-  (`bin/rails test`, Stand nach den Korrekturen aus der Codeprüfung, Abschnitt 12),
-  davon vier echte Paralleltests mit getrennten Datenbankverbindungen.
+- **Automatisierte Prüfungen, aktueller Stand:** vollständiger Rails-Lauf am
+  10.11.2026 auf Commit `321689c4ebb569f8c84f0ae05e24394968c318b7` mit
+  **164 Prüfläufen, 1’057 Zusicherungen, 0 Fehlschlägen, 0 Fehlern und
+  0 übersprungenen Tests** (`bin/rails test --verbose`, `RAILS_ENV=test`). Erfasst
+  sind alle 18 Testdateien unter `test/`, einschliesslich der beiden
+  K-1-Regressionstests (Abschnitt 12, Nr. 8); davon sechs Tests mit getrennten
+  PostgreSQL-Verbindungen (vier aus Nr. 2, zwei aus Nr. 8). Ausgeführt gegen eine
+  eigens angelegte, isolierte lokale PostgreSQL-Prüfdatenbank
+  (`DATABASE_URL=postgres:///frello_suite_check_20261110`, Schema über
+  `bin/rails db:schema:load`, ein Testworker ohne Worker-Datenbanken, ohne
+  `db:seed:replant`). Prüfdatenbank und Prüfrolle wurden danach entfernt.
+- **Früherer Lauf (historischer Nachweis):** 162 Prüfläufe, 1’040 Zusicherungen,
+  0 Fehlschläge (`bin/rails test`) am Korrekturstand aus Abschnitt 12, Nr. 1–7,
+  geprüft vor dem Commit `22ac6c5`; davon vier echte Paralleltests mit getrennten
+  Datenbankverbindungen.
+- **Gem-Audit:** `bin/bundler-audit` (bundler-audit 0.9.3, Konfiguration
+  `config/bundler-audit.yml`) nach Aktualisierung der Ruby Advisory Database auf
+  Commit `bc80fbb16e7b8de1cad903bc061d1da65e15edcb` (Stand 9.11.2026,
+  1353 Advisories): «No vulnerabilities found», Exit-Code 0. Ausgeführt am 9. und
+  10.11.2026. Das Ergebnis gilt für das geprüfte `Gemfile.lock`
+  (SHA-256 `58c97b042fc229e207c2f31a5a244537583cb30be4d1c12a5f8c5b45fac8da11`),
+  das seit Commit `9acce23` unverändert ist. Die Konfiguration enthält als
+  Ausnahme nur den Platzhalter `CVE-THAT-DOES-NOT-APPLY`.
+
+Die folgenden Browser- und Startprüfungen gelten für den jeweils genannten früheren
+Stand; auf Commit `321689c` wurden sie nicht wiederholt.
+
+- **Start aus den versionierbaren Dateien** ohne den ursprünglichen
+  `config/master.key`: geprüft auf Commit `9acce23a87ca08cf8fc3b6816ab20809a9b0b6ea`
+  (Ablauf siehe Abschnitte 5.3 und 11).
 - **Browserprüfung:** Chromium über Playwright; zentrale Abläufe, Tastaturbedienung,
   Fokusdarstellung, Zielgrössen, Textvergrösserung auf 200 %.
 - **Automatisierter Barrierefreiheitsscan:** axe-core 4.10.2 über acht Bildschirme,
@@ -500,6 +527,7 @@ Produktfunktion, keine neue D-ID, keine ADR.
 | 5 | Evententwurf bzw. Anbieter und ihr Auditeintrag wurden getrennt gespeichert. | Beide Vorgänge in einer Transaktion; bei einem Fehler verständliche Meldung, Ursache wird protokolliert. | `atomic_create_test.rb` mit gezielt fehlschlagendem Audit. |
 | 6 | Veralteter Kommentar zur erneuten Einreichung; Seeds löschten vorhandene Daten ohne Hinweis. | Kommentar korrigiert (der Übergang bleibt gesperrt). Seeds brechen bei nicht leerer Datenbank vor jeder Löschung ab; Reset nur mit `FRELLO_SEED_RESET=1`, nur development/test. | `seeds_guard_test.rb`; zusätzlich über `bin/rails db:seed` an einer eigens angelegten Datenbank geprüft. |
 | 7 | **Bei der Browserprüfung neu gefunden, bereits in `9acce23` vorhanden:** Nicht gewählte Auswahlfelder kamen als `""`; die Datenbank-Prüfregeln für Aktivitätsniveau, Zahlungsart und Stornomodell lassen nur `NULL` oder gültige Werte zu. Jeder unvollständige Entwurf aus dem echten Formular scheiterte. | Normalisierung leerer Werte zu `NULL` für diese drei Felder im Modell. | `blank_form_fields_test.rb` sendet das vollständige leere Formular wie der Browser; mit dem Stand `9acce23` schlägt er mit `PG::CheckViolation` fehl. |
+| 8 | **K-1, bei der Prüfung des Korrekturdiffs `9acce23..22ac6c5` gefunden, bereits in `9acce23` vorhanden:** `update` prüfte die Bearbeitbarkeit an der zu Beginn des Requests geladenen Instanz und schrieb ohne Zeilensperre. Eine Änderung, die vor einer gleichzeitigen Einreichung geladen wurde, konnte danach den Inhalt eines Events «in Prüfung» überschreiben. | `update` sperrt das Event innerhalb einer Transaktion und lädt es dabei neu (`lock!`), prüft danach die Bearbeitbarkeit erneut und speichert in derselben Transaktion. Ist das Event nicht mehr bearbeitbar, folgt die bestehende Sperrseite mit Status 403; Rechte, Zustandsregeln sowie Formular- und Fehlerverhalten bleiben unverändert. Korrigiert in Commit `321689c`. | `test/integration/draft_update_race_test.rb`, zwei Tests mit getrennten PostgreSQL-Verbindungen über den echten Bearbeitungsrequest: (a) der Request lädt den Entwurf, die Einreichung wird in der zweiten Verbindung abgeschlossen, danach läuft der Request weiter; (b) der Request wartet nachweislich (`pg_stat_activity`) auf die Sperre einer laufenden Einreichung. Beim Lauf mit unverändertem Anwendungscode von `22ac6c5` schlugen beide neu ergänzten Tests fehl (Inhalt überschrieben, Antwort 302). Für den Folgelauf wurde ein Testhilfsaufruf zur Behebung einer Warnung angepasst; die Zusicherungen im Testcode blieben gleich. Auf `321689c` bestehen beide. |
 
 Zusätzlich geschlossene Testlücken: funktionale Tests für die Filter Datum/Zeitraum,
 Kategorie, Preis, Zugänglichkeit und Aktivitätsniveau (Treffer, Nichttreffer,
