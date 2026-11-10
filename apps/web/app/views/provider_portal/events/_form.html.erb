@@ -1,0 +1,214 @@
+<%# Evententwurf – vollständiger D-31-Feldsatz.
+    Gegliedert in sechs beschriftete Gruppen; Pflichtangaben sind als Text
+    gekennzeichnet (nicht nur farblich). Unvollständige Entwürfe dürfen
+    gespeichert werden; die Vollständigkeit wird erst bei der Einreichung
+    erzwungen (BR-005 / EXC-013). %>
+
+<%= render "shared/error_summary", record: event, field_id: "event" %>
+
+<%= form_with model: event, url: url, method: method do |f| %>
+
+  <fieldset>
+    <legend>1. Grunddaten</legend>
+
+    <div class="field <%= "field-error" if event.errors[:title].any? %>">
+      <%= f.label :title, "Titel (Pflichtangabe)" %>
+      <%= f.text_field :title, id: "event_title" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :short_description, "Verständliche Kurzbeschreibung (Pflichtangabe)" %>
+      <span class="hint" id="hint_desc">Beschreiben Sie in einfachen Worten, was die Teilnehmenden erwartet.</span>
+      <%= f.text_area :short_description, id: "event_short_description", rows: 4, "aria-describedby": "hint_desc" %>
+    </div>
+
+    <div class="field <%= "field-error" if event.errors[:category].any? %>">
+      <%= f.label :category, "Kategorie (Pflichtangabe)" %>
+      <span class="hint" id="hint_cat">Bei «Bewegung &amp; Natur» wird zusätzlich ein Qualifikationsnachweis verlangt.</span>
+      <%= f.select :category, D31::CATEGORIES, { include_blank: "Bitte wählen" },
+                   id: "event_category", "aria-describedby": "hint_cat" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :language, "Sprache (Pflichtangabe)" %>
+      <%= f.select :language, D31::LANGUAGES.map { |k, v| [ v, k ] },
+                   { include_blank: "Bitte wählen" }, id: "event_language" %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>2. Zeit</legend>
+    <div class="field"><%= f.label :event_date, "Datum (Pflichtangabe)" %><%= f.date_field :event_date, id: "event_event_date" %></div>
+    <div class="field"><%= f.label :start_time, "Beginn (Pflichtangabe)" %><%= f.time_field :start_time, id: "event_start_time" %></div>
+    <div class="field"><%= f.label :end_time, "Ende (Pflichtangabe)" %><%= f.time_field :end_time, id: "event_end_time" %></div>
+    <div class="field">
+      <%= f.label :booking_deadline_at, "Buchungsschluss (Pflichtangabe)" %>
+      <%= f.datetime_field :booking_deadline_at, id: "event_booking_deadline_at" %>
+    </div>
+    <div class="field">
+      <%= f.label :decision_point_at, "Zeitpunkt des Durchführungsentscheids (Pflichtangabe)" %>
+      <span class="hint" id="hint_dec">Nach BR-011 grundsätzlich spätestens 48 Stunden vor Beginn.</span>
+      <%= f.datetime_field :decision_point_at, id: "event_decision_point_at", "aria-describedby": "hint_dec" %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>3. Ort</legend>
+    <div class="field"><%= f.label :venue_name, "Veranstaltungsort (Pflichtangabe)" %><%= f.text_field :venue_name, id: "event_venue_name" %></div>
+    <div class="field">
+      <%= f.label :full_address, "Vollständige Adresse (Pflichtangabe)" %>
+      <span class="hint" id="hint_addr">Strasse, Hausnummer und Postleitzahl.</span>
+      <%= f.text_field :full_address, id: "event_full_address", "aria-describedby": "hint_addr" %>
+    </div>
+    <div class="field"><%= f.label :city_region, "Stadt bzw. Region (Pflichtangabe)" %><%= f.text_field :city_region, id: "event_city_region" %></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>4. Preis und Zahlung</legend>
+    <div class="field <%= "field-error" if event.errors[:price_chf].any? %>">
+      <%= f.label :price_chf, "Preis in CHF (Pflichtangabe)" %>
+      <span class="hint" id="hint_price">0.00 bedeutet kostenlos.</span>
+      <%= f.number_field :price_chf, step: "0.05", min: 0, id: "event_price_chf", "aria-describedby": "hint_price" %>
+    </div>
+    <div class="field">
+      <%= f.label :payment_method, "Zahlungsart (Pflichtangabe)" %>
+      <%= f.select :payment_method, D31::PAYMENT_METHODS.map { |k, v| [ v, k ] },
+                   { include_blank: "Bitte wählen" }, id: "event_payment_method" %>
+    </div>
+    <div class="field">
+      <%= f.label :cancellation_model, "Gewähltes Stornomodell (Pflichtangabe)" %>
+      <span class="hint" id="hint_canc">Nach BR-010 genau eines von drei Frello-Modellen; eigene Klauseln sind nicht möglich.</span>
+      <%= f.select :cancellation_model, D31::CANCELLATION_MODELS.map { |k, v| [ v, k ] },
+                   { include_blank: "Bitte wählen" }, id: "event_cancellation_model", "aria-describedby": "hint_canc" %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>5. Teilnahme</legend>
+    <div class="field"><%= f.label :min_participants, "Mindestteilnehmerzahl (Pflichtangabe)" %><%= f.number_field :min_participants, min: 0, id: "event_min_participants" %></div>
+    <div class="field <%= "field-error" if event.errors[:max_participants].any? %>">
+      <%= f.label :max_participants, "Höchstteilnehmerzahl (Pflichtangabe)" %>
+      <%= f.number_field :max_participants, min: 0, id: "event_max_participants" %>
+      <% if event.errors[:max_participants].any? %>
+        <span class="error-text"><%= event.errors[:max_participants].to_sentence %></span>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :synthetic_booked_count, "Synthetischer Testwert: bereits belegte Plätze" %>
+      <span class="hint" id="hint_booked">
+        Dieser Wert dient ausschliesslich dem Filter «verfügbare Plätze» in der Vorschau.
+        Es gibt keine Buchungslogik und keine echten Teilnehmenden.
+      </span>
+      <%= f.number_field :synthetic_booked_count, min: 0, id: "event_synthetic_booked_count", "aria-describedby": "hint_booked" %>
+    </div>
+    <div class="field">
+      <span class="label" id="label_alone">Kennzeichnung «Alleine willkommen» (Pflichtangabe)</span>
+      <div class="radio-row" role="radiogroup" aria-labelledby="label_alone">
+        <label><%= f.radio_button :alone_welcome, true, id: "event_alone_welcome" %> Ja</label>
+        <label><%= f.radio_button :alone_welcome, false, id: "event_alone_welcome_false" %> Nein</label>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :contact_option, "Kontaktmöglichkeit (Pflichtangabe)" %>
+      <%= f.text_area :contact_option, id: "event_contact_option", rows: 2 %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>6. Zugänglichkeit und weitere Angaben</legend>
+
+    <div class="field">
+      <%= f.label :accessibility_info, "Zugänglichkeitsangaben (Pflichtangabe)" %>
+      <span class="hint" id="hint_acc2">Zum Beispiel stufenloser Zugang, Lift, Rollstuhlplätze, Sitzgelegenheiten, Hörunterstützung.</span>
+      <%= f.text_area :accessibility_info, id: "event_accessibility_info", rows: 3, "aria-describedby": "hint_acc2" %>
+    </div>
+
+    <p class="hint">
+      Die folgenden Angaben sind <strong>bedingt erforderlich</strong>: Sie geben jeweils
+      ausdrücklich an, ob die Angabe für Ihr Angebot einschlägig ist. Ist sie einschlägig,
+      muss sie ausgefüllt sein.
+    </p>
+
+    <div class="field check-row">
+      <label><%= f.check_box :activity_level_relevant, id: "event_activity_level_relevant" %>
+        Körperliches Aktivitätsniveau ist für dieses Angebot einschlägig</label>
+    </div>
+    <div class="field">
+      <%= f.label :activity_level, "Körperliches Aktivitätsniveau" %>
+      <%= f.select :activity_level, D31::ACTIVITY_LEVELS.map { |k, v| [ v, k ] },
+                   { include_blank: "Keine Angabe" }, id: "event_activity_level" %>
+    </div>
+
+    <div class="field check-row">
+      <label><%= f.check_box :required_equipment_relevant, id: "event_required_equipment_relevant" %>
+        Erforderliche Ausrüstung ist für dieses Angebot einschlägig</label>
+    </div>
+    <div class="field">
+      <%= f.label :required_equipment, "Erforderliche Ausrüstung" %>
+      <%= f.text_area :required_equipment, id: "event_required_equipment", rows: 2 %>
+    </div>
+
+    <div class="field check-row">
+      <label><%= f.check_box :catering_relevant, id: "event_catering_relevant" %>
+        Verpflegung ist für dieses Angebot einschlägig</label>
+    </div>
+    <div class="field">
+      <%= f.label :catering_info, "Verpflegung" %>
+      <%= f.text_area :catering_info, id: "event_catering_info", rows: 2 %>
+    </div>
+
+    <div class="field check-row">
+      <label><%= f.check_box :age_focus_relevant, id: "event_age_focus_relevant" %>
+        Ein transparenter Altersfokus ist für dieses Angebot einschlägig</label>
+    </div>
+    <div class="field">
+      <%= f.label :age_focus, "Transparenter Altersfokus" %>
+      <span class="hint" id="hint_age">
+        Hinweis zum Prüfstand: Die diskriminierungsrechtliche Zulässigkeit eventbezogener
+        Altersfokusse ist als OP-013 offen und extern zu prüfen. Dieser Prototyp trifft
+        dazu keine Aussage.
+      </span>
+      <%= f.text_field :age_focus, id: "event_age_focus", "aria-describedby": "hint_age" %>
+    </div>
+
+    <div class="field check-row">
+      <label><%= f.check_box :qualification_evidence_relevant, id: "event_qualification_evidence_relevant" %>
+        Ein Qualifikationsnachweis ist für dieses Angebot einschlägig</label>
+    </div>
+    <div class="field">
+      <%= f.label :qualification_evidence, "Qualifikationsnachweis" %>
+      <span class="hint" id="hint_qual">
+        Bei Angeboten der Kategorie «Bewegung &amp; Natur» ist dieser Nachweis unabhängig
+        von der Markierung oben erforderlich.
+      </span>
+      <%= f.text_area :qualification_evidence, id: "event_qualification_evidence", rows: 2, "aria-describedby": "hint_qual" %>
+    </div>
+
+    <div class="field">
+      <span class="label">Kennzeichnung externer Buchung</span>
+      <p class="notice">
+        <strong>Im MVP nicht anwendbar.</strong> Externe Buchungen sind nach D-39
+        ausgeschlossen; die Kennzeichnung nach D-31 ist dadurch inaktiv. Das Feld wurde
+        nicht entfernt, sondern bleibt als ausgewiesener, gesperrter Bestandteil des
+        Pflichtfeldsatzes sichtbar.
+      </p>
+    </div>
+
+    <p class="hint">Die folgenden drei Angaben sind im MVP freiwillig.</p>
+    <div class="field"><%= f.label :public_transport_info, "ÖV-Informationen (freiwillig)" %><%= f.text_area :public_transport_info, id: "event_public_transport_info", rows: 2 %></div>
+    <div class="field"><%= f.label :parking_info, "Parkmöglichkeiten (freiwillig)" %><%= f.text_area :parking_info, id: "event_parking_info", rows: 2 %></div>
+    <div class="field">
+      <%= f.label :event_image_note, "Veranstaltungsbild (freiwillig)" %>
+      <span class="hint" id="hint_img">
+        In diesem Prototyp als Textverweis statt als Dateiupload; eine Dateiablage ist
+        nicht Bestandteil dieses Bauabschnitts.
+      </span>
+      <%= f.text_area :event_image_note, id: "event_event_image_note", rows: 2, "aria-describedby": "hint_img" %>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit submit_label %>
+    <%= link_to "Abbrechen", provider_events_path, class: "btn" %>
+  </div>
+<% end %>

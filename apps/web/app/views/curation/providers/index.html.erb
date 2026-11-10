@@ -1,0 +1,20 @@
+<% content_for :title, "Anbieter prüfen" %>
+<h1>Anbieter prüfen</h1>
+<p>Alle Anbieter sind synthetische Testdatensätze. Private Gastgeber sind nach BR-001 nicht zugelassen.</p>
+<div class="actions"><%= link_to "Synthetischen Anbieter erfassen", new_curation_provider_path, class: "btn btn-primary" %></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Anbieterliste, horizontal scrollbar">
+<table>
+  <caption>Anbieter</caption>
+  <thead><tr><th scope="col">Organisation</th><th scope="col">Typ</th><th scope="col">Zustand</th><th scope="col">Aktion</th></tr></thead>
+  <tbody>
+    <% @providers.each do |p| %>
+      <tr>
+        <td><%= p.organisation_name %></td>
+        <td><%= p.type_label %></td>
+        <td><%= p.status_label %></td>
+        <td><%= link_to "Öffnen", curation_provider_path(p) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

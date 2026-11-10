@@ -1,0 +1,8 @@
+<% content_for :title, "Noch nicht verifiziert" %>
+<h1>Evententwürfe erst nach der Prüfung</h1>
+<p class="alert" role="alert">
+  Evententwürfe können Sie erst anlegen oder bearbeiten, wenn Frello Ihr
+  Anbieterkonto erfolgreich geprüft hat. Ihr aktueller Status:
+  <strong><%= current_internal_user.provider.status_label %></strong>.
+</p>
+<p><%= link_to "Zurück zu meinen Events", provider_events_path, class: "btn" %></p>

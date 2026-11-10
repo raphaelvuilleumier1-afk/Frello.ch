@@ -1,0 +1,46 @@
+<% content_for :title, "Events prüfen" %>
+<h1>Events prüfen</h1>
+<p>
+  Kein Event wird automatisch veröffentlicht. Jeder Entwurf wird vollständig
+  manuell geprüft (D-33 / BR-004). Es gibt keine automatisierte oder KI-basierte Freigabe.
+</p>
+
+<h2>Zur Prüfung eingereicht (<%= @pending.size %>)</h2>
+<% if @pending.empty? %>
+  <p class="notice">Derzeit liegt kein Entwurf zur Prüfung vor.</p>
+<% else %>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Eingereichte Entwürfe, horizontal scrollbar">
+  <table>
+    <caption>Eingereichte Entwürfe</caption>
+    <thead><tr><th scope="col">Titel</th><th scope="col">Anbieter</th><th scope="col">Datum</th><th scope="col">Aktion</th></tr></thead>
+    <tbody>
+      <% @pending.each do |e| %>
+        <tr>
+          <td><%= e.title %></td>
+          <td><%= e.provider.organisation_name %></td>
+          <td><%= e.event_date ? l(e.event_date, format: :long) : "–" %></td>
+          <td><%= link_to "Prüfen", curation_event_path(e) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% end %>
+
+<h2>Übrige Events</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Alle weiteren Events, horizontal scrollbar">
+<table>
+  <caption>Alle weiteren Events</caption>
+  <thead><tr><th scope="col">Titel</th><th scope="col">Anbieter</th><th scope="col">Zustand</th><th scope="col">Aktion</th></tr></thead>
+  <tbody>
+    <% @others.each do |e| %>
+      <tr>
+        <td><%= e.title.presence || "(ohne Titel)" %></td>
+        <td><%= e.provider.organisation_name %></td>
+        <td><%= e.status_label %></td>
+        <td><%= link_to "Ansehen", curation_event_path(e) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

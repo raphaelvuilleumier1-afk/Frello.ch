@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+  <head>
+    <title><%= content_for(:title).presence || "Frello Prototyp 01 (intern)" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a1a1a">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="manifest" href="<%= pwa_manifest_path %>">
+    <link rel="icon" href="/icons/test-icon-192.png" sizes="192x192" type="image/png">
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site">
+      <div class="inner">
+        <span class="wordmark">Frello – interner Prototyp</span>
+        <nav aria-label="Hauptnavigation">
+          <ul>
+            <li><%= link_to "Katalog (Vorschau)", catalog_path %></li>
+            <% if signed_in? && current_internal_user.provider_role? %>
+              <li><%= link_to "Meine Events", provider_events_path %></li>
+            <% end %>
+            <% if signed_in? && current_internal_user.curation? %>
+              <li><%= link_to "Anbieter prüfen", curation_providers_path %></li>
+              <li><%= link_to "Events prüfen", curation_events_path %></li>
+              <li><%= link_to "Auditprotokoll", curation_audit_entries_path %></li>
+            <% end %>
+            <% if signed_in? %>
+              <li><%= button_to "Abmelden", sign_out_path, method: :delete, class: "btn" %></li>
+            <% else %>
+              <li><%= link_to "Anmelden", sign_in_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="page">
+      <p class="banner banner-strong" role="note">
+        <strong>Interne Vorschau ohne Buchungsfunktion.</strong>
+        Alle Daten sind synthetische Testdaten. Es gibt keine Buchung, keine Zahlung,
+        keine Teilnehmenden und keine öffentliche Veröffentlichung.
+      </p>
+
+      <% if signed_in? %>
+        <p class="notice">
+          Angemeldet als <strong><%= current_internal_user.display_name %></strong>
+          (Rolle: <%= current_internal_user.curation? ? "Frello-Kuration" : "Anbieter" %>).
+        </p>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <p class="notice" role="status"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="alert" role="alert"><%= flash[:alert] %></p>
+      <% end %>
+
+      <main id="inhalt">
+        <%= yield %>
+      </main>
+    </div>
+
+    <footer class="site">
+      <div class="inner">
+        <p>
+          Frello – interner Katalog- und Kurationsprototyp (Bauauftrag 01).
+          Markenneutrale Oberfläche: keine Frello-Logos, keine Markenfarben,
+          keine Ableitungen aus den Markenmastern. Nicht öffentlich erreichbar.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

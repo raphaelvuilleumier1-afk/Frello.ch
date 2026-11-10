@@ -1,0 +1,129 @@
+<% content_for :title, "Angebote suchen (interne Vorschau)" %>
+<h1>Angebote suchen</h1>
+
+<p>
+  Hier finden Sie die freigegebenen Angebote. Sie können die Liste mit den
+  Filtern unten einschränken. <strong>Eine Buchung ist in dieser Vorschau nicht möglich.</strong>
+</p>
+
+<%# FR-002 / BR-006 / AC-002: genau die neun MVP-Pflichtfilter.
+    Das Formular arbeitet mit GET und funktioniert ohne JavaScript. %>
+<form action="<%= catalog_path %>" method="get" role="search" aria-labelledby="filter-ueberschrift">
+  <fieldset>
+    <legend id="filter-ueberschrift">Filter</legend>
+
+    <div class="field">
+      <label for="f_city_region">Stadt oder Region</label>
+      <input type="text" id="f_city_region" name="city_region" value="<%= params[:city_region] %>" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="f_date_from">Datum von</label>
+      <input type="date" id="f_date_from" name="date_from" value="<%= params[:date_from] %>">
+    </div>
+
+    <div class="field">
+      <label for="f_date_to">Datum bis</label>
+      <input type="date" id="f_date_to" name="date_to" value="<%= params[:date_to] %>">
+    </div>
+
+    <div class="field">
+      <label for="f_category">Kategorie</label>
+      <select id="f_category" name="category">
+        <option value="">Alle Kategorien</option>
+        <% D31::CATEGORIES.each do |c| %>
+          <option value="<%= c %>" <%= "selected" if params[:category] == c %>><%= c %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="f_price_max">Preis höchstens (CHF)</label>
+      <input type="number" id="f_price_max" name="price_max" min="0" step="1" value="<%= params[:price_max] %>">
+    </div>
+
+    <div class="field check-row">
+      <label for="f_free_only">
+        <input type="checkbox" id="f_free_only" name="free_only" value="1" <%= "checked" if params[:free_only] == "1" %>>
+        Nur kostenlose Angebote
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="f_accessibility">Zugänglichkeit enthält</label>
+      <span class="hint" id="hint_acc">Zum Beispiel: stufenlos, Rollstuhl, Lift</span>
+      <input type="text" id="f_accessibility" name="accessibility" aria-describedby="hint_acc" value="<%= params[:accessibility] %>">
+    </div>
+
+    <div class="field">
+      <label for="f_activity_level">Aktivitätsniveau</label>
+      <select id="f_activity_level" name="activity_level">
+        <option value="">Alle</option>
+        <% D31::ACTIVITY_LEVELS.each do |k, v| %>
+          <option value="<%= k %>" <%= "selected" if params[:activity_level] == k %>><%= v %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="field check-row">
+      <label for="f_alone_welcome">
+        <input type="checkbox" id="f_alone_welcome" name="alone_welcome" value="1" <%= "checked" if params[:alone_welcome] == "1" %>>
+        Nur Angebote mit «Alleine willkommen»
+      </label>
+    </div>
+
+    <div class="field check-row">
+      <label for="f_available">
+        <input type="checkbox" id="f_available" name="available_places_only" value="1" <%= "checked" if params[:available_places_only] == "1" %>>
+        Nur Angebote mit verfügbaren Plätzen
+      </label>
+    </div>
+
+    <div class="actions">
+      <input type="submit" value="Angebote anzeigen">
+      <%= link_to "Filter zurücksetzen", catalog_path, class: "btn" %>
+    </div>
+  </fieldset>
+</form>
+
+<h2 id="treffer">
+  <%= @events.size %> <%= @events.size == 1 ? "Angebot gefunden" : "Angebote gefunden" %>
+</h2>
+
+<% if @events.empty? %>
+  <p class="notice">
+    Zu dieser Auswahl gibt es derzeit kein Angebot. Bitte lockern Sie einen Filter –
+    zum Beispiel den Zeitraum oder die Stadt – und suchen Sie erneut.
+  </p>
+<% else %>
+  <ul class="card-list">
+    <% @events.each do |event| %>
+      <li class="card">
+        <h3><%= link_to event.title, catalog_event_path(event) %></h3>
+        <ul class="meta">
+          <li><span class="k">Wann:</span>
+            <%= l(event.event_date, format: :long) %>,
+            <%= event.start_time.strftime("%H:%M") %>–<%= event.end_time.strftime("%H:%M") %> Uhr</li>
+          <li><span class="k">Wo:</span> <%= event.venue_name %>, <%= event.city_region %></li>
+          <li><span class="k">Preis:</span>
+            <%= event.free? ? "kostenlos" : "CHF #{number_with_precision(event.price_chf, precision: 2)}" %></li>
+          <li><span class="k">Kategorie:</span> <%= event.category %></li>
+          <li><span class="k">Zugänglichkeit:</span> <%= event.accessibility_info %></li>
+          <li>
+            <span class="k">Plätze (synthetischer Testwert):</span>
+            <%= event.synthetic_available_places %> von <%= event.max_participants %> frei
+          </li>
+          <% if event.alone_welcome %>
+            <li><span class="badge">Alleine willkommen</span></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p class="notice">
+  <strong>Hinweis zum Umfang:</strong> Die Filter Sprache, ÖV-Erreichbarkeit,
+  Verpflegung und Altersfokus sind nach D-32 ausdrücklich zurückgestellt und
+  deshalb hier nicht vorhanden.
+</p>

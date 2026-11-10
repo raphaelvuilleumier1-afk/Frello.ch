@@ -1,0 +1,27 @@
+# Frello – Interner Prototyp 01 (Bauauftrag 01)
+# PostgreSQL. Lokale Entwicklung über Unix-Socket mit der Rolle des OS-Benutzers.
+# Es werden bewusst KEINE Zugangsdaten in dieser Datei hinterlegt.
+# Für abweichende Umgebungen: FRELLO_DB_HOST / FRELLO_DB_USER / FRELLO_DB_PASSWORD
+# als Umgebungsvariablen setzen.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  <% if ENV["FRELLO_DB_HOST"] %>
+  host: <%= ENV["FRELLO_DB_HOST"] %>
+  <% end %>
+  <% if ENV["FRELLO_DB_USER"] %>
+  username: <%= ENV["FRELLO_DB_USER"] %>
+  <% end %>
+  <% if ENV["FRELLO_DB_PASSWORD"] %>
+  password: <%= ENV["FRELLO_DB_PASSWORD"] %>
+  <% end %>
+
+development:
+  <<: *default
+  database: frello_prototype_development
+
+test:
+  <<: *default
+  database: frello_prototype_test

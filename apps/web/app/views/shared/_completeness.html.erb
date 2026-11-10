@@ -1,0 +1,49 @@
+<%# Maschinell erzeugte Vollständigkeitsliste nach D-31 / BR-005.
+    Sie ist eine HILFE für die menschliche Prüfung und ersetzt den manuellen
+    Kurationsentscheid ausdrücklich NICHT (D-33). %>
+<h2>Vollständigkeit der Pflichtangaben nach D-31</h2>
+
+<% if completeness.submittable? %>
+  <p class="notice"><strong>Alle erforderlichen Angaben liegen vor.</strong></p>
+<% else %>
+  <p class="alert" role="alert">
+    <strong><%= completeness.missing.size %> erforderliche Angabe<%= "n" if completeness.missing.size > 1 %> fehlt noch.</strong>
+    Ohne vollständige Pflichtangaben ist weder eine Einreichung noch eine Freigabe möglich
+    (BR-005, EXC-013).
+  </p>
+<% end %>
+
+<% if completeness.qualification_forced? %>
+  <p class="notice">
+    Für die Kategorie «<%= event.category %>» ist der Qualifikationsnachweis
+    nach AC-034 bedingt erforderlich.
+  </p>
+<% end %>
+
+<% if D31.travel_notice?(event.category) %>
+  <p class="notice">
+    Hinweis zum Prüfstand: Bei reiseähnlichen Angeboten sind Reiseveranstalter- und
+    Pauschalreiserecht sowie Versicherungsfragen als OP-033 offen und extern zu prüfen.
+    Dieser Prototyp trifft dazu keine Aussage.
+  </p>
+<% end %>
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Prüfliste der Pflichtangaben, horizontal scrollbar">
+
+<table>
+  <caption>Prüfliste (maschinell erzeugt, ersetzt die manuelle Prüfung nicht)</caption>
+  <thead>
+    <tr><th scope="col">D-31</th><th scope="col">Angabe</th><th scope="col">Art</th><th scope="col">Stand</th></tr>
+  </thead>
+  <tbody>
+    <% completeness.findings.each do |finding| %>
+      <tr>
+        <td><%= finding.key.sub("d31.", "") %></td>
+        <td><%= finding.label %></td>
+        <td><%= d31_kind_label(finding.kind) %></td>
+        <td><%= completeness_state_tag(finding.state) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

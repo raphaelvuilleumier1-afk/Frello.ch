@@ -1,0 +1,49 @@
+<% content_for :title, @event.title.presence || "Evententwurf" %>
+
+<p><%= link_to "Zurück zu meinen Events", provider_events_path, class: "btn" %></p>
+
+<h1><%= @event.title.presence || "Evententwurf ohne Titel" %></h1>
+<p>Zustand: <strong><%= @event.status_label %></strong></p>
+
+<% can_write = current_internal_user.provider.verified? %>
+<% if @event.editable_by_provider? && can_write %>
+  <div class="actions">
+    <%= link_to "Entwurf bearbeiten", edit_provider_event_path(@event), class: "btn" %>
+    <%= button_to "Zur Prüfung einreichen", submit_provider_event_path(@event),
+                  method: :post, class: "btn btn-primary" %>
+  </div>
+<% elsif @event.status == "returned_for_revision" %>
+  <p class="notice" role="status">
+    Frello hat dieses Event zur Überarbeitung zurückgegeben. Den Prüfvermerk finden
+    Sie unten. In diesem Prototyp lässt sich ein zurückgegebenes Event weder bearbeiten
+    noch erneut einreichen: Wie es danach weitergeht, ist fachlich noch nicht
+    entschieden. Sie können einen neuen Entwurf anlegen.
+  </p>
+  <% if can_write %>
+    <p><%= link_to "Neuen Evententwurf anlegen", new_provider_event_path, class: "btn" %></p>
+  <% end %>
+<% elsif !can_write %>
+  <p class="notice">
+    Evententwürfe können erst nach erfolgreicher Prüfung Ihres Anbieterkontos
+    bearbeitet werden.
+  </p>
+<% else %>
+  <p class="notice">
+    In diesem Zustand ist keine Bearbeitung vorgesehen. Bearbeitbar sind nur Entwürfe.
+  </p>
+<% end %>
+
+<%= render "shared/completeness", completeness: @completeness, event: @event %>
+
+<% if @event.event_reviews.any? %>
+  <h2>Prüfvermerke der Frello-Kuration</h2>
+  <ul class="card-list">
+    <% @event.event_reviews.order(decided_at: :desc).each do |review| %>
+      <li class="card">
+        <h3><%= review.outcome_label %></h3>
+        <p><%= review.note %></p>
+        <p class="meta"><span class="k">Entschieden am:</span> <%= l(review.decided_at, format: :long) %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

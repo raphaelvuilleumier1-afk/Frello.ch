@@ -1,0 +1,59 @@
+<% content_for :title, "Prüfung: #{@event.title}" %>
+<p><%= link_to "Zurück zur Prüfliste", curation_events_path, class: "btn" %></p>
+<h1><%= @event.title.presence || "Evententwurf ohne Titel" %></h1>
+<p>Zustand: <strong><%= @event.status_label %></strong> ·
+   Anbieter: <strong><%= @event.provider.organisation_name %></strong>
+   (<%= @event.provider.status_label %>)</p>
+
+<h2>Eingereichte Angaben</h2>
+<dl class="detail">
+  <% D31::ALWAYS_REQUIRED.each do |field| %>
+    <div>
+      <dt><%= field.label %></dt>
+      <dd>
+        <% value = @event.public_send(field.attribute) %>
+        <% if field.attribute == :provider_id %><%= @event.provider.organisation_name %>
+        <% elsif value.nil? || value.to_s.strip.empty? %><span class="state-missing">fehlt</span>
+        <% elsif value == true %>Ja<% elsif value == false %>Nein
+        <% else %><%= value %><% end %>
+      </dd>
+    </div>
+  <% end %>
+</dl>
+
+<%= render "shared/completeness", completeness: @completeness, event: @event %>
+
+<% if @event.status == "in_review" %>
+  <h2>Entscheid der Frello-Kuration</h2>
+  <p class="notice">
+    Die Prüfliste oben ist eine <strong>Hilfe</strong>. Der Entscheid wird von Ihnen als
+    Person getroffen und protokolliert (D-33, AC-045).
+  </p>
+  <%= form_with url: decide_curation_event_path(@event), method: :post do %>
+    <div class="field">
+      <%= label_tag :note, "Prüfvermerk (Pflichtangabe)" %>
+      <%= text_area_tag :note, nil, rows: 4, id: "note" %>
+    </div>
+    <div class="actions">
+      <%= button_tag "Freigeben", type: "submit", name: "outcome", value: "released", class: "btn btn-primary" %>
+      <%= button_tag "Zur Überarbeitung zurückgeben", type: "submit", name: "outcome", value: "returned", class: "btn" %>
+      <%= button_tag "Ablehnen", type: "submit", name: "outcome", value: "rejected", class: "btn" %>
+    </div>
+  <% end %>
+<% else %>
+  <p class="notice">In diesem Zustand steht kein Entscheid an.</p>
+<% end %>
+
+<% if @event.event_reviews.any? %>
+  <h2>Entscheidhistorie</h2>
+  <ul class="card-list">
+    <% @event.event_reviews.order(decided_at: :desc).each do |r| %>
+      <li class="card">
+        <h3><%= r.outcome_label %></h3>
+        <p><%= r.note %></p>
+        <p class="meta"><span class="k">Entschieden am:</span> <%= l(r.decided_at, format: :long) %>
+           · <span class="k">Durch:</span> <%= r.decided_by.display_name %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

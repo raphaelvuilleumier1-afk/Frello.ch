@@ -1,0 +1,33 @@
+<% content_for :title, "Auditprotokoll" %>
+<h1>Auditprotokoll</h1>
+<p>
+  Nachvollziehbare Protokollierung der Anbieterprüfung und der Eventfreigabe
+  (DO-024 / PR-011 / FR-046 / AC-045). Diese Ansicht ist ausschliesslich lesend;
+  es gibt keine Bearbeitung und keine Löschung.
+</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Auditprotokoll, horizontal scrollbar">
+<table>
+  <caption>Letzte <%= @entries.size %> Einträge, neueste zuerst</caption>
+  <thead>
+    <tr>
+      <th scope="col">Zeitpunkt</th><th scope="col">Akteur</th><th scope="col">Rolle</th>
+      <th scope="col">Gegenstand</th><th scope="col">Vorgang</th>
+      <th scope="col">Vorher</th><th scope="col">Nachher</th><th scope="col">Vermerk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |e| %>
+      <tr>
+        <td><%= l(e.occurred_at, format: :long) %></td>
+        <td><%= e.actor_label %></td>
+        <td><%= e.actor_role %></td>
+        <td><%= e.subject_type %>: <%= e.subject_label %></td>
+        <td><%= e.action %></td>
+        <td><%= e.from_state || "–" %></td>
+        <td><%= e.to_state || "–" %></td>
+        <td><%= e.note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

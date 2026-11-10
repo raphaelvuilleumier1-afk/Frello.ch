@@ -1,0 +1,9 @@
+<% content_for :title, "Bearbeitung nicht möglich" %>
+<h1>Bearbeitung nicht möglich</h1>
+<p class="alert" role="alert">
+  Dieses Event lässt sich im aktuellen Zustand nicht bearbeiten.
+  Bearbeitbar sind nur Entwürfe. Die nachträgliche Bearbeitung freigegebener
+  Events ist nicht Bestandteil dieses Bauabschnitts; für zur Überarbeitung
+  zurückgegebene Events ist der weitere Ablauf fachlich noch nicht entschieden.
+</p>
+<p><%= link_to "Zurück zu meinen Events", provider_events_path, class: "btn" %></p>
